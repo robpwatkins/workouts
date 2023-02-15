@@ -1,4 +1,5 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const routes = require('./routes/workouts');
 
 const app = express();
@@ -12,6 +13,10 @@ app.use((req, res, next) => {
 
 app.use('/api/workouts', routes);
 
-const port = process.env.PORT || 4000;
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => {
+    app.listen(port, () => console.log(`Connected to DB and listening on port ${port}!!`))
+  })
+  .catch((error) => console.log('error: ', error));
 
-app.listen(port, () => console.log(`listening on port ${port}!!`));
+const port = process.env.PORT || 4000;
