@@ -10,8 +10,8 @@ const { ensureAuth, ensureGuest } = require('../middleware/auth');
 
 const router = express.Router();
 
-// router.use(ensureAuth);
-// router.use(ensureGuest);
+router.use(ensureAuth);
+router.use(ensureGuest);
 
 router.get('/', getWorkouts);
 router.get('/:id', getWorkout);

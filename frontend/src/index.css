@@ -127,7 +127,7 @@ nav a.login {
 }
 
 nav a.signup {
-  outline: 1px solid var(--primary);
+  outline: 2px solid var(--primary);
 }
 
 nav button {

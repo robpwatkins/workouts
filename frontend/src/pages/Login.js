@@ -15,6 +15,11 @@ const Login = () => {
     await login(email, password);
   };
 
+  const googleLogin = (e) => {
+    e.preventDefault();
+    window.open("http://localhost:4001/auth/google", "_self");
+  }
+
   return (
     <>
       <form className="login" onSubmit={handleSubmit}>
@@ -39,7 +44,7 @@ const Login = () => {
       </form>
       <h4 className="social-heading">OR</h4>
       <form className="login social-login">
-        <button className="social-button google-button">
+        <button className="social-button google-button" onClick={googleLogin}>
           <span className="social-icon google-icon "></span>
           Continue with Google
         </button>
