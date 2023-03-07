@@ -1,11 +1,21 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const passport = require('passport');
 const workoutRoutes = require('./routes/workouts');
 const userRoutes = require('./routes/user');
+const authRoutes = require('./routes/auth');
 
 const app = express();
 
 app.use(express.json());
+
+require('./config/passport')(passport);
+app.use(passport.initialize());
+
+// require('./services/jwtStrategy');
+// require('./services/facebookStrategy');
+// require('./services/googleStrategy');
+// require('./services/localStrategy');
 
 app.use((req, res, next) => {
   console.log(req.path, req.method);
@@ -14,6 +24,10 @@ app.use((req, res, next) => {
 
 app.use('/api/workouts', workoutRoutes);
 app.use('/api/user', userRoutes);
+app.use('/auth', authRoutes);
+
+app.get('/auth/google',
+  passport.authenticate('google', { scope: ['profile'] }));
 
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {

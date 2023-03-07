@@ -12,8 +12,12 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    await login(email, password);
+    // await login(email, password);
   };
+  
+  const handleClick = (buttonType) => {
+    window.open(`http://localhost:4001/auth/${buttonType}`, '_self');
+  }
 
   return (
     <>
@@ -38,8 +42,8 @@ const Login = () => {
         </p>
       </form>
       <h4 className="social-heading">OR</h4>
-      <form className="login social-login">
-        <button className="social-button google-button">
+      <form className="login social-login" onSubmit={handleSubmit}>
+        <button className="social-button google-button" onClick={() => handleClick('google')}>
           <span className="social-icon google-icon "></span>
           Continue with Google
         </button>
