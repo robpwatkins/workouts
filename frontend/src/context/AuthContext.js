@@ -19,9 +19,33 @@ export const AuthContextProvider = ({ children }) => {
   });
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('user'));
+    // const user = JSON.parse(localStorage.getItem('user'));
 
-    if (user) dispatch({ type: 'LOGIN', payload: user });
+    // if (user) dispatch({ type: 'LOGIN', payload: user });
+    const loginUserWithOauth = async (token) => {
+      try {
+        const headers = {
+          'Content-Type': 'application/json',
+          'x-auth-token': token,
+        };
+    
+        const response = await fetch('http://localhost:4001/api/user/me', { headers });
+        const user = await response.json();
+
+        if (user) dispatch({ type: 'LOGIN', payload: user });
+      } catch (error) {
+        console.log('error: ', error);
+      }
+    }
+
+    const token = document.cookie
+      .split("; ")
+      .find(row => row.startsWith("x-auth-cookie="))
+      ?.split("=")[1];
+
+    console.log('token: ', token);
+
+    loginUserWithOauth(token);
   }, []);
 
   console.log('AuthContext state: ', state);

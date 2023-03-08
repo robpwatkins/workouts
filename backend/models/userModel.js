@@ -75,12 +75,12 @@ const secretOrKey = process.env.NODE_ENV === 'production'
 userSchema.methods.generateJWT = function () {
   const token = jwt.sign(
     {
-      expiresIn: '12h',
       id: this._id,
       provider: this.provider,
       email: this.email,
     },
     secretOrKey,
+    { expiresIn: 60 }
   );
   return token;
 };

@@ -19,7 +19,8 @@ const Home = () => {
       if (response.ok) dispatch({ type: 'SET_WORKOUTS', payload: json });
     }
 
-    if (user) fetchWorkouts();
+    // if (user) fetchWorkouts();
+    if (user) console.log('Home user: ', user);
   }, [dispatch, user]);
 
   return (

@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const workoutRoutes = require('./routes/workouts');
@@ -8,6 +9,7 @@ const authRoutes = require('./routes/auth');
 const app = express();
 
 app.use(express.json());
+app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 
 require('./config/passport')(passport);
 app.use(passport.initialize());
