@@ -2,22 +2,21 @@ import { createContext, useReducer, useState, useEffect } from 'react';
 
 export const AuthContext = createContext();
 
-// export const authReducer = (state, action) => {
-//   switch(action.type) {
-//     case 'LOGIN':
-//       return { user: action.payload };
-//     case 'LOGOUT':
-//       return { user: null };
-//     default:
-//       return state;
-//   }
-// }
+export const authReducer = (state, action) => {
+  switch(action.type) {
+    case 'LOGIN':
+      return { user: action.payload };
+    case 'LOGOUT':
+      return { user: null };
+    default:
+      return state;
+  }
+}
 
 export const AuthContextProvider = ({ children }) => {
-  // const [state, dispatch] = useReducer(authReducer, {
-  //   user: null
-  // });
-  const [user, setUser] = useState(null);
+  const [state, dispatch] = useReducer(authReducer, {
+    user: null
+  });
 
   useEffect(() => {
     // const user = JSON.parse(localStorage.getItem('user'));
@@ -49,11 +48,10 @@ export const AuthContextProvider = ({ children }) => {
     loginUserWithOauth(token);
   }, []);
 
-  // console.log('AuthContext state: ', state);
-  console.log('AuthContext user: ', user);
+  console.log('AuthContext state: ', state);
 
   return (
-    <AuthContext.Provider value={{ user }}>
+    <AuthContext.Provider value={{ ...state, dispatch }}>
       { children }
     </AuthContext.Provider>
   );

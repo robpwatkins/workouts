@@ -19,11 +19,6 @@ const Login = () => {
     window.open(`http://localhost:4001/auth/${buttonType}`, '_self');
   }
 
-  const googleLogin = (e) => {
-    e.preventDefault();
-    window.open("http://localhost:4001/auth/google", "_self");
-  }
-
   return (
     <>
       <form className="login" onSubmit={handleSubmit}>
