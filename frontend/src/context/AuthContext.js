@@ -28,26 +28,28 @@ export const AuthContextProvider = ({ children }) => {
       .find(row => row.startsWith("x-auth-cookie="))
       ?.split("=")[1];
 
-    const loginUserWithOauth = async () => {
-      dispatch({ type: 'LOADING', payload: true });
-
-      try {
-        const headers = {
-          'Content-Type': 'application/json',
-          'x-auth-token': token,
-        };
-    
-        const response = await fetch('http://localhost:4001/api/user/me', { headers });
-        const { me: user } = await response.json();
-
-        dispatch({ type: 'LOGIN', payload: user });
-      } catch (error) {
-        console.log('error: ', error);
-        dispatch({ type: 'LOADING', payload: false });
+    if (token) {
+      const loginUserWithOauth = async () => {
+        dispatch({ type: 'LOADING', payload: true });
+  
+        try {
+          const headers = {
+            'Content-Type': 'application/json',
+            'x-auth-token': token,
+          };
+      
+          const response = await fetch('http://localhost:4001/api/user/me', { headers });
+          const { me: user } = await response.json();
+  
+          dispatch({ type: 'LOGIN', payload: user });
+        } catch (error) {
+          console.log('error: ', error);
+          dispatch({ type: 'LOADING', payload: false });
+        }
       }
+  
+      loginUserWithOauth(token);
     }
-
-    loginUserWithOauth(token);
   }, []);
 
   console.log('AuthContext state: ', state);

@@ -114,7 +114,6 @@ nav {
 nav a {
   display: inline-block;
   width: 75px;
-  padding: 7px 0;
   text-align: center;
   color: var(--primary);
   border-radius: 4px;
@@ -122,12 +121,14 @@ nav a {
 
 nav a.login {
   margin-left: 12px;
+  padding: 7px 0;
   color: #fff;
   background-color: var(--primary);
 }
 
 nav a.signup {
-  outline: 2px solid var(--primary);
+  padding: 5px 0;
+  border: 2px solid var(--primary);
 }
 
 nav button {

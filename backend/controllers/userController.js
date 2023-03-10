@@ -7,9 +7,9 @@ const createToken = (_id) => {
 
 const loginUser = async (req, res) => {
   const token = req.user.generateJWT();
-  const me = req.user.toJSON();
+  const user = req.user.toJSON();
   res.cookie('x-auth-cookie', token);
-  res.json({ token, me });
+  res.json(user);
 };
 
 const signupUser = async (req, res) => {
@@ -18,10 +18,10 @@ const signupUser = async (req, res) => {
   try {
     const user = await User.signup(email, password);
 
-    const token = createToken(user._id);
+    const token = user.generateJWT();
 
     res.cookie('x-auth-cookie', token);
-    res.redirect(process.env.CLIENT_URL_DEV);
+    res.json(user);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
