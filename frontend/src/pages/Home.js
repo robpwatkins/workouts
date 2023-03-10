@@ -20,7 +20,7 @@ const Home = () => {
     }
 
     // if (user) fetchWorkouts();
-    if (user) console.log('Home user: ', user);
+    // if (user) console.log('Home user: ', user);
   }, [dispatch, user]);
 
   return (

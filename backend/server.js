@@ -1,8 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const cors = require('cors');
-const session = require('express-session');
 const passport = require('passport');
 const workoutRoutes = require('./routes/workouts');
 const userRoutes = require('./routes/user');
@@ -32,13 +30,6 @@ app.use(passport.initialize());
 // require('./services/localStrategy');
 
 app.use(cors({ origin: "http://localhost:3000", credentials: true }));
-app.use(
-  session({
-    secret: "secretcode",
-    resave: true,
-    saveUninitialized: true
-  })
-);
 
 app.use((req, res, next) => {
   console.log(req.path, req.method);
@@ -46,24 +37,10 @@ app.use((req, res, next) => {
 });
 
 app.use(passport.initialize());
-app.use(passport.session());
 
 app.use('/api/workouts', workoutRoutes);
 app.use('/api/user', userRoutes);
-<<<<<<< HEAD
 app.use('/auth', authRoutes);
-
-app.get('/auth/google',
-  passport.authenticate('google', { scope: ['profile'] }));
-=======
-app.use('/auth', require('./routes/auth'));
->>>>>>> 1a5b74b9097b67d9976bc2daa30608d4aa046ccf
-
-// app.get('/auth/google/callback',
-//   passport.authenticate('google', { failureRedirect: '/login' }),
-//   function(req, res) {
-//     res.redirect('http://localhost:3000/');
-//   });
 
 app.get('/getuser', (req, res) => {
   res.json({ user: req.user });

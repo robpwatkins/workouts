@@ -1,9 +1,12 @@
-import { createContext, useReducer, useState, useEffect } from 'react';
+import { createContext, useReducer, useEffect } from 'react';
+// import { useLogin } from '../hooks/useLogin';
 
 export const AuthContext = createContext();
 
 export const authReducer = (state, action) => {
   switch(action.type) {
+    case 'LOADING':
+      return { loading: action.payload }
     case 'LOGIN':
       return { user: action.payload };
     case 'LOGOUT':
@@ -17,12 +20,17 @@ export const AuthContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, {
     user: null
   });
+  // const { loginUserWithOauth } = useLogin();
 
   useEffect(() => {
-    // const user = JSON.parse(localStorage.getItem('user'));
+    const token = document.cookie
+      .split("; ")
+      .find(row => row.startsWith("x-auth-cookie="))
+      ?.split("=")[1];
 
-    // if (user) dispatch({ type: 'LOGIN', payload: user });
-    const loginUserWithOauth = async (token) => {
+    const loginUserWithOauth = async () => {
+      dispatch({ type: 'LOADING', payload: true });
+
       try {
         const headers = {
           'Content-Type': 'application/json',
@@ -30,20 +38,14 @@ export const AuthContextProvider = ({ children }) => {
         };
     
         const response = await fetch('http://localhost:4001/api/user/me', { headers });
-        const user = await response.json();
+        const { me: user } = await response.json();
 
-        if (user) dispatch({ type: 'LOGIN', payload: user });
+        dispatch({ type: 'LOGIN', payload: user });
       } catch (error) {
         console.log('error: ', error);
+        dispatch({ type: 'LOADING', payload: false });
       }
     }
-
-    const token = document.cookie
-      .split("; ")
-      .find(row => row.startsWith("x-auth-cookie="))
-      ?.split("=")[1];
-
-    console.log('token: ', token);
 
     loginUserWithOauth(token);
   }, []);

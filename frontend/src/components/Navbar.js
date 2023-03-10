@@ -1,30 +1,10 @@
 import { Link } from 'react-router-dom';
-// import { useLogout } from '../hooks/useLogout';
+import { useLogout } from '../hooks/useLogout';
 import { useAuthContext } from '../hooks/useAuthContext';
 
 const Navbar = () => {
-  // const { logout } = useLogout();
+  const { logout } = useLogout();
   const { user } = useAuthContext();
-
-  // const handleClick = () => logout();
-
-  const logout = async () => {
-    const response = await fetch('http://localhost:4001/auth/logout', {
-      credentials: 'include'
-    })
-    console.log('response: ', response);
-
-    const json = await response.json();
-    if (json === 'done') window.location.href = '/';
-
-    // axios.get("http://localhost:4001/auth/logout", {
-    //     withCredentials: true
-    // }).then((res: AxiosResponse) => {
-    //     if (res.data === "done") {
-    //         window.location.href = "/"
-    //     }
-    // })
-}
 
   return (
     <header>
