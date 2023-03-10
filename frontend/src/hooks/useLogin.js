@@ -10,20 +10,22 @@ export const useLogin = () => {
     setIsLoading(true);
     setError(null);
 
-    const response = await fetch('/api/user/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password })
-    });
-    const json = await response.json();
+    try {
+      const response = await fetch('/api/user/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      });
 
-    if (!response.ok) {
-      setIsLoading(false);
-      setError(json.error);
-    }
-    if (response.ok) {
+      const json = await response.json();
+    
+      if (!response.ok) throw Error(json.message);
+      
       dispatch({ type: 'LOGIN', payload: json });
       setIsLoading(false);
+    } catch (err) {
+      setIsLoading(false);
+      setError(err.message);
     }
   };
 

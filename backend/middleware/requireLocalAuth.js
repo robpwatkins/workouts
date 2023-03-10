@@ -6,6 +6,7 @@ const requireLocalAuth = (req, res, next) => {
       return next(err);
     }
     if (!user) {
+      console.log('no user!');
       return res.status(422).send(info);
     }
     req.user = user;
