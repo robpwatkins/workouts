@@ -43,6 +43,11 @@ module.exports = function(passport) {
       const user = await User.findOne({ email });
     
       if (!user) return done(null, false, { message: 'Email does not exist'});
+
+      if (user.provider !== 'email') {
+        const message = `Please log in with your original method (${user.provider})`;
+        return done(null, false, { message });
+      }
     
       const match = await bcrypt.compare(password, user.password);
     
@@ -72,12 +77,14 @@ module.exports = function(passport) {
 
       if (user) done(null, user);
       else {
+        user = await User.fineOne({ email: profile.emails[0].value });
+
         user = await User.create(newUser);
         done(null, user);
       }
     } catch (err) {
       console.error('error: ', err);
-      return done(err);
+      return done(err.message);
     }
   }));
 
