@@ -44,8 +44,16 @@ app.use('/api/user', userRoutes);
 app.use('/auth', authRoutes);
 
 app.get('/getuser', (req, res) => {
-  console.log('req.user: ', req.user);
-  res.json({ user: req.user });
+  try {
+    if (req.session.messages && req.session.messages.length) {
+      const [error] = req.session.messages;
+      req.session.messages = [];
+      return res.json({ error });
+    }
+    res.json({ user: req.user });
+  } catch (error) {
+    console.log('error: ', error);
+  }
 });
 
 app.post('/logout', function(req, res, next) {

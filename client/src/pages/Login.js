@@ -1,13 +1,15 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import { useLogin } from '../hooks/useLogin';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook } from '@fortawesome/free-brands-svg-icons';
+import { useAuthContext } from '../hooks/useAuthContext';
+import { useLogin } from '../hooks/useLogin';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { login, error, isLoading } = useLogin();
+  const { error: passportError } = useAuthContext();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,7 +38,7 @@ const Login = () => {
           value={password}
         />
         <button disabled={isLoading}>Continue</button>
-        {error && <div className="error">{error}</div>}
+        {(error || passportError) && <div className="error">{error || passportError}</div>}
         <p className="account">Don't have an account?
           <Link to="/signup">Sign up</Link>
         </p>

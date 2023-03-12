@@ -11,6 +11,8 @@ export const authReducer = (state, action) => {
       return { user: action.payload };
     case 'LOGOUT':
       return { user: null };
+    case 'ERROR':
+      return { error: action.payload }
     default:
       return state;
   }
@@ -28,9 +30,10 @@ export const AuthContextProvider = ({ children }) => {
 
       try {
         const response = await fetch('http://localhost:4001/getuser', { credentials: 'include' });
-        const { user } = await response.json();
+        const { user, error } = await response.json();
 
-        dispatch({ type: 'LOGIN', payload: user });
+        if (error) dispatch({ type: 'ERROR', payload: error });
+        else dispatch({ type: 'LOGIN', payload: user });
       } catch (error) {
         console.log('error: ', error);
         dispatch({ type: 'LOADING', payload: false });

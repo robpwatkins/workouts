@@ -4,7 +4,7 @@ import { useAuthContext } from '../hooks/useAuthContext';
 
 const Navbar = () => {
   const { logout } = useLogout();
-  const { user } = useAuthContext();
+  const { user, loading } = useAuthContext();
 
   return (
     <header>
@@ -13,13 +13,13 @@ const Navbar = () => {
           <h1>MLB Fantasy</h1>
         </Link>
         <nav>
-          {user && (
+          {(!loading && user) && (
             <div>
               <span>{user.email}</span>
               <button onClick={logout}>Logout</button>
             </div>
           )}
-          {!user && (
+          {(!loading && !user) && (
             <div>
               <Link className="signup" to="/signup">Signup</Link>
               <Link className="login" to="/login">Login</Link>

@@ -12,16 +12,13 @@ module.exports = function(passport) {
   },
   async (email, password, done) => {
     try {
-      if (!email || !password) return done(null, false, { message: 'All fields must be filled' });
-  
       const user = await User.findOne({ email });
+
+      if (user && user.provider !== 'email') {
+        return done(null, false, { message: `Please log in with your original method (${user.provider})` });
+      }
     
       if (!user) return done(null, false, { message: 'Email does not exist'});
-
-      // if (user.provider !== 'email') {
-      //   const message = `Please log in with your original method (${user.provider})`;
-      //   return done(null, false, { message });
-      // }
     
       const match = await bcrypt.compare(password, user.password);
     
@@ -52,6 +49,10 @@ module.exports = function(passport) {
       if (user) done(null, user);
       else {
         user = await User.findOne({ email: profile.emails[0].value });
+        if (user && user.provider !== 'google') {
+          const message = `Please log in with your original method (${user.provider})`;
+          return done(null, false, { message });
+        }
 
         user = await User.create(newUser);
         done(null, user);
@@ -83,6 +84,12 @@ module.exports = function(passport) {
 
       if (user) done(null, user);
       else {
+        user = await User.findOne({ email: profile.emails[0].value });
+        if (user && user.provider !== 'facebook') {
+          const message = `Please log in with your original method (${user.provider})`;
+          return done(null, false, { message });
+        }
+
         user = await User.create(newUser);
         done(null, user);
       }
