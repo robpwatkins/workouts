@@ -23,33 +23,21 @@ export const AuthContextProvider = ({ children }) => {
   // const { loginUserWithOauth } = useLogin();
 
   useEffect(() => {
-    const token = document.cookie
-      .split("; ")
-      .find(row => row.startsWith("x-auth-cookie="))
-      ?.split("=")[1];
+    const loginUserWithOauth = async () => {
+      dispatch({ type: 'LOADING', payload: true });
 
-    if (token) {
-      const loginUserWithOauth = async () => {
-        dispatch({ type: 'LOADING', payload: true });
-  
-        try {
-          const headers = {
-            'Content-Type': 'application/json',
-            'x-auth-token': token,
-          };
-      
-          const response = await fetch('http://localhost:4001/api/user/me', { headers });
-          const { me: user } = await response.json();
-  
-          dispatch({ type: 'LOGIN', payload: user });
-        } catch (error) {
-          console.log('error: ', error);
-          dispatch({ type: 'LOADING', payload: false });
-        }
+      try {
+        const response = await fetch('http://localhost:4001/getuser', { credentials: 'include' });
+        const { user } = await response.json();
+
+        dispatch({ type: 'LOGIN', payload: user });
+      } catch (error) {
+        console.log('error: ', error);
+        dispatch({ type: 'LOADING', payload: false });
       }
-  
-      loginUserWithOauth(token);
     }
+
+    loginUserWithOauth();
   }, []);
 
   console.log('AuthContext state: ', state);

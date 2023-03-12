@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const validator = require('validator');
-const jwt = require('jsonwebtoken');
 
 const Schema = mongoose.Schema;
 
@@ -75,23 +74,5 @@ userSchema.statics.login = async function(email, password) {
 
   return user;
 }
-
-const secretOrKey = process.env.NODE_ENV === 'production'
-  ? process.env.JWT_SECRET_PROD
-  : process.env.JWT_SECRET_DEV;
-
-userSchema.methods.generateJWT = function () {
-  const token = jwt.sign(
-    {
-      id: this._id,
-      provider: this.provider,
-      email: this.email,
-    },
-    secretOrKey,
-    { expiresIn: 60 * 5 }
-  );
-  return token;
-};
-
 
 module.exports = mongoose.model('User', userSchema);

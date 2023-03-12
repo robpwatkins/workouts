@@ -11,9 +11,10 @@ export const useLogin = () => {
     setError(null);
 
     try {
-      const response = await fetch('/api/user/login', {
+      const response = await fetch('/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
         body: JSON.stringify({ email, password })
       });
 

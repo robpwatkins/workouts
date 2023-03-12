@@ -1,6 +1,5 @@
 import { useAuthContext } from './useAuthContext';
 // import { useWorkoutsContext } from './useWorkoutsContext';
-import { deleteAllCookies } from '../store/actions/authActions';
 
 export const useLogout = () => {
   const { dispatch } = useAuthContext();
@@ -8,10 +7,12 @@ export const useLogout = () => {
 
   const logout = async () => {
     try {
-      deleteAllCookies();
-  
+      await fetch('http://localhost:4001/logout', {
+        method: 'POST',
+        credentials: 'include',
+      });
+
       dispatch({ type: 'LOGOUT' });
-      // if (history) history.push('/');
     } catch (err) {}
     // workoutsDispatch({ type: 'SET_WORKOUTS', payload: null });
   };

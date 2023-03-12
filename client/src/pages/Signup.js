@@ -12,7 +12,7 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    await signup(email, password);
+    if (!e.target.className.includes('social')) await signup(email, password);
   };
 
   const handleClick = (buttonType) => {

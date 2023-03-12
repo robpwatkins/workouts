@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const passport = require('passport');
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
 const workoutRoutes = require('./routes/workouts');
 const userRoutes = require('./routes/user');
 const authRoutes = require('./routes/auth');
@@ -19,30 +21,40 @@ mongoose.connect(process.env.MONGO_URI)
   .catch((error) => console.log('error: ', error));
 
 app.use(express.json());
-app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
 
-require('./config/passport')(passport);
+app.use(session({
+  secret: process.env.SECRET,
+  resave: false,
+  saveUninitialized: false,
+  cookie: { maxAge: 60 * 5 * 1000 },
+  store: MongoStore.create({ mongoUrl: process.env.MONGO_URI })
+}));
+
 app.use(passport.initialize());
-
-// require('./services/jwtStrategy');
-// require('./services/facebookStrategy');
-// require('./services/googleStrategy');
-// require('./services/localStrategy');
-
-app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+app.use(passport.session());
 
 app.use((req, res, next) => {
   console.log(req.path, req.method);
   next();
 });
 
-app.use(passport.initialize());
-
 app.use('/api/workouts', workoutRoutes);
 app.use('/api/user', userRoutes);
 app.use('/auth', authRoutes);
 
 app.get('/getuser', (req, res) => {
+  console.log('req.user: ', req.user);
   res.json({ user: req.user });
-})
-  
+});
+
+app.post('/logout', function(req, res, next) {
+  req.logout(err => {
+    if (err) {
+      console.log('err: ', err);
+      return next(err);
+    }
+    console.log('logged out');
+    return res.json('success');
+  });
+});

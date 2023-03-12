@@ -1,5 +1,4 @@
 const { Strategy: GoogleStrategy} = require('passport-google-oauth20');
-const { Strategy: JwtStrategy, ExtractJwt } = require('passport-jwt');
 const { Strategy: LocalStrategy } = require('passport-local');
 const { Strategy: FacebookStrategy } = require('passport-facebook');
 const mongoose = require('mongoose');
@@ -7,34 +6,9 @@ const bcrypt = require('bcrypt');
 const User = require('../models/userModel');
 
 module.exports = function(passport) {
-  const secretOrKey = process.env.NODE_ENV === 'production'
-    ? process.env.JWT_SECRET_PROD
-    : process.env.JWT_SECRET_DEV;
-  
-  passport.use(new JwtStrategy({
-      jwtFromRequest: ExtractJwt.fromHeader('x-auth-token'),
-      secretOrKey,
-    },
-    async (payload, done) => {
-      try {
-        const user = await User.findById(payload.id);
-  
-        if (user) {
-          done(null, user);
-        } else {
-          done(null, false);
-        }
-      } catch (err) {
-        done(err, false);
-      }
-    },
-  ));
-
   passport.use(new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password',
-    session: false,
-    // passReqToCallback: true,
   },
   async (email, password, done) => {
     try {
@@ -44,10 +18,10 @@ module.exports = function(passport) {
     
       if (!user) return done(null, false, { message: 'Email does not exist'});
 
-      if (user.provider !== 'email') {
-        const message = `Please log in with your original method (${user.provider})`;
-        return done(null, false, { message });
-      }
+      // if (user.provider !== 'email') {
+      //   const message = `Please log in with your original method (${user.provider})`;
+      //   return done(null, false, { message });
+      // }
     
       const match = await bcrypt.compare(password, user.password);
     
@@ -77,7 +51,7 @@ module.exports = function(passport) {
 
       if (user) done(null, user);
       else {
-        user = await User.fineOne({ email: profile.emails[0].value });
+        user = await User.findOne({ email: profile.emails[0].value });
 
         user = await User.create(newUser);
         done(null, user);
@@ -116,5 +90,16 @@ module.exports = function(passport) {
       console.error('error: ', error);
     }
   }));
+
+  passport.serializeUser((user, cb) => cb(null, user.id));
+
+  passport.deserializeUser(async (id, cb) => {
+    try {
+      const user = await User.findById(id);
+      return cb(null, user);
+    } catch (error) {
+      return cb(error);
+    }
+  });
 }
 
