@@ -10,13 +10,12 @@ const { ensureAuth, ensureGuest } = require('../middleware/auth');
 
 const router = express.Router();
 
-// router.use(ensureAuth);
-// router.use(ensureGuest);
+router.use(ensureAuth);
 
-router.get('/', getWorkouts);
-router.get('/:id', getWorkout);
-router.post('/', createWorkout);
-router.delete('/:id', deleteWorkout);
-router.patch('/:id', updateWorkout);
+router.get('/', ensureAuth, getWorkouts);
+router.get('/:id', ensureAuth, getWorkout);
+router.post('/', ensureAuth, createWorkout);
+router.delete('/:id', ensureAuth, deleteWorkout);
+router.patch('/:id', ensureAuth, updateWorkout);
 
 module.exports = router;
