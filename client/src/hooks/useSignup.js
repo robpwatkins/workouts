@@ -9,22 +9,25 @@ export const useSignup = () => {
   const signup = async (email, password) => {
     setIsLoading(true);
     setError(null);
-
-    const response = await fetch('/auth/signup', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      credentials: 'include',
-      body: JSON.stringify({ email, password })
-    });
-    const json = await response.json();
-
-    if (!response.ok) {
-      setIsLoading(false);
-      setError(json.error);
-    }
-    if (response.ok) {
+    
+    try {
+      const response = await fetch('/auth/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ email, password })
+      });
+      const json = await response.json();
+  
+      if (!response.ok) {
+        if (json.message) throw Error(json.message);
+      }
+  
       dispatch({ type: 'LOGIN', payload: json });
       setIsLoading(false);
+    } catch (err) {
+      setIsLoading(false);
+      setError(err.message);
     }
   };
 

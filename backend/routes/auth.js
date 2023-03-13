@@ -25,7 +25,7 @@ router.post('/signup', async (req, res, next) => {
     req.session.save(() => res.json(user));
   } catch (err) {
     console.log('err: ', err);
-    throw err;
+    res.status(400).json({ message: err.message });
   }
 });
 

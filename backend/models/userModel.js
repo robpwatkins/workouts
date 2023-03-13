@@ -41,13 +41,18 @@ const userSchema = new Schema({
 })
 
 userSchema.statics.signup = async function(email, password) {
-  if (!email || !password) throw Error('All fields must be filled');
+  if (!email || !password) throw Error('Missing credentials');
   if (!validator.isEmail(email)) throw Error('Email is not valid');
   if (!validator.isStrongPassword(password)) throw Error('Password not strong enough');
 
-  const exists = await this.findOne({ email });
+  const existingUser = await this.findOne({ email });
 
-  if (exists) throw Error('Email already in use');
+  if (existingUser) {
+    if (existingUser.provider !== 'email') {
+      throw Error(`Please login using your original method (${existingUser.provider})`);
+    }
+    throw Error('Email already in use');
+  }
 
   const salt = await bcrypt.genSalt(10);
   const hash = await bcrypt.hash(password, salt);
