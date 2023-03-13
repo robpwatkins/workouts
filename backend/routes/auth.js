@@ -4,17 +4,6 @@ const User = require('../models/userModel');
 
 const router = express.Router();
 
-router.post('/login', (req, res, next) => {
-  passport.authenticate('local',
-  (err, user, info) => {
-    if (!user) return res.status(401).json({ message: info.message });
-    req.login(user, (err) => {
-      if (err) return next(err);
-    });
-    req.session.save(() => res.json(user));
-  })(req, res, next);
-});
-
 router.post('/signup', async (req, res, next) => {
   const { email, password } = req.body;
   try {
@@ -27,6 +16,17 @@ router.post('/signup', async (req, res, next) => {
     console.log('err: ', err);
     res.status(400).json({ message: err.message });
   }
+});
+
+router.post('/login', (req, res, next) => {
+  passport.authenticate('local',
+  (err, user, info) => {
+    if (!user) return res.status(401).json({ message: info.message });
+    req.login(user, (err) => {
+      if (err) return next(err);
+    });
+    req.session.save(() => res.json(user));
+  })(req, res, next);
 });
 
 const clientUrl = process.env.NODE_ENV === 'production' ? process.env.CLIENT_URL_PROD : process.env.CLIENT_URL_DEV;

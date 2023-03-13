@@ -25,18 +25,6 @@ const userSchema = new Schema({
   provider: {
     type: String,
     required: true
-  },
-  displayName: {
-    type: String,
-  },
-  firstName: {
-    type: String
-  },
-  lastName: {
-    type: String
-  },
-  image: {
-    type: String
   }
 })
 
