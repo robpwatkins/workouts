@@ -7,6 +7,7 @@ const MongoStore = require('connect-mongo');
 const workoutRoutes = require('./routes/workouts');
 const userRoutes = require('./routes/user');
 const authRoutes = require('./routes/auth');
+const teamRoutes = require('./routes/teams');
 
 require('./config/passport')(passport);
 
@@ -41,6 +42,7 @@ app.use((req, res, next) => {
 
 app.use('/api/workouts', workoutRoutes);
 app.use('/api/user', userRoutes);
+app.use('/api/teams', teamRoutes);
 app.use('/auth', authRoutes);
 
 app.get('/getuser', (req, res) => {
