@@ -51,11 +51,16 @@ header a {
   position: relative;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
 }
-.workout-details h4 {
+.workout-details h4, .team-details h3 {
   margin: 0 0 10px 0;
-  font-size: 1.2em;
-  color: var(--primary);
+  /* font-size: 1.2em; */
+  /* color: var(--primary); */
 }
+
+.team-details h1 {
+  margin-top: 5px;
+}
+
 .workout-details p {
   margin: 0;
   font-size: 0.9em;

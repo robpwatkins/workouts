@@ -1,0 +1,326 @@
+[
+  {
+    "name": "Los Angeles Angels",
+    "abbreviation": "LAA",
+    "colors": {
+      "first": "#ba0021",
+      "second": "#862633",
+      "third": "#003263",
+      "fourth": "#c4ced4"
+    }
+  },
+  {
+    "name": "Los Angeles Dodgers",
+    "abbreviation": "LAD",
+    "colors": {
+      "first": "#005a9c",
+      "second": "#ef3e42",
+      "third": "",
+      "fourth": ""
+    }
+  },
+  {
+    "name": "San Diego Padres",
+    "abbreviation": "SDP",
+    "colors": {
+      "first": "#002d62",
+      "second": "",
+      "third": "",
+      "fourth": ""
+    }
+  },
+  {
+    "name": "San Francisco Giants",
+    "abbreviation": "SFG",
+    "colors": {
+      "first": "#fd5a1e",
+      "second": "#000000",
+      "third": "#8b6f4e",
+      "fourth": "#e6d8af"
+    }
+  },
+  {
+    "name": "Tampa Bay Rays",
+    "abbreviation": "TBR",
+    "colors": {
+      "first": "#092c5c",
+      "second": "#8fbce6",
+      "third": "#f5d130",
+      "fourth": "#"
+    }
+  },
+  {
+    "name": "Kansas City Royals",
+    "abbreviation": "KCR",
+    "colors": {
+      "first": "#174885",
+      "second": "#c0995a",
+      "third": "#7bb2dd",
+      "fourth": "#"
+    }
+  },
+  {
+    "name": "Seattle mariners",
+    "abbreviation": "SEA",
+    "colors": {
+      "first": "#0c2c56",
+      "second": "#c4ced4",
+      "third": "#005c5c",
+      "fourth": "#ffc528",
+      "fifth": "#fff6dd"
+    }
+  },
+  {
+    "name": "Detroit Tigers",
+    "abbreviation": "DET",
+    "colors": {
+      "first": "#182d55",
+      "second": "#f26722",
+      "third": "#",
+      "fourth": "#",
+      "fifth": "#"
+    }
+  },
+  {
+    "name": "Arizona Diamondbacks",
+    "abbreviation": "ARI",
+    "colors": {
+      "first": "#a71930",
+      "second": "#e3d4ad",
+      "third": "#000000",
+      "fourth": "#3fc2cc",
+      "fifth": "#"
+    }
+  },
+  {
+    "name": "Cleveland Guardians",
+    "abbreviation": "CLE",
+    "colors": {
+      "first": "#134A8E",
+      "second": "#E31937",
+      "third": "#FFFFFF",
+      "fourth": "#",
+      "fifth": "#"
+    }
+  },
+  {
+    "name": "Houston Astros",
+    "abbreviation": "HOU",
+    "colors": {
+      "first": "#002d62",
+      "second": "#eb6e1f",
+      "third": "#f4911e",
+      "fourth": "#e7e9ea",
+      "fifth": "#"
+    }
+  },
+  {
+    "name": "Milwaukee Brewers",
+    "abbreviation": "MIL",
+    "colors": {
+      "first": "#0a2351",
+      "second": "#b6922e",
+      "third": "#",
+      "fourth": "#",
+      "fifth": "#"
+    }
+  },
+  {
+    "name": "New York Yankees",
+    "abbreviation": "NYY",
+    "colors": {
+      "first": "#132448",
+      "second": "#c4ced3",
+      "third": "#",
+      "fourth": "#",
+      "fifth": "#"
+    }
+  },
+  {
+    "name": "St. Louis Cardinals",
+    "abbreviation": "STL",
+    "colors": {
+      "first": "#c41e3a",
+      "second": "#22205f",
+      "third": "#fdda00",
+      "fourth": "#",
+      "fifth": "#"
+    }
+  },
+  {
+    "name": "Atlanta Braves",
+    "abbreviation": "ATL",
+    "colors": {
+      "first": "#13274f",
+      "second": "#ce1141",
+      "third": "#eaaa00",
+      "fourth": "#",
+      "fifth": "#"
+    }
+  },
+  {
+    "name": "Baltimore Orioles",
+    "abbreviation": "BAL",
+    "colors": {
+      "first": "#000000",
+      "second": "#df4601",
+      "third": "#a2aaad",
+      "fourth": "#",
+      "fifth": "#"
+    }
+  },
+  {
+    "name": "Minnesota Twins",
+    "abbreviation": "MIN",
+    "colors": {
+      "first": "#002b5c",
+      "second": "#d31145",
+      "third": "#cfac7a",
+      "fourth": "#",
+      "fifth": "#"
+    }
+  },
+  {
+    "name": "Pittsburgh Pirates",
+    "abbreviation": "PIT",
+    "colors": {
+      "first": "#000000",
+      "second": "#fdb827",
+      "third": "#",
+      "fourth": "#",
+      "fifth": "#"
+    }
+  },
+  {
+    "name": "Miami Marlins",
+    "abbreviation": "MIA",
+    "colors": {
+      "first": "#000000",
+      "second": "#ff6600",
+      "third": "#0077c8",
+      "fourth": "#ffd100",
+      "fifth": "#"
+    }
+  },
+  {
+    "name": "Cincinnati Reds",
+    "abbreviation": "CIN",
+    "colors": {
+      "first": "#c6011f",
+      "second": "#000000",
+      "third": "#",
+      "fourth": "#",
+      "fifth": "#"
+    }
+  },
+  {
+    "name": "New York Mets",
+    "abbreviation": "NYM",
+    "colors": {
+      "first": "#002d72",
+      "second": "#ff5910",
+      "third": "#",
+      "fourth": "#",
+      "fifth": "#"
+    }
+  },
+  {
+    "name": "Philadelphia Phillies",
+    "abbreviation": "PHI",
+    "colors": {
+      "first": "#e81828",
+      "second": "#284898",
+      "third": "#",
+      "fourth": "#",
+      "fifth": "#"
+    }
+  },
+  {
+    "name": "Texas Rangers",
+    "abbreviation": "TEX",
+    "colors": {
+      "first": "#003278",
+      "second": "#c0111f",
+      "third": "#",
+      "fourth": "#",
+      "fifth": "#"
+    }
+  },
+  {
+    "name": "Toronto Blue Jays",
+    "abbreviation": "TOR",
+    "colors": {
+      "first": "#134a8e",
+      "second": "#1d2d5c",
+      "third": "#e8291c",
+      "fourth": "#",
+      "fifth": "#"
+    }
+  },
+  {
+    "name": "Boston Red Sox",
+    "abbreviation": "BOS",
+    "colors": {
+      "first": "#bd3039",
+      "second": "#192c55",
+      "third": "#",
+      "fourth": "#",
+      "fifth": "#"
+    }
+  },
+  {
+    "name": "Chicago Cubs",
+    "abbreviation": "CHC",
+    "colors": {
+      "first": "#0e3386",
+      "second": "#cc3433",
+      "third": "#",
+      "fourth": "#",
+      "fifth": "#"
+    }
+  },
+  {
+    "name": "Oakland Athletics",
+    "abbreviation": "OAK",
+    "colors": {
+      "first": "#003831",
+      "second": "#efb21e",
+      "third": "#",
+      "fourth": "#",
+      "fifth": "#"
+    }
+  },
+  {
+    "name": "Colorado Rockies",
+    "abbreviation": "COL",
+    "colors": {
+      "first": "#33006f",
+      "second": "#000000",
+      "third": "#c4ced4",
+      "fourth": "#",
+      "fifth": "#"
+    }
+  },
+  {
+    "name": "Chicago White Sox",
+    "abbreviation": "CHW",
+    "colors": {
+      "first": "#000000",
+      "second": "#c4ced4",
+      "third": "#",
+      "fourth": "#",
+      "fifth": "#"
+    }
+  },
+  {
+    "name": "Washington Nationals",
+    "abbreviation": "WSN",
+    "colors": {
+      "first": "#ab0003",
+      "second": "#212759",
+      "third": "#",
+      "fourth": "#",
+      "fifth": "#"
+    }
+  }
+]
