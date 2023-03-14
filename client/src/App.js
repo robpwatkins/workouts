@@ -17,7 +17,7 @@ function App() {
           <Routes>
             <Route
               path="/"
-              element={/* !loading && (user ?  */<Home />/*  : <Navigate to="/login" />) */}
+              element={!loading && (user ? <Home /> : <Navigate to="/login" />)}
             />
             <Route
               path="/login"
