@@ -2,6 +2,8 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useAuthContext } from './hooks/useAuthContext';
 
 import Home from './pages/Home';
+import Standings from './pages/Standings';
+import Picks from './pages/Picks';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Navbar from './components/Navbar';
@@ -17,7 +19,15 @@ function App() {
           <Routes>
             <Route
               path="/"
-              element={!loading && (user ? <Home /> : <Navigate to="/login" />)}
+              element={<Home />}
+            />
+            <Route
+              path="/standings"
+              element={<Standings />}
+            />
+            <Route
+              path="/picks"
+              element={<Picks />}
             />
             <Route
               path="/login"

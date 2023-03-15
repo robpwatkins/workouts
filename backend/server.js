@@ -7,6 +7,7 @@ const MongoStore = require('connect-mongo');
 const workoutRoutes = require('./routes/workouts');
 const userRoutes = require('./routes/user');
 const authRoutes = require('./routes/auth');
+const User = require('./models/userModel');
 
 require('./config/passport')(passport);
 
@@ -55,6 +56,12 @@ app.get('/getuser', (req, res) => {
     console.log('error: ', error);
   }
 });
+
+app.get('/username-check', async (req, res) => {
+  const { email } = req.query;
+  const user = await User.findOne({ email });
+  res.json(!!user);
+})
 
 app.post('/logout', function(req, res, next) {
   req.logout(err => {

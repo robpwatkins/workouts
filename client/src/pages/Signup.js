@@ -7,17 +7,27 @@ import { faFacebook } from '@fortawesome/free-brands-svg-icons';
 const Signup = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('');
+  const [usernameExists, setUsernameExists] = useState(false);
   const { signup, error, isLoading } = useSignup();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!e.target.className.includes('social')) await signup(email, password);
+    if (!e.target.className.includes('social')) await signup(email, password, username);
   };
 
   const handleClick = (buttonType) => {
     window.open(`http://localhost:4001/auth/${buttonType}`, '_self');
   }
+
+  const handleUsernameChange = async (e) => {
+    setUsername(e.target.value);
+    const response = await fetch(`http://localhost:4001/username-check?email=${e.target.value}`);
+    const json = await response.json();
+
+    setUsernameExists(json);
+  };
   
   return (
     <>
@@ -35,6 +45,13 @@ const Signup = () => {
           onChange={e => setPassword(e.target.value)}
           value={password}
         />
+        <label>Username:</label>
+        <input
+          type="username"
+          onChange={e => handleUsernameChange(e)}
+          value={username}
+        />
+        {usernameExists && <div className="error">Username already exists</div>}
         <button disabled={isLoading}>Continue</button>
         {error && <div className="error">{error}</div>}
         <p className="account">Already have an account?

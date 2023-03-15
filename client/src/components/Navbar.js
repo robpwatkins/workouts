@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useLogout } from '../hooks/useLogout';
 import { useAuthContext } from '../hooks/useAuthContext';
 
@@ -12,7 +12,20 @@ const Navbar = () => {
         <Link to="/">
           <h1>MLB Fantasy</h1>
         </Link>
-        <nav>
+        <div className="tabs">
+          <NavLink to="/" className={({ isActive }) => isActive ? 'active' : 'inactive'}>
+            <p>Home</p>
+          </NavLink>
+          <NavLink to="/standings" className={({ isActive }) => isActive ? 'active' : 'inactive'}>
+            <p>Standings</p>
+          </NavLink>
+          {(!loading && user) && (
+            <NavLink to="/picks" className={({ isActive }) => isActive ? 'active' : 'inactive'}>
+              <p>Picks</p>
+            </NavLink>
+          )}
+        </div>
+        <div className="account">
           {(!loading && user) && (
             <div>
               <span>{user.email}</span>
@@ -25,7 +38,7 @@ const Navbar = () => {
               <Link className="login" to="/login">Login</Link>
             </div>
           )}
-        </nav>
+        </div>
       </div>
     </header>
   )
