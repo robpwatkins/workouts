@@ -25,6 +25,10 @@ const Signup = () => {
 
   const handleUsernameChange = async (e) => {
     setUsername(e.target.value);
+  };
+  
+  const handleUsernameBlur = async (e) => {
+    if (e.target.value.length < 3) return setUsernameValid(false);
     setCheckingUsername(true);
     const isValid = /^(?![-])[a-zA-Z0-9-]+$(?<![-])/.test(e.target.value);
     if (!isValid) return setUsernameValid(isValid);
@@ -35,10 +39,6 @@ const Signup = () => {
     setUsernameExists(exists);
     if (!exists) setUsernameValid(true);
     setCheckingUsername(false);
-  };
-  
-  const handleUsernameBlur = async (e) => {
-    if (e.target.value.length < 3) return setUsernameValid(false);
   }
   
   return (
@@ -51,6 +51,7 @@ const Signup = () => {
           onChange={e => handleUsernameChange(e)}
           onBlur={e => handleUsernameBlur(e)}
           value={username}
+          placeholder="Letters, numbers, single hypens"
           />
         <label>Email:</label>
         <input
