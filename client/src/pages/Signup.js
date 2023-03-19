@@ -7,52 +7,22 @@ import { faFacebook } from '@fortawesome/free-brands-svg-icons';
 const Signup = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [username, setUsername] = useState('');
-  const [usernameExists, setUsernameExists] = useState(false);
-  const [usernameValid, setUsernameValid] = useState(true);
-  const [checkingUsername, setCheckingUsername] = useState('');
-  const { signup, error, submitting } = useSignup();
+  const { signup, error, loading } = useSignup();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!e.target.className.includes('social')) await signup(email, password, username);
+    if (!e.target.className.includes('social')) await signup(email, password);
   };
 
   const handleClick = (buttonType) => {
     window.open(`http://localhost:4001/auth/${buttonType}`, '_self');
   };
-
-  const handleUsernameChange = async (e) => {
-    setUsername(e.target.value);
-  };
-  
-  const handleUsernameBlur = async (e) => {
-    if (e.target.value.length < 3) return setUsernameValid(false);
-    setCheckingUsername(true);
-    const isValid = /^(?![-])[a-zA-Z0-9-]+$(?<![-])/.test(e.target.value);
-    if (!isValid) return setUsernameValid(isValid);
-    // if (e.target.value.length < 3) return setUsernameValid(false);
-    const response = await fetch(`http://localhost:4001/username-check?email=${e.target.value}`);
-    const exists = await response.json();
-  
-    setUsernameExists(exists);
-    if (!exists) setUsernameValid(true);
-    setCheckingUsername(false);
-  }
   
   return (
     <>
       <form className="signup" onSubmit={handleSubmit}>
         <h3>Sign up</h3>
-        <label>Username:</label>
-        <input
-          type="username"
-          onChange={e => handleUsernameChange(e)}
-          onBlur={e => handleUsernameBlur(e)}
-          value={username}
-          placeholder="Letters, numbers, single hypens"
-          />
         <label>Email:</label>
         <input
           type="email"
@@ -65,15 +35,7 @@ const Signup = () => {
           onChange={e => setPassword(e.target.value)}
           value={password}
         />
-        {((username.length && !usernameValid) || usernameExists) && (
-          <div
-            className="error"
-          >{usernameExists
-            ? "Username not available"
-            : `Username must contain ${username.length < 3 ? "at least three " : "only "} alphanumeric characters or single hyphens, and cannot begin or end with a hyphen.`}
-          </div>
-        )}
-        <button disabled={submitting || checkingUsername}>Continue</button>
+        <button disabled={loading}>Continue</button>
         {error && <div className="error">{error}</div>}
         <p className="account">Already have an account?
           <Link to="/login">Login</Link>
@@ -85,7 +47,7 @@ const Signup = () => {
           <span className="social-icon google-icon "></span>
           Continue with Google
         </button>
-        <button className="social-button fbook-button">
+        <button className="social-button fbook-button" onClick={() => handleClick('facebook')}>
           <FontAwesomeIcon className="social-icon fbook-icon" icon={faFacebook} />
           Continue with Facebook
         </button>

@@ -177,12 +177,21 @@ nav {
 }
 
 /* auth forms */
-form.signup, form.login {
+form.signup, form.login, form.username {
   max-width: 375px;
   margin: 30px auto;
   padding: 20px;
   background: #fff;
   border-radius: 4px;
+}
+
+form.username .skip {
+  display: block;
+  width: auto;
+  margin: 0 auto;
+  color: #333;
+  text-decoration: underline;
+  background-color: unset;
 }
 
 form .account {

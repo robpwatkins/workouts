@@ -3,11 +3,11 @@ import { useAuthContext } from './useAuthContext';
 
 export const useSignup = () => {
   const [error, setError] = useState(null);
-  const [submitting, setSubmitting] = useState(null);
+  const [loading, setLoading] = useState(null);
   const { dispatch } = useAuthContext();
 
   const signup = async (email, password, username) => {
-    setSubmitting(true);
+    setLoading(true);
     setError(null);
     
     try {
@@ -24,12 +24,12 @@ export const useSignup = () => {
       }
   
       dispatch({ type: 'LOGIN', payload: json });
-      setSubmitting(false);
+      setLoading(false);
     } catch (err) {
-      setSubmitting(false);
+      setLoading(false);
       setError(err.message);
     }
   };
 
-  return { signup, submitting, error };
+  return { signup, loading, error };
 };
