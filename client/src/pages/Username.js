@@ -7,7 +7,7 @@ const Username = () => {
   const [checkingUsername, setCheckingUsername] = useState('');
   const { user/* , loading */ } = useAuthContext();
 
-  const handleChange = async (e) => setUsername(e.target.value);
+  const handleChange = (e) => setUsername(e.target.value);
 
   const handleBlur = async (e) => {
     if (!e.target.value) return;
