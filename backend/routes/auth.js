@@ -35,7 +35,7 @@ router.get('/google', passport.authenticate('google', { scope: ['profile', 'emai
 
 router.get(
   '/google/callback',
-  passport.authenticate('google', { failureRedirect: 'http://localhost:3000/', failureMessage: true }),
+  passport.authenticate('google', { failureRedirect: 'http://localhost:3000/login', failureMessage: true }),
   (req, res) => res.redirect(clientUrl),
 );
 
@@ -43,7 +43,7 @@ router.get('/facebook', passport.authenticate('facebook', { scope: ['public_prof
 
 router.get(
   '/facebook/callback',
-  passport.authenticate('facebook', { failureRedirect: 'http://localhost:3000/', failureMessage: true }),
+  passport.authenticate('facebook', { failureRedirect: 'http://localhost:3000/login', failureMessage: true }),
   (req, res) => res.redirect(clientUrl),
 );
 

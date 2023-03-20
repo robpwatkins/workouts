@@ -1,14 +1,20 @@
-import { useState } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import { useLogout } from '../hooks/useLogout';
 import { useAuthContext } from '../hooks/useAuthContext';
+import useOnClickOutside from '../hooks/useOutsideClick';
 
 const Navbar = () => {
   const { logout } = useLogout();
   const { user, loading } = useAuthContext();
-  const [toggled, setToggled] = useState(false);
+  const [active, setActive] = useState(false);
+  const ref = useRef();
+
+  useOnClickOutside(ref, useCallback(() => {
+    setActive(false);
+  }, []));
 
   return (
     <header>
@@ -32,13 +38,15 @@ const Navbar = () => {
         <div className="account">
           {(!loading && user) && (
             <div>
-              <span className="username" onClick={() => setToggled(!toggled)}>
+              <span className="username" onClick={() => setActive(!active)}>
                 {user.username}
                 <FontAwesomeIcon className="down-chevron" icon={faCaretDown} />
               </span>
               <Link
-                className={`dropdown-toggle${!toggled ? " d-none" : ""}`}
+                className={`dropdown-toggle${!active ? " d-none" : ""}`}
                 to="/username"
+                ref={ref}
+                onClick={() => setActive(false)}
               >
                 Update username
               </Link>
