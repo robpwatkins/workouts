@@ -1,10 +1,14 @@
+import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import { useLogout } from '../hooks/useLogout';
 import { useAuthContext } from '../hooks/useAuthContext';
 
 const Navbar = () => {
   const { logout } = useLogout();
   const { user, loading } = useAuthContext();
+  const [toggled, setToggled] = useState(false);
 
   return (
     <header>
@@ -28,7 +32,16 @@ const Navbar = () => {
         <div className="account">
           {(!loading && user) && (
             <div>
-              <span>{user.username}</span>
+              <span className="username" onClick={() => setToggled(!toggled)}>
+                {user.username}
+                <FontAwesomeIcon className="down-chevron" icon={faCaretDown} />
+              </span>
+              <Link
+                className={`dropdown-toggle${!toggled ? " d-none" : ""}`}
+                to="/username"
+              >
+                Update username
+              </Link>
               <button onClick={logout}>Logout</button>
             </div>
           )}

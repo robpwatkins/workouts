@@ -143,6 +143,31 @@ nav {
   font-weight: bold;
 }
 
+.account .username {
+  cursor: pointer;
+}
+
+.account .down-chevron {
+  margin-left: 5px;
+  font-size: 13px;
+}
+
+.account .dropdown-toggle {
+  display: block;
+  position: absolute;
+  right: 84px;
+  width: auto;
+  padding: 8px;
+  color: unset;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.d-none {
+  display: none !important;
+}
+
 .account a {
   display: inline-block;
   width: 75px;
