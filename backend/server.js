@@ -44,7 +44,7 @@ app.use('/api/workouts', workoutRoutes);
 app.use('/api/user', userRoutes);
 app.use('/auth', authRoutes);
 
-app.get('/getuser', (req, res) => {
+app.get('/user', (req, res) => {
   try {
     if (req.session.messages && req.session.messages.length) {
       const [error] = req.session.messages;
@@ -52,6 +52,18 @@ app.get('/getuser', (req, res) => {
       return res.json({ error });
     }
     res.json({ user: req.user });
+  } catch (error) {
+    console.log('error: ', error);
+  }
+});
+
+app.post('/user/update', async (req, res) => {
+  try {
+    const user = await User.findById({ _id: req.user._id });
+    user.username = req.body.username;
+    const response = await user.save();
+    console.log('response: ', response);
+    
   } catch (error) {
     console.log('error: ', error);
   }

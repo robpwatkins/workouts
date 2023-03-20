@@ -22,6 +22,10 @@ const userSchema = new Schema({
     type: String,
     required: false
   },
+  username: {
+    type: String,
+    required: false
+  },
   provider: {
     type: String,
     required: true

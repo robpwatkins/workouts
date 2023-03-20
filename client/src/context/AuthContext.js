@@ -22,14 +22,14 @@ export const AuthContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, {
     user: null
   });
-  // const { loginUserWithOauth } = useLogin();
+  // const { loginUserWithSession } = useLogin();
 
   useEffect(() => {
-    const loginUserWithOauth = async () => {
+    const loginUserWithSession = async () => {
       dispatch({ type: 'LOADING', payload: true });
 
       try {
-        const response = await fetch('http://localhost:4001/getuser', { credentials: 'include' });
+        const response = await fetch('http://localhost:4001/user', { credentials: 'include' });
         const { user, error } = await response.json();
 
         if (error) dispatch({ type: 'ERROR', payload: error });
@@ -40,7 +40,7 @@ export const AuthContextProvider = ({ children }) => {
       }
     }
 
-    loginUserWithOauth();
+    loginUserWithSession();
   }, []);
 
   console.log('AuthContext state: ', state);

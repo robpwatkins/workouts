@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAuthContext } from '../hooks/useAuthContext';
 
 const Username = () => {
@@ -7,38 +7,75 @@ const Username = () => {
   const [checkingUsername, setCheckingUsername] = useState('');
   const { user/* , loading */ } = useAuthContext();
 
-  const handleChange = (e) => setUsername(e.target.value);
+  useEffect(() => {
+    if (user) setUsername(user.username);
+  }, [user]);
 
-  const handleBlur = async (e) => {
-    if (!e.target.value) return;
-    if (e.target.value.length < 3) return setError('Please include at least 3 characters');
-    if (e.target.value.length > 12) return setError('Please limit to max 12 characters');
+  const validateUsername = async (username) => {
+    if (username.length < 3) {
+      setError('Please include at least 3 characters');
+      return false;
+    }
 
+    if (username.length > 12) {
+      setError('Please limit to 12 characters max');
+      return false;
+    }
+  
     setCheckingUsername(true);
-
-    const isValid = /^(?!.*--)(?!-)(?!.*-$)[0-9A-Za-z-]*$/.test(e.target.value);
-
-    if (!isValid) return setError('Invalid username — see above guidelines');
-
-    const response = await fetch(`http://localhost:4001/username-check?email=${e.target.value}`);
+  
+    const isValid = /^(?!.*--)(?!-)(?!.*-$)[0-9A-Za-z-]*$/.test(username);
+  
+    if (!isValid) {
+      setError('Invalid username — see above guidelines');
+      setCheckingUsername(false);
+      return false;
+    }
+  
+    const response = await fetch(`http://localhost:4001/username-check?username=${username}`);
     const exists = await response.json();
   
-    if (exists) setError('Username exists');
-
+    if (exists) {
+      setError('Username exists');
+      setCheckingUsername(false);
+      return false;
+    }
+  
     setCheckingUsername(false);
     setError('');
   };
 
+  const handleChange = async (e) => {
+    setUsername(e.target.value);
+
+    if (!e.target.value) return;
+
+    const isValid = await validateUsername(e.target.value);
+
+    if (!isValid) return;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const response = await fetch('http://localhost:4001/user/update', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify({ username })
+    });
+
+    console.log('response: ', response);
+  };
+
   return (
-    <form className="username">
+    <form className="username" onSubmit={e => handleSubmit(e)}>
       <h2>Personalize username</h2>
       <p>Username may contain letters, numbers and single hyphens, and may not begin or end with a hyphen.</p>
       <input
         type="username"
         onChange={e => handleChange(e)}
-        onBlur={e => handleBlur(e)}
         value={username}
-        placeholder={user ? user.username : "username"}
       />
       {error && <div className="error">{error}</div>}
       <button disabled={checkingUsername || !!error}>Continue</button>
