@@ -144,6 +144,8 @@ nav {
 }
 
 .account .username {
+  width: auto;
+  border: none;
   cursor: pointer;
 }
 

@@ -32,8 +32,8 @@ const userSchema = new Schema({
   }
 })
 
-userSchema.statics.signup = async function(email, password, username) {
-  if (!email || !password || !username) throw Error('Missing credentials');
+userSchema.statics.signup = async function(email, password) {
+  if (!email || !password) throw Error('Missing credentials');
   if (!validator.isEmail(email)) throw Error('Email is not valid');
   if (!validator.isStrongPassword(password)) throw Error('Password not strong enough');
 
@@ -49,11 +49,13 @@ userSchema.statics.signup = async function(email, password, username) {
   const salt = await bcrypt.genSalt(10);
   const hash = await bcrypt.hash(password, salt);
 
-  const user = await this.create({
+  await this.create({
     provider: 'email',
     email,
     password: hash
   });
+
+  const user = await this.findOne({ email });
 
   return user;
 }

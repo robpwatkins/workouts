@@ -7,6 +7,8 @@ const Username = () => {
   const [checkingUsername, setCheckingUsername] = useState('');
   const { user/* , loading */ } = useAuthContext();
 
+  console.log('Username user: ', user);
+
   useEffect(() => {
     if (user) setUsername(user.username);
   }, [user]);

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from './useAuthContext';
 
 export const useSignup = () => {
@@ -6,7 +7,9 @@ export const useSignup = () => {
   const [loading, setLoading] = useState(null);
   const { dispatch } = useAuthContext();
 
-  const signup = async (email, password, username) => {
+  const navigate = useNavigate();
+
+  const signup = async (email, password) => {
     setLoading(true);
     setError(null);
     
@@ -15,16 +18,18 @@ export const useSignup = () => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
-        body: JSON.stringify({ email, password, username })
+        body: JSON.stringify({ email, password })
       });
+
       const json = await response.json();
   
       if (!response.ok) {
         if (json.message) throw Error(json.message);
       }
-  
+
       dispatch({ type: 'LOGIN', payload: json });
       setLoading(false);
+      navigate('/username');
     } catch (err) {
       setLoading(false);
       setError(err.message);

@@ -16,6 +16,8 @@ const Navbar = () => {
     setActive(false);
   }, []));
 
+  console.log('Navigate user: ', user);
+
   return (
     <header>
       <div className="container">
@@ -38,10 +40,10 @@ const Navbar = () => {
         <div className="account">
           {(!loading && user) && (
             <div>
-              <span className="username" onClick={() => setActive(!active)}>
-                {user.username}
+              <button className="username" onClick={() => setActive(!active)}>
+                <span>{user.username}</span>
                 <FontAwesomeIcon className="down-chevron" icon={faCaretDown} />
-              </span>
+              </button>
               <Link
                 className={`dropdown-toggle${!active ? " d-none" : ""}`}
                 to="/username"
