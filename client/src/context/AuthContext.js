@@ -5,14 +5,14 @@ export const AuthContext = createContext();
 
 export const authReducer = (state, action) => {
   switch(action.type) {
-    case 'LOADING':
-      return { loading: action.payload }
     case 'LOGIN':
-      return { user: action.payload };
+      return { user: action.payload, loaded: true };
     case 'LOGOUT':
-      return { user: null };
+      return { user: null, loaded: true };
+    case 'LOADED':
+      return { loaded: action.payload };
     case 'ERROR':
-      return { error: action.payload }
+      return { error: action.payload, loaded: true };
     default:
       return state;
   }
@@ -26,24 +26,23 @@ export const AuthContextProvider = ({ children }) => {
 
   useEffect(() => {
     const loginUserWithSession = async () => {
-      dispatch({ type: 'LOADING', payload: true });
+      dispatch({ type: 'LOADED', payload: false });
 
       try {
         const response = await fetch('http://localhost:4001/user', { credentials: 'include' });
         const { user, error } = await response.json();
 
-        if (error) dispatch({ type: 'ERROR', payload: error });
-        else dispatch({ type: 'LOGIN', payload: user });
+        if (error) return dispatch({ type: 'ERROR', payload: error });
+        if (!user) return dispatch({ type: 'LOADED', payload: true });
+        return dispatch({ type: 'LOGIN', payload: user });
       } catch (error) {
         console.log('error: ', error);
-        dispatch({ type: 'LOADING', payload: false });
+        dispatch({ type: 'LOADED', payload: true });
       }
     }
 
     loginUserWithSession();
   }, []);
-
-  console.log('AuthContext state: ', state);
 
   return (
     <AuthContext.Provider value={{ ...state, dispatch }}>

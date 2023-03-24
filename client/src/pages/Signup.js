@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useSignup } from '../hooks/useSignup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,14 +9,11 @@ const Signup = () => {
   const [password, setPassword] = useState('');
   const { signup, error, loading } = useSignup();
 
-  const navigate = useNavigate();
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!e.target.className.includes('social')) {
       await signup(email, password);
-      // navigate('/username');
     }
   };
 

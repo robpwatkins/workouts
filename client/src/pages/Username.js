@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../hooks/useAuthContext';
 
 const Username = () => {
   const [username, setUsername] = useState('');
   const [error, setError] = useState('');
   const [checkingUsername, setCheckingUsername] = useState('');
-  const { user/* , loading */ } = useAuthContext();
+  const { user, dispatch } = useAuthContext();
 
-  console.log('Username user: ', user);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (user) setUsername(user.username);
@@ -19,8 +20,8 @@ const Username = () => {
       return false;
     }
 
-    if (username.length > 12) {
-      setError('Please limit to 12 characters max');
+    if (username.length > 42) {
+      setError('Please limit to 42 characters max');
       return false;
     }
   
@@ -60,19 +61,27 @@ const Username = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch('http://localhost:4001/user/update', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      credentials: 'include',
-      body: JSON.stringify({ username })
-    });
-
-    console.log('response: ', response);
+    try {
+      const response = await fetch('http://localhost:4001/user/update', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ username })
+      });
+  
+      const user = await response.json();
+      console.log('user: ', user);
+  
+      dispatch({ type: 'LOGIN', payload: user });
+      navigate("/");
+    } catch (error) {
+      console.log('error: ', error);
+    }
   };
 
   return (
     <form className="username" onSubmit={e => handleSubmit(e)}>
-      <h2>Personalize username</h2>
+      <h2>Personalize your username</h2>
       <p>Username may contain letters, numbers and single hyphens, and may not begin or end with a hyphen.</p>
       <input
         type="username"
@@ -81,7 +90,7 @@ const Username = () => {
       />
       {error && <div className="error">{error}</div>}
       <button disabled={checkingUsername || !!error}>Continue</button>
-      <button className="skip">Skip</button>
+      <button className="skip" onClick={() => navigate("/")}>Skip for now</button>
     </form>
   )
 };

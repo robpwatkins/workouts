@@ -1,8 +1,8 @@
 const { Strategy: GoogleStrategy} = require('passport-google-oauth20');
 const { Strategy: LocalStrategy } = require('passport-local');
 const { Strategy: FacebookStrategy } = require('passport-facebook');
-const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const { getUniqueUsername } = require('../utils/username');
 const User = require('../models/userModel');
 
 module.exports = function(passport) {
@@ -40,6 +40,7 @@ module.exports = function(passport) {
     const newUser = {
       googleId: profile.id,
       email: profile.emails[0].value,
+      username: await getUniqueUsername(User),
       provider: 'google'
     }
 
@@ -55,6 +56,7 @@ module.exports = function(passport) {
         }
 
         user = await User.create(newUser);
+        
         done(null, user);
       }
     } catch (err) {
@@ -76,6 +78,7 @@ module.exports = function(passport) {
     const newUser = {
       facebookId: profile.id,
       email: profile.emails[0].value,
+      username: await getUniqueUsername(User),
       provider: 'facebook'
     };
 

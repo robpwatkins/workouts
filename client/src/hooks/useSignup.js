@@ -22,7 +22,7 @@ export const useSignup = () => {
       });
 
       const json = await response.json();
-  
+
       if (!response.ok) {
         if (json.message) throw Error(json.message);
       }

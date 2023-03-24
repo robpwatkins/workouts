@@ -57,21 +57,38 @@ app.get('/user', (req, res) => {
   }
 });
 
+app.get('/users', async (req, res) => {
+  try {
+    const users = await User.find();
+    res.json(users);
+  } catch (error) {
+    console.log('error: ', error);
+  }
+})
+
 app.post('/user/update', async (req, res) => {
   try {
     const user = await User.findById({ _id: req.user._id });
-    user.username = req.body.username;
-    const response = await user.save();
-    console.log('response: ', response);
     
+    user.username = req.body.username;
+
+    const updatedUser = await user.save();
+
+    res.json(updatedUser);
   } catch (error) {
     console.log('error: ', error);
   }
 });
 
+app.delete('/user/delete/:username', async (req, res) => {
+  const user = await User.findOne({ username: req.params.username });
+  const response = await user.delete();
+  res.json(response);
+})
+
 app.get('/username-check', async (req, res) => {
-  const { email } = req.query;
-  const user = await User.findOne({ email });
+  const { username } = req.query;
+  const user = await User.findOne({ username });
   res.json(!!user);
 })
 

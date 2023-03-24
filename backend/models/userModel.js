@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const validator = require('validator');
+const { getUniqueUsername } = require('../utils/username');
 
 const Schema = mongoose.Schema;
 
@@ -24,7 +25,12 @@ const userSchema = new Schema({
   },
   username: {
     type: String,
-    required: false
+    required: true,
+    unique: true
+  },
+  last_login: {
+    type: Date,
+    default: null
   },
   provider: {
     type: String,
@@ -49,13 +55,17 @@ userSchema.statics.signup = async function(email, password) {
   const salt = await bcrypt.genSalt(10);
   const hash = await bcrypt.hash(password, salt);
 
-  await this.create({
+  const username = await getUniqueUsername(this);
+  console.log('username: ', username);
+
+  const user = await this.create({
     provider: 'email',
     email,
-    password: hash
+    password: hash,
+    username
   });
 
-  const user = await this.findOne({ email });
+  console.log('user: ', user);
 
   return user;
 }

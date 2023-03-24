@@ -5,12 +5,14 @@ const User = require('../models/userModel');
 const router = express.Router();
 
 router.post('/signup', async (req, res, next) => {
-  const { email, password, username } = req.body;
+  const { email, password } = req.body;
   try {
     const user = await User.signup(email, password);
     req.login(user, (err) => {
       if (err) return next(err);
     });
+    user.last_login = Date.now();
+    user.save();
     req.session.save(() => res.json(user));
   } catch (err) {
     console.log('err: ', err);
@@ -25,6 +27,8 @@ router.post('/login', (req, res, next) => {
     req.login(user, (err) => {
       if (err) return next(err);
     });
+    user.last_login = Date.now();
+    user.save();
     req.session.save(() => res.json(user));
   })(req, res, next);
 });
@@ -36,7 +40,12 @@ router.get('/google', passport.authenticate('google', { scope: ['profile', 'emai
 router.get(
   '/google/callback',
   passport.authenticate('google', { failureRedirect: 'http://localhost:3000/login', failureMessage: true }),
-  (req, res) => res.redirect(clientUrl),
+  (req, res) => {
+    const redirectUrl = req.user.last_login ? clientUrl : `${clientUrl}/username`;
+    req.user.last_login = Date.now();
+    req.user.save();
+    res.redirect(redirectUrl);
+  }
 );
 
 router.get('/facebook', passport.authenticate('facebook', { scope: ['public_profile', 'email'] }));
@@ -44,7 +53,12 @@ router.get('/facebook', passport.authenticate('facebook', { scope: ['public_prof
 router.get(
   '/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: 'http://localhost:3000/login', failureMessage: true }),
-  (req, res) => res.redirect(clientUrl),
+  (req, res) => {
+    const redirectUrl = req.user.last_login ? clientUrl : `${clientUrl}/username`;
+    req.user.last_login = Date.now();
+    req.user.save();
+    res.redirect(redirectUrl);
+  }
 );
 
 module.exports = router;

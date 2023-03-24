@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
@@ -8,7 +8,7 @@ import useOnClickOutside from '../hooks/useOutsideClick';
 
 const Navbar = () => {
   const { logout } = useLogout();
-  const { user, loading } = useAuthContext();
+  const { user, loaded } = useAuthContext();
   const [active, setActive] = useState(false);
   const ref = useRef();
 
@@ -16,7 +16,15 @@ const Navbar = () => {
     setActive(false);
   }, []));
 
-  console.log('Navigate user: ', user);
+  useEffect(() => {
+    const tabs = document.querySelectorAll('.tabs p');
+    tabs.forEach(tab => {
+      const width = tab.offsetWidth;
+      tab.style.width = `${width}px`;
+    })
+  }, [loaded]);
+
+  console.log('Navbar user: ', user);
 
   return (
     <header>
@@ -24,21 +32,23 @@ const Navbar = () => {
         <Link to="/">
           <h1>MLB Fantasy</h1>
         </Link>
-        <div className="tabs">
-          <NavLink to="/" className={({ isActive }) => isActive ? 'active' : 'inactive'}>
-            <p>Home</p>
-          </NavLink>
-          <NavLink to="/standings" className={({ isActive }) => isActive ? 'active' : 'inactive'}>
-            <p>Standings</p>
-          </NavLink>
-          {(!loading && user) && (
-            <NavLink to="/picks" className={({ isActive }) => isActive ? 'active' : 'inactive'}>
-              <p>Picks</p>
+        {loaded && (
+          <div className="tabs">
+            <NavLink to="/" className={({ isActive }) => isActive ? 'active' : 'inactive'}>
+              <p>Home</p>
             </NavLink>
-          )}
-        </div>
+            <NavLink to="/standings" className={({ isActive }) => isActive ? 'active' : 'inactive'}>
+              <p>Standings</p>
+            </NavLink>
+            {user && (
+              <NavLink to="/picks" className={({ isActive }) => isActive ? 'active' : 'inactive'}>
+                <p>Picks</p>
+              </NavLink>
+            )}
+          </div>
+        )}
         <div className="account">
-          {(!loading && user) && (
+          {(loaded && user) && (
             <div>
               <button className="username" onClick={() => setActive(!active)}>
                 <span>{user.username}</span>
@@ -55,7 +65,7 @@ const Navbar = () => {
               <button onClick={logout}>Logout</button>
             </div>
           )}
-          {(!loading && !user) && (
+          {(loaded && !user) && (
             <div>
               <Link className="signup" to="/signup">Signup</Link>
               <Link className="login" to="/login">Login</Link>
