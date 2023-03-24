@@ -82,6 +82,7 @@ const Username = () => {
   return (
     <form className="username" onSubmit={e => handleSubmit(e)}>
       <h2>Personalize your username</h2>
+      <p>Your current username was randomly generated. You can create a new username to identify yourself.</p>
       <p>Username may contain letters, numbers and single hyphens, and may not begin or end with a hyphen.</p>
       <input
         type="username"

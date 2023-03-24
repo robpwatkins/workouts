@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback, useEffect } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
@@ -16,14 +16,6 @@ const Navbar = () => {
     setActive(false);
   }, []));
 
-  useEffect(() => {
-    const tabs = document.querySelectorAll('.tabs p');
-    tabs.forEach(tab => {
-      const width = tab.offsetWidth;
-      tab.style.width = `${width}px`;
-    })
-  }, [loaded]);
-
   console.log('Navbar user: ', user);
 
   return (
@@ -35,14 +27,14 @@ const Navbar = () => {
         {loaded && (
           <div className="tabs">
             <NavLink to="/" className={({ isActive }) => isActive ? 'active' : 'inactive'}>
-              <p>Home</p>
+              <p className="home">Home</p>
             </NavLink>
             <NavLink to="/standings" className={({ isActive }) => isActive ? 'active' : 'inactive'}>
-              <p>Standings</p>
+              <p className="standings">Standings</p>
             </NavLink>
             {user && (
               <NavLink to="/picks" className={({ isActive }) => isActive ? 'active' : 'inactive'}>
-                <p>Picks</p>
+                <p className="picks">Picks</p>
               </NavLink>
             )}
           </div>
