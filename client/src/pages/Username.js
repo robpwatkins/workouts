@@ -5,6 +5,8 @@ import { useAuthContext } from '../hooks/useAuthContext';
 const Username = () => {
   const [originalUsername, setOriginalUsername] = useState('');
   const [username, setUsername] = useState('');
+  const [timeoutId, setTimeoutId] = useState(null);
+  // const [waiting, setWaiting] = useState(false);
   const [error, setError] = useState('');
   const [checkingUsername, setCheckingUsername] = useState('');
   const { user, dispatch } = useAuthContext();
@@ -19,10 +21,6 @@ const Username = () => {
   }, [user]);
 
   const validateUsername = async (value) => {
-    if (value === originalUsername) return;
-
-    setCheckingUsername(true);
-
     if (value.length < 3) {
       setError('Please include at least 3 characters');
       return false;
@@ -55,13 +53,14 @@ const Username = () => {
   };
 
   const handleChange = async (e) => {
+    setCheckingUsername(true);
+    
     setUsername(e.target.value);
-
-    if (!e.target.value) return;
-
-    const isValid = await validateUsername(e.target.value);
-
-    if (!isValid) return;
+    
+    if (!e.target.value || e.target.value === originalUsername) return;
+    
+    clearTimeout(timeoutId);
+    setTimeoutId(setTimeout(validateUsername, 1000, e.target.value));
   };
 
   const handleSubmit = async (e) => {
