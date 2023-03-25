@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../hooks/useAuthContext';
 
 const Username = () => {
+  const [originalUsername, setOriginalUsername] = useState('');
   const [username, setUsername] = useState('');
   const [error, setError] = useState('');
   const [checkingUsername, setCheckingUsername] = useState('');
@@ -11,31 +12,36 @@ const Username = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (user) setUsername(user.username);
+    if (user) {
+      setOriginalUsername(user.username);
+      setUsername(user.username);
+    }
   }, [user]);
 
-  const validateUsername = async (username) => {
-    if (username.length < 3) {
+  const validateUsername = async (value) => {
+    if (value === originalUsername) return;
+
+    setCheckingUsername(true);
+
+    if (value.length < 3) {
       setError('Please include at least 3 characters');
       return false;
     }
 
-    if (username.length > 42) {
+    if (value.length > 42) {
       setError('Please limit to 42 characters max');
       return false;
     }
-  
-    setCheckingUsername(true);
-  
-    const isValid = /^(?!.*--)(?!-)(?!.*-$)[0-9A-Za-z-]*$/.test(username);
-  
+    
+    const isValid = /^(?!.*--)(?!-)(?!.*-$)[0-9A-Za-z-]*$/.test(value);
+
     if (!isValid) {
       setError('Invalid username — see above guidelines');
       setCheckingUsername(false);
       return false;
     }
   
-    const response = await fetch(`http://localhost:4001/username-check?username=${username}`);
+    const response = await fetch(`http://localhost:4001/username-check?username=${value}`);
     const exists = await response.json();
   
     if (exists) {
