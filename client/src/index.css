@@ -175,10 +175,6 @@ nav {
   width: 98px;
 }
 
-.tabs .picks {
-  width: 53px;
-}
-
 .tabs .active {
   font-weight: bold;
 }

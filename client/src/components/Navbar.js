@@ -30,11 +30,6 @@ const Navbar = () => {
             <NavLink to="/standings" className={({ isActive }) => isActive ? 'active' : 'inactive'}>
               <p className="standings">Standings</p>
             </NavLink>
-            {user && (
-              <NavLink to="/picks" className={({ isActive }) => isActive ? 'active' : 'inactive'}>
-                <p className="picks">Picks</p>
-              </NavLink>
-            )}
           </div>
         )}
         <div className="account">
