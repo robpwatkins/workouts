@@ -26,15 +26,26 @@ const Home = () => {
 
   const handleClick = async (e) => {
     const { className: series_id, innerText: pick } = e.target;
-    const response = await fetch('http://localhost:4001/api/picks', {
-      method: 'POST',
+
+    const currentPick = picks.find(pick => pick.series_id === series_id);
+
+    const options = {
+      method: currentPick ? 'PATCH' : 'POST',
       credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ series_id, pick })
-    });
+      body: JSON.stringify({ ...currentPick && { series_id }, pick })
+    }
 
+    const url = `http://localhost:4001/api/picks${currentPick ? `/${currentPick._id}` : ''}`;
+
+    const response = await fetch(url, options);
     const json = await response.json();
-    dispatch({ type: 'CREATE_PICK', payload: json });
+
+    if (!currentPick) dispatch({ type: 'CREATE_PICK', payload: json });
+    else {
+      const updatedPicks = picks.map(pick => pick._id === json._id ? json : pick);
+      dispatch({ type: 'SET_PICKS', payload: updatedPicks });
+    }
   };
 
   return (

@@ -37,18 +37,18 @@ const createPick = async (req, res) => {
 //   res.status(200).json(workout);
 // };
 
-// const updateWorkout = async (req, res) => {
-//   const { id } = req.params;
-//   if (!isValid(id)) return res.status(404).json({ error: 'No such workout' });
-//   const workout = await Workout.findOneAndUpdate({ _id: id }, { ...req.body });
-//   if (!workout) return res.status(404).json({ error: 'No such workout' });
-//   res.status(200).json(workout);
-// };
+const updatePick = async (req, res) => {
+  const { id } = req.params;
+  if (!isValid(id)) return res.status(404).json({ error: 'No such pick' });
+  const pick = await Pick.findOneAndUpdate({ _id: id }, { ...req.body }, { new: true });
+  if (!pick) return res.status(404).json({ error: 'No such pick' });
+  res.status(200).json(pick);
+};
 
 module.exports = {
   getPicks,
   // getWorkout,
   createPick,
   // deleteWorkout,
-  // updateWorkout
+  updatePick
 };
