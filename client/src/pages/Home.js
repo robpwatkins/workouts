@@ -33,7 +33,7 @@ const Home = () => {
       method: currentPick ? 'PATCH' : 'POST',
       credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ ...currentPick && { series_id }, pick })
+      body: JSON.stringify({ ...!currentPick && { series_id }, pick })
     }
 
     const url = `http://localhost:4001/api/picks${currentPick ? `/${currentPick._id}` : ''}`;

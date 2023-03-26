@@ -16,8 +16,6 @@ const Navbar = () => {
     setActive(false);
   }, []));
 
-  console.log('Navbar user: ', user);
-
   return (
     <header>
       <div className="container">

@@ -1,9 +1,9 @@
 import { useAuthContext } from './useAuthContext';
-// import { useWorkoutsContext } from './useWorkoutsContext';
+import { usePicksContext } from './usePicksContexts';
 
 export const useLogout = () => {
   const { dispatch } = useAuthContext();
-  // const { dispatch: workoutsDispatch } = useWorkoutsContext();
+  const { dispatch: picksDispatch } = usePicksContext();
 
   const logout = async () => {
     try {
@@ -14,7 +14,7 @@ export const useLogout = () => {
 
       dispatch({ type: 'LOGOUT' });
     } catch (err) {}
-    // workoutsDispatch({ type: 'SET_WORKOUTS', payload: null });
+    picksDispatch({ type: 'SET_PICKS', payload: null });
   };
 
   return { logout };
