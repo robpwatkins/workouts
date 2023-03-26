@@ -1,41 +1,74 @@
 import { useEffect, useState } from 'react';
+import { useAuthContext } from '../hooks/useAuthContext';
+import { usePicksContext } from '../hooks/usePicksContexts';
 
 const Home = () => {
-  const [users, setUsers] = useState([]);
+  const { user } = useAuthContext();
+  const { picks, dispatch } = usePicksContext();
+  const [allSeries, setAllSeries] = useState([]);
 
   useEffect(() => {
-    const getUsers = async () => {
-      const response = await fetch('http://localhost:4001/users', { credentials: 'include' });
-      const users = await response.json();
-      
-      setUsers(users);
-    }
+    const fetchAllSeries = async () => {
+      const response = await fetch('http://localhost:4001/all-series');
+      const json = await response.json();
+      setAllSeries([json[0]]);
+    };
 
-    getUsers();
-  }, []);
+    const fetchPicks = async () => {
+      const response = await fetch('http://localhost:4001/api/picks', { credentials: 'include' });
+      const json = await response.json();
+      if (response.ok) dispatch({ type: 'SET_PICKS', payload: json });
+    };
+
+    fetchAllSeries();
+    if (user) fetchPicks();
+  }, [dispatch, user]);
 
   const handleClick = async (e) => {
-    const { id: username } = e.target;
-    await fetch(`http://localhost:4001/user/delete/${username}`, {
-      method: 'DELETE',
+    const { className: series_id, innerText: pick } = e.target;
+    const response = await fetch('http://localhost:4001/api/picks', {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ series_id, pick })
     });
-    let tempUsers = users.slice();
-    tempUsers.splice(e.target.classList[0], 1);
-    setUsers(tempUsers);
-  }
+
+    const json = await response.json();
+    dispatch({ type: 'CREATE_PICK', payload: json });
+  };
 
   return (
-    <div>
-      {users.length ? users.map((user, idx) => (
-        <p
-          key={user.username}
-          id={user.username}
-          className={`${idx} user`}
-          onClick={e => handleClick(e)}
-        >
-          {user.username}
-        </p>
-      )) : ''}
+    <div className="home">
+      {allSeries.length ? allSeries.map(seriesGroup => {
+        const { date_range, series } = seriesGroup;
+        return (
+          <div key={date_range} className="series-group">
+            <h3>{date_range}</h3>
+            {series.map(series => {
+              const [visitor, home] = series.teams;
+              const seriesId = `${date_range}:${visitor}@${home}`;
+              const { pick } = picks ? (picks.find(pick => pick.series_id === seriesId) || {}) : {};
+              return (
+                <div key={seriesId}>
+                  <button
+                    className={`${seriesId}${pick === visitor ? " picked" : ""}`}
+                    onClick={handleClick}
+                  >
+                    {visitor}
+                  </button>
+                  <span>@</span>
+                  <button
+                    className={`${seriesId}${pick === home ? " picked" : ""}`}
+                    onClick={handleClick}
+                  >
+                    {home}
+                  </button>
+                </div>
+              );
+            })}
+          </div>
+        )
+      }) : ''}
     </div>
   )
 };

@@ -8,6 +8,7 @@ import Picks from './pages/Picks';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Username from './pages/Username';
+import Users from './pages/Users';
 
 function App() {
   const { user, loaded } = useAuthContext();
@@ -42,6 +43,10 @@ function App() {
               <Route
                 path="/username"
                 element={user ?  <Username /> : <Navigate to="/" />}
+              />
+              <Route
+                path="/users"
+                element={<Users />}
               />
             </Routes>
           </div>

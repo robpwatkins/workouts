@@ -4,10 +4,11 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
-const workoutRoutes = require('./routes/workouts');
+const pickRoutes = require('./routes/picks');
 const userRoutes = require('./routes/user');
 const authRoutes = require('./routes/auth');
 const User = require('./models/userModel');
+const allSeries = require('./allSeries.json');
 
 require('./config/passport')(passport);
 
@@ -40,7 +41,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use('/api/workouts', workoutRoutes);
+app.use('/api/picks', pickRoutes);
 app.use('/api/user', userRoutes);
 app.use('/auth', authRoutes);
 
@@ -92,7 +93,7 @@ app.get('/username-check', async (req, res) => {
   res.json(!!user);
 })
 
-app.post('/logout', function(req, res, next) {
+app.post('/logout', (req, res, next) => {
   req.logout(err => {
     if (err) {
       console.log('err: ', err);
@@ -102,3 +103,7 @@ app.post('/logout', function(req, res, next) {
     return res.json('success');
   });
 });
+
+app.get('/all-series', (req, res) => {
+  res.json(allSeries);
+})

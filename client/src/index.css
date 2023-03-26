@@ -42,10 +42,37 @@ header a {
 
 /* homepage */
 .home {
-  display: grid;
-  grid-template-columns: 3fr 1fr;
-  gap: 100px;
+  display: flex;
+  overflow: scroll;
 }
+
+.series-group {
+  margin: 10px;
+}
+
+.series-group h3 {
+  text-align: center;
+}
+
+.series-group button {
+  font-size: 17px;
+  margin-bottom: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.series-group .picked {
+  text-decoration: underline;
+}
+
+.delete-user {
+  margin-left: 5px;
+}
+
+.delete-user:hover {
+  cursor: pointer;
+}
+
 .workout-details, .team-details {
   background: #fff;
   border-radius: 4px;
@@ -287,8 +314,4 @@ form.social-login {
 
 .fbook-icon {
   color: #415a94;
-}
-
-.user:hover {
-  cursor: pointer;
 }
