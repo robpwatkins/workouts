@@ -11,7 +11,7 @@ const Home = () => {
     const fetchAllSeries = async () => {
       const response = await fetch('http://localhost:4001/all-series');
       const json = await response.json();
-      setAllSeries([json[0]]);
+      setAllSeries(json.slice(0, 2));
     };
 
     const fetchPicks = async () => {
@@ -51,27 +51,23 @@ const Home = () => {
   return (
     <div className="home">
       {allSeries.length ? allSeries.map(seriesGroup => {
-        const { date_range, series } = seriesGroup;
+        const { dates, series } = seriesGroup;
         return (
-          <div key={date_range} className="series-group">
-            <h3>{date_range}</h3>
+          <div key={dates} className="series-group">
+            <h3>{dates}</h3>
             {series.map(series => {
-              const [visitor, home] = series.teams;
-              const seriesId = `${date_range}:${visitor}@${home}`;
+              const [visitor, visitorWin, home, homeWin] = series;
+              const seriesId = `${dates}:${visitor}@${home}`;
               const { pick } = picks ? (picks.find(pick => pick.series_id === seriesId) || {}) : {};
+              const visitorClasses = `${seriesId}${pick === visitor ? " picked" : ""}${visitorWin === 'TRUE' ? " winner" : ""}`;
+              const homeClasses = `${seriesId}${pick === home ? " picked" : ""}${homeWin === 'TRUE' ? " winner": ""}`;
               return (
                 <div key={seriesId}>
-                  <button
-                    className={`${seriesId}${pick === visitor ? " picked" : ""}`}
-                    onClick={handleClick}
-                  >
+                  <button className={visitorClasses} onClick={handleClick}>
                     {visitor}
                   </button>
                   <span>@</span>
-                  <button
-                    className={`${seriesId}${pick === home ? " picked" : ""}`}
-                    onClick={handleClick}
-                  >
+                  <button className={homeClasses} onClick={handleClick}>
                     {home}
                   </button>
                 </div>

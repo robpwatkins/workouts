@@ -1,26 +1,26 @@
 const { getGoogleClient } = require('../utils/getAuthenticacatedGoogleClient');
 
-const getSheetData = async (spreadsheetId, range) => {
+const getAllSeries = async (spreadsheetId, range) => {
   const google = await getGoogleClient();
-  const sheets = await google.sheets('v4');
+  const sheets = google.sheets('v4');
   const { values: rows } = (await sheets.spreadsheets.values.get({
     spreadsheetId,
     range
   })).data;
-  return console.log('rows: ', rows);
-  const dataArr = [];
-  const columnNames = rows[0];
+  const allSeries = [];
+  let seriesGroup;
   rows.forEach((row, index) => {
-    if (index == 0) return;
-    const rowObj = {};
-    row.forEach((cell, index) => {
-      rowObj[columnNames[index]] = cell;
-    })
-    dataArr.push(rowObj);
+    if (!row.length) return;
+    if (row.length === 1 || index === rows.length - 1) {
+      if (seriesGroup) allSeries.push(seriesGroup);
+      seriesGroup = {};
+      seriesGroup.dates = row[0];
+    } else {
+      if (!seriesGroup.series) seriesGroup.series = [row];
+      else seriesGroup.series.push(row);
+    }
   })
-  return dataArr;
+  return allSeries;
 };
 
-getSheetData('1YJw6UclwKyGjdwns9vgU3VrivderKfpM3FPKIRR6uVE', 'Series')
-
-module.exports = { getSheetData };
+module.exports = { getAllSeries };

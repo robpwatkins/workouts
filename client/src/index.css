@@ -51,6 +51,7 @@ header a {
 }
 
 .series-group h3 {
+  width: 123px;
   text-align: center;
 }
 
@@ -63,6 +64,10 @@ header a {
 
 .series-group .picked {
   text-decoration: underline;
+}
+
+.series-group .winner {
+  font-weight: bold;
 }
 
 .delete-user {
