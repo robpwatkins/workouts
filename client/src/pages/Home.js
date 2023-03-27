@@ -59,15 +59,15 @@ const Home = () => {
               const [visitor, visitorWin, home, homeWin] = series;
               const seriesId = `${dates}:${visitor}@${home}`;
               const { pick } = picks ? (picks.find(pick => pick.series_id === seriesId) || {}) : {};
-              const visitorClasses = `${seriesId}${pick === visitor ? " picked" : ""}${visitorWin === 'TRUE' ? " winner" : ""}`;
-              const homeClasses = `${seriesId}${pick === home ? " picked" : ""}${homeWin === 'TRUE' ? " winner": ""}`;
+              const visitorClassList = `${seriesId}${pick === visitor ? " picked" : ""}${visitorWin === 'TRUE' ? " winner" : ""}`;
+              const homeClassList = `${seriesId}${pick === home ? " picked" : ""}${homeWin === 'TRUE' ? " winner": ""}`;
               return (
                 <div key={seriesId}>
-                  <button className={visitorClasses} onClick={handleClick}>
+                  <button className={visitorClassList} onClick={handleClick}>
                     {visitor}
                   </button>
                   <span>@</span>
-                  <button className={homeClasses} onClick={handleClick}>
+                  <button className={homeClassList} onClick={handleClick}>
                     {home}
                   </button>
                 </div>
