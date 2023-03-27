@@ -1,6 +1,4 @@
-// const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
-const fetch = require('node-fetch');
-const { getGoogleJwt, getGoogleClient } = require('../utils/getAuthenticatedGoogleClient');
+const { getGoogleClient } = require('../utils/getAuthenticacatedGoogleClient');
 
 const getSheetData = async (spreadsheetId, range) => {
   const google = await getGoogleClient();
@@ -9,6 +7,7 @@ const getSheetData = async (spreadsheetId, range) => {
     spreadsheetId,
     range
   })).data;
+  return console.log('rows: ', rows);
   const dataArr = [];
   const columnNames = rows[0];
   rows.forEach((row, index) => {
@@ -22,4 +21,6 @@ const getSheetData = async (spreadsheetId, range) => {
   return dataArr;
 };
 
-module.exports = { getDocInfo, getTemplateIds, getDocHTML, getSheetData };
+getSheetData('1YJw6UclwKyGjdwns9vgU3VrivderKfpM3FPKIRR6uVE', 'Series')
+
+module.exports = { getSheetData };

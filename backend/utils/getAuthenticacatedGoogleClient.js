@@ -19,13 +19,10 @@ const getGoogleClient = async () => {
     const jwt = await getGoogleJwt();
     await jwt.authorize();
     google.options({ auth: jwt });
-    console.log('google: ', google);
     return google;
   } catch(error) {
     console.log('error: ', error);
   }
 };
 
-getGoogleClient();
-
-module.exports = { getGoogleJwt, getGoogleClient };
+module.exports = { getGoogleClient };
