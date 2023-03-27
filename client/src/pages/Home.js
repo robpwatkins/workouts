@@ -25,6 +25,7 @@ const Home = () => {
   }, [dispatch, user]);
 
   const handleClick = async (e) => {
+    if (!user) return;
     const { className: series_id, innerText: pick } = e.target;
 
     const currentPick = picks.find(pick => pick.series_id === series_id);
