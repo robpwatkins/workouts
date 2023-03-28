@@ -2,6 +2,7 @@
   {
     "name": "Los Angeles Angels",
     "abbreviation": "LAA",
+    "logo": "",
     "colors": {
       "first": "#ba0021",
       "second": "#862633",
@@ -12,6 +13,7 @@
   {
     "name": "Los Angeles Dodgers",
     "abbreviation": "LAD",
+    "logo": "",
     "colors": {
       "first": "#005a9c",
       "second": "#ef3e42",
@@ -21,7 +23,8 @@
   },
   {
     "name": "San Diego Padres",
-    "abbreviation": "SDP",
+    "abbreviation": "SD",
+    "logo": "",
     "colors": {
       "first": "#002d62",
       "second": "",
@@ -31,7 +34,8 @@
   },
   {
     "name": "San Francisco Giants",
-    "abbreviation": "SFG",
+    "abbreviation": "SF",
+    "logo": "",
     "colors": {
       "first": "#fd5a1e",
       "second": "#000000",
@@ -41,7 +45,8 @@
   },
   {
     "name": "Tampa Bay Rays",
-    "abbreviation": "TBR",
+    "abbreviation": "TB",
+    "logo": "",
     "colors": {
       "first": "#092c5c",
       "second": "#8fbce6",
@@ -51,7 +56,8 @@
   },
   {
     "name": "Kansas City Royals",
-    "abbreviation": "KCR",
+    "abbreviation": "KC",
+    "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/307.svg",
     "colors": {
       "first": "#174885",
       "second": "#c0995a",
@@ -62,6 +68,7 @@
   {
     "name": "Seattle mariners",
     "abbreviation": "SEA",
+    "logo": "",
     "colors": {
       "first": "#0c2c56",
       "second": "#c4ced4",
@@ -73,6 +80,7 @@
   {
     "name": "Detroit Tigers",
     "abbreviation": "DET",
+    "logo": "",
     "colors": {
       "first": "#182d55",
       "second": "#f26722",
@@ -83,7 +91,8 @@
   },
   {
     "name": "Arizona Diamondbacks",
-    "abbreviation": "ARI",
+    "abbreviation": "ARZ",
+    "logo": "",
     "colors": {
       "first": "#a71930",
       "second": "#e3d4ad",
@@ -95,6 +104,7 @@
   {
     "name": "Cleveland Guardians",
     "abbreviation": "CLE",
+    "logo": "",
     "colors": {
       "first": "#134A8E",
       "second": "#E31937",
@@ -106,6 +116,7 @@
   {
     "name": "Houston Astros",
     "abbreviation": "HOU",
+    "logo": "",
     "colors": {
       "first": "#002d62",
       "second": "#eb6e1f",
@@ -117,6 +128,7 @@
   {
     "name": "Milwaukee Brewers",
     "abbreviation": "MIL",
+    "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/308.svg",
     "colors": {
       "first": "#0a2351",
       "second": "#b6922e",
@@ -128,6 +140,7 @@
   {
     "name": "New York Yankees",
     "abbreviation": "NYY",
+    "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/310.svg",
     "colors": {
       "first": "#132448",
       "second": "#c4ced3",
@@ -139,6 +152,7 @@
   {
     "name": "St. Louis Cardinals",
     "abbreviation": "STL",
+    "logo": "",
     "colors": {
       "first": "#c41e3a",
       "second": "#22205f",
@@ -150,6 +164,7 @@
   {
     "name": "Atlanta Braves",
     "abbreviation": "ATL",
+    "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/315.svg",
     "colors": {
       "first": "#13274f",
       "second": "#ce1141",
@@ -161,6 +176,7 @@
   {
     "name": "Baltimore Orioles",
     "abbreviation": "BAL",
+    "logo": "",
     "colors": {
       "first": "#000000",
       "second": "#df4601",
@@ -172,6 +188,7 @@
   {
     "name": "Minnesota Twins",
     "abbreviation": "MIN",
+    "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/309.svg",
     "colors": {
       "first": "#002b5c",
       "second": "#d31145",
@@ -183,6 +200,7 @@
   {
     "name": "Pittsburgh Pirates",
     "abbreviation": "PIT",
+    "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/325.svg",
     "colors": {
       "first": "#000000",
       "second": "#fdb827",
@@ -194,6 +212,7 @@
   {
     "name": "Miami Marlins",
     "abbreviation": "MIA",
+    "logo": "",
     "colors": {
       "first": "#000000",
       "second": "#ff6600",
@@ -205,6 +224,7 @@
   {
     "name": "Cincinnati Reds",
     "abbreviation": "CIN",
+    "logo": "",
     "colors": {
       "first": "#c6011f",
       "second": "#000000",
@@ -216,6 +236,7 @@
   {
     "name": "New York Mets",
     "abbreviation": "NYM",
+    "logo": "",
     "colors": {
       "first": "#002d72",
       "second": "#ff5910",
@@ -227,6 +248,7 @@
   {
     "name": "Philadelphia Phillies",
     "abbreviation": "PHI",
+    "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/324.svg",
     "colors": {
       "first": "#e81828",
       "second": "#284898",
@@ -238,6 +260,7 @@
   {
     "name": "Texas Rangers",
     "abbreviation": "TEX",
+    "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/313.svg",
     "colors": {
       "first": "#003278",
       "second": "#c0111f",
@@ -249,6 +272,7 @@
   {
     "name": "Toronto Blue Jays",
     "abbreviation": "TOR",
+    "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/314.svg",
     "colors": {
       "first": "#134a8e",
       "second": "#1d2d5c",
@@ -260,6 +284,7 @@
   {
     "name": "Boston Red Sox",
     "abbreviation": "BOS",
+    "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/303.svg",
     "colors": {
       "first": "#bd3039",
       "second": "#192c55",
@@ -271,6 +296,7 @@
   {
     "name": "Chicago Cubs",
     "abbreviation": "CHC",
+    "logo": "",
     "colors": {
       "first": "#0e3386",
       "second": "#cc3433",
@@ -282,6 +308,7 @@
   {
     "name": "Oakland Athletics",
     "abbreviation": "OAK",
+    "logo": "",
     "colors": {
       "first": "#003831",
       "second": "#efb21e",
@@ -293,6 +320,7 @@
   {
     "name": "Colorado Rockies",
     "abbreviation": "COL",
+    "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/318.svg",
     "colors": {
       "first": "#33006f",
       "second": "#000000",
@@ -303,7 +331,8 @@
   },
   {
     "name": "Chicago White Sox",
-    "abbreviation": "CHW",
+    "abbreviation": "CWS",
+    "logo": "",
     "colors": {
       "first": "#000000",
       "second": "#c4ced4",
@@ -314,7 +343,8 @@
   },
   {
     "name": "Washington Nationals",
-    "abbreviation": "WSN",
+    "abbreviation": "WAS",
+    "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/322.svg",
     "colors": {
       "first": "#ab0003",
       "second": "#212759",

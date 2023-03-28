@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { usePicksContext } from '../hooks/usePicksContexts';
+import teams from '../teams.json';
 
 const Home = () => {
   const { user } = useAuthContext();
@@ -11,7 +12,7 @@ const Home = () => {
     const fetchAllSeries = async () => {
       const response = await fetch('http://localhost:4001/all-series');
       const json = await response.json();
-      setAllSeries(json.slice(0, 2));
+      setAllSeries(json.slice(0, 5));
     };
 
     const fetchPicks = async () => {
@@ -26,7 +27,8 @@ const Home = () => {
 
   const handleClick = async (e) => {
     if (!user) return;
-    const { className: series_id, innerText: pick } = e.target;
+
+    const [series_id, pick] = (e.target.matches('img') ? e.target.parentElement : e.target).classList;
 
     const currentPick = picks.find(pick => pick.series_id === series_id);
 
@@ -34,7 +36,7 @@ const Home = () => {
       method: currentPick ? 'PATCH' : 'POST',
       credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ ...!currentPick && { series_id }, pick })
+      body: JSON.stringify({ pick, ...!currentPick && { series_id } })
     }
 
     const url = `http://localhost:4001/api/picks${currentPick ? `/${currentPick._id}` : ''}`;
@@ -60,16 +62,20 @@ const Home = () => {
               const [visitor, visitorWin, home, homeWin] = series;
               const seriesId = `${dates}:${visitor}@${home}`;
               const { pick } = picks ? (picks.find(pick => pick.series_id === seriesId) || {}) : {};
-              const visitorClassList = `${seriesId}${pick === visitor ? " picked" : ""}${visitorWin === 'TRUE' ? " winner" : ""}`;
-              const homeClassList = `${seriesId}${pick === home ? " picked" : ""}${homeWin === 'TRUE' ? " winner": ""}`;
+              const visitorClassList = `${seriesId} ${visitor}${pick === visitor ? " picked" : ""}${visitorWin === 'TRUE' ? " winner" : ""}`;
+              const homeClassList = `${seriesId} ${home}${pick === home ? " picked" : ""}${homeWin === 'TRUE' ? " winner": ""}`;
+              const { logo: visitorLogo } = teams.find(team => team.abbreviation === visitor);
+              const { logo: homeLogo } = teams.find(team => team.abbreviation === home);
               return (
-                <div key={seriesId}>
+                <div key={seriesId} className="series-card">
                   <button className={visitorClassList} onClick={handleClick}>
+                    <img src={visitorLogo} alt="" />
                     {visitor}
                   </button>
                   <span>@</span>
                   <button className={homeClassList} onClick={handleClick}>
                     {home}
+                    <img src={homeLogo} alt="" />
                   </button>
                 </div>
               );
