@@ -78,6 +78,7 @@ header a {
 }
 
 .series-group button {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -90,16 +91,24 @@ header a {
   cursor: pointer;
 }
 
-.visitor.picked, .home.picked {
-  border-bottom: 6px solid;
+.bar {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  width: 105%;
+  height: 6px;
 }
 
-.visitor {
+.bar.visitor {
   border-bottom-left-radius: 2px;
 }
 
-.home {
+.bar.home {
   border-bottom-right-radius: 2px;
+}
+
+.bar.picked {
+  display: block;
 }
 
 .series-group .winner {

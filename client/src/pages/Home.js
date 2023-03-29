@@ -62,8 +62,8 @@ const Home = () => {
               const [visitor, visitorWin, home, homeWin] = series;
               const seriesId = `${dates}:${visitor}@${home}`;
               const { pick } = picks ? (picks.find(pick => pick.series_id === seriesId) || {}) : {};
-              const visitorClassList = `${seriesId} ${visitor} visitor ${pick === visitor ? " picked" : ""}${visitorWin === 'TRUE' ? " winner" : ""}`;
-              const homeClassList = `${seriesId} ${home} home ${pick === home ? " picked" : ""}${homeWin === 'TRUE' ? " winner": ""}`;
+              const visitorClassList = `${seriesId} ${visitor} visitor ${visitorWin === 'TRUE' ? " winner" : ""}`;
+              const homeClassList = `${seriesId} ${home} home ${homeWin === 'TRUE' ? " winner": ""}`;
               const {
                 logo: visitorLogo,
                 colors: { first: visitorPrimary }
@@ -75,14 +75,15 @@ const Home = () => {
               return (
                 <div key={seriesId} className="series-card">
                   <button className={visitorClassList} onClick={handleClick} style={{ borderBottomColor: visitorPrimary }}>
-                    <div className="overlay"></div>
                     <img src={visitorLogo} alt="" />
                     {visitor}
+                    <div className={`bar visitor${pick === visitor ? " picked" : ""}`} style={{ backgroundColor: visitorPrimary }}></div>
                   </button>
                   <span>@</span>
                   <button className={homeClassList} onClick={handleClick} style={{ borderBottomColor: homePrimary }}>
                     {home}
                     <img src={homeLogo} alt="" />
+                    <div className={`bar home${pick === home ? " picked" : ""}`} style={{ backgroundColor: homePrimary }}></div>
                   </button>
                 </div>
               );
