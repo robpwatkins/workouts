@@ -2,7 +2,7 @@
   {
     "name": "Los Angeles Angels",
     "abbreviation": "LAA",
-    "logo": "",
+    "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/301.svg",
     "colors": {
       "first": "#ba0021",
       "second": "#862633",
@@ -13,7 +13,7 @@
   {
     "name": "Los Angeles Dodgers",
     "abbreviation": "LAD",
-    "logo": "",
+    "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/321.svg",
     "colors": {
       "first": "#005a9c",
       "second": "#ef3e42",
@@ -24,7 +24,7 @@
   {
     "name": "San Diego Padres",
     "abbreviation": "SD",
-    "logo": "",
+    "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/326.svg",
     "colors": {
       "first": "#002d62",
       "second": "",
@@ -35,7 +35,7 @@
   {
     "name": "San Francisco Giants",
     "abbreviation": "SF",
-    "logo": "",
+    "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/327.svg",
     "colors": {
       "first": "#fd5a1e",
       "second": "#000000",
@@ -46,7 +46,7 @@
   {
     "name": "Tampa Bay Rays",
     "abbreviation": "TB",
-    "logo": "",
+    "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/329.svg",
     "colors": {
       "first": "#092c5c",
       "second": "#8fbce6",
@@ -68,7 +68,7 @@
   {
     "name": "Seattle mariners",
     "abbreviation": "SEA",
-    "logo": "",
+    "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/312.svg",
     "colors": {
       "first": "#0c2c56",
       "second": "#c4ced4",
@@ -80,7 +80,7 @@
   {
     "name": "Detroit Tigers",
     "abbreviation": "DET",
-    "logo": "",
+    "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/306.svg",
     "colors": {
       "first": "#182d55",
       "second": "#f26722",
@@ -92,7 +92,7 @@
   {
     "name": "Arizona Diamondbacks",
     "abbreviation": "ARZ",
-    "logo": "",
+    "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/330.svg",
     "colors": {
       "first": "#a71930",
       "second": "#e3d4ad",
@@ -104,7 +104,7 @@
   {
     "name": "Cleveland Guardians",
     "abbreviation": "CLE",
-    "logo": "",
+    "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/305.svg",
     "colors": {
       "first": "#134A8E",
       "second": "#E31937",
@@ -116,7 +116,7 @@
   {
     "name": "Houston Astros",
     "abbreviation": "HOU",
-    "logo": "",
+    "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/320.svg",
     "colors": {
       "first": "#002d62",
       "second": "#eb6e1f",
@@ -152,7 +152,7 @@
   {
     "name": "St. Louis Cardinals",
     "abbreviation": "STL",
-    "logo": "",
+    "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/328.svg",
     "colors": {
       "first": "#c41e3a",
       "second": "#22205f",
@@ -176,7 +176,7 @@
   {
     "name": "Baltimore Orioles",
     "abbreviation": "BAL",
-    "logo": "",
+    "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/302.svg",
     "colors": {
       "first": "#000000",
       "second": "#df4601",
@@ -212,7 +212,7 @@
   {
     "name": "Miami Marlins",
     "abbreviation": "MIA",
-    "logo": "",
+    "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/319.svg",
     "colors": {
       "first": "#000000",
       "second": "#ff6600",
@@ -224,7 +224,7 @@
   {
     "name": "Cincinnati Reds",
     "abbreviation": "CIN",
-    "logo": "",
+    "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/317.svg",
     "colors": {
       "first": "#c6011f",
       "second": "#000000",
@@ -236,7 +236,7 @@
   {
     "name": "New York Mets",
     "abbreviation": "NYM",
-    "logo": "",
+    "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/323.svg",
     "colors": {
       "first": "#002d72",
       "second": "#ff5910",
@@ -296,7 +296,7 @@
   {
     "name": "Chicago Cubs",
     "abbreviation": "CHC",
-    "logo": "",
+    "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/316.svg",
     "colors": {
       "first": "#0e3386",
       "second": "#cc3433",
@@ -308,7 +308,7 @@
   {
     "name": "Oakland Athletics",
     "abbreviation": "OAK",
-    "logo": "",
+    "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/311.svg",
     "colors": {
       "first": "#003831",
       "second": "#efb21e",
@@ -332,7 +332,7 @@
   {
     "name": "Chicago White Sox",
     "abbreviation": "CWS",
-    "logo": "",
+    "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/304.svg",
     "colors": {
       "first": "#000000",
       "second": "#c4ced4",

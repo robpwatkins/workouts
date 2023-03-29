@@ -62,18 +62,25 @@ const Home = () => {
               const [visitor, visitorWin, home, homeWin] = series;
               const seriesId = `${dates}:${visitor}@${home}`;
               const { pick } = picks ? (picks.find(pick => pick.series_id === seriesId) || {}) : {};
-              const visitorClassList = `${seriesId} ${visitor}${pick === visitor ? " picked" : ""}${visitorWin === 'TRUE' ? " winner" : ""}`;
-              const homeClassList = `${seriesId} ${home}${pick === home ? " picked" : ""}${homeWin === 'TRUE' ? " winner": ""}`;
-              const { logo: visitorLogo } = teams.find(team => team.abbreviation === visitor);
-              const { logo: homeLogo } = teams.find(team => team.abbreviation === home);
+              const visitorClassList = `${seriesId} ${visitor} visitor ${pick === visitor ? " picked" : ""}${visitorWin === 'TRUE' ? " winner" : ""}`;
+              const homeClassList = `${seriesId} ${home} home ${pick === home ? " picked" : ""}${homeWin === 'TRUE' ? " winner": ""}`;
+              const {
+                logo: visitorLogo,
+                colors: { first: visitorPrimary }
+              } = teams.find(team => team.abbreviation === visitor);
+              const {
+                logo: homeLogo,
+                colors: { first: homePrimary }
+              } = teams.find(team => team.abbreviation === home);
               return (
                 <div key={seriesId} className="series-card">
-                  <button className={visitorClassList} onClick={handleClick}>
+                  <button className={visitorClassList} onClick={handleClick} style={{ borderBottomColor: visitorPrimary }}>
+                    <div className="overlay"></div>
                     <img src={visitorLogo} alt="" />
                     {visitor}
                   </button>
                   <span>@</span>
-                  <button className={homeClassList} onClick={handleClick}>
+                  <button className={homeClassList} onClick={handleClick} style={{ borderBottomColor: homePrimary }}>
                     {home}
                     <img src={homeLogo} alt="" />
                   </button>
