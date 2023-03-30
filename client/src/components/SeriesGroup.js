@@ -1,18 +1,12 @@
 import Series from './Series';
 
-const SeriesGroup = ({ allSeries }) => {
+const SeriesGroup = ({ dates, series }) => {
+  console.log('dates: ', dates);
   return (
-    <>
-      {allSeries.length ? allSeries.map(seriesGroup => {
-        const { dates, series } = seriesGroup;
-        return (
-          <div key={dates} className="series-group">
-            <h3>{dates}</h3>
-            <Series dates={dates} series={series} />
-          </div>
-        )
-      }) : ''}
-    </>
+    <div key={dates} className="series-group">
+      <h3>{dates}</h3>
+      <Series dates={dates} series={series} />
+    </div>
   )
 };
 

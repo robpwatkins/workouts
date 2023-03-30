@@ -12,7 +12,7 @@ const Home = () => {
     const fetchAllSeries = async () => {
       const response = await fetch('http://localhost:4001/all-series');
       const json = await response.json();
-      setAllSeries(json);
+      setAllSeries(json.slice(0, 1));
     };
 
     const fetchPicks = async () => {
@@ -27,7 +27,10 @@ const Home = () => {
 
   return (
     <div className="home">      
-      <SeriesGroup allSeries={allSeries} />
+      {allSeries.length ? allSeries.map(seriesGroup => {
+        const { dates, series } = seriesGroup;
+        return <SeriesGroup dates={dates} series={series} />
+      }) : ''}
     </div>
   )
 };
