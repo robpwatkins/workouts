@@ -39,7 +39,6 @@ const Team = ({ classList, teamPrimary, logo, team, type, pick }) => {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       onClick={handleClick}
-      style={{ borderBottomColor: teamPrimary }}
     >
       {type === "visitor" && <img src={logo} alt="" />}
       {team}

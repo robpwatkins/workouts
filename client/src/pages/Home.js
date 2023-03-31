@@ -29,7 +29,9 @@ const Home = () => {
     <div className="home">      
       {allSeries.length ? allSeries.map(seriesGroup => {
         const { dates, series } = seriesGroup;
-        return <SeriesGroup dates={dates} series={series} />
+        return (
+          <SeriesGroup key={dates} dates={dates} series={series} />
+        )
       }) : ''}
     </div>
   )

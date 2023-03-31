@@ -1,10 +1,24 @@
 import Team from './Team';
 
-const Series = ({ dates, series }) => {
+const Series = ({
+  seriesId,
+  pick,
+  visitor,
+  visitorWin,
+  visitorClassList,
+  visitorPrimary,
+  visitorLogo,
+  home,
+  homeWin,
+  homeClassList,
+  homePrimary,
+  homeLogo,
+}) => {
 
   return (
-    <div key={seriesId} className={`series-card${(visitorWin || homeWin) ? " opaque" : ''}`}>
+    <div className={`series-card${(visitorWin || homeWin) ? " opaque" : ''}`}>
       <Team
+        key={`${seriesId}-${visitor}`}
         classList={visitorClassList}
         teamPrimary={visitorPrimary}
         logo={visitorLogo}
@@ -13,7 +27,8 @@ const Series = ({ dates, series }) => {
         pick={pick}
       />
       <span>@</span>
-      <Team 
+      <Team
+        key={`${seriesId}-${home}`}
         classList={homeClassList}
         teamPrimary={homePrimary}
         logo={homeLogo}
@@ -22,7 +37,7 @@ const Series = ({ dates, series }) => {
         pick={pick}
       />
     </div>
-  );
+  )
 };
 
 export default Series;
