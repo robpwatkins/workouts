@@ -35,7 +35,7 @@
   {
     "name": "San Francisco Giants",
     "abbreviation": "SF",
-    "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/327.svg",
+    "logo": "https://www.mlbstatic.com/team-logos/team-cap-on-light/137.svg",
     "colors": {
       "first": "#fd5a1e",
       "second": "#000000",
@@ -140,7 +140,7 @@
   {
     "name": "New York Yankees",
     "abbreviation": "NYY",
-    "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/310.svg",
+    "logo": "https://www.mlbstatic.com/team-logos/team-cap-on-light/147.svg",
     "colors": {
       "first": "#132448",
       "second": "#c4ced3",
@@ -164,7 +164,7 @@
   {
     "name": "Atlanta Braves",
     "abbreviation": "ATL",
-    "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/315.svg",
+    "logo": "https://www.mlbstatic.com/team-logos/team-cap-on-light/144.svg",
     "colors": {
       "first": "#13274f",
       "second": "#ce1141",
@@ -176,7 +176,7 @@
   {
     "name": "Baltimore Orioles",
     "abbreviation": "BAL",
-    "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/302.svg",
+    "logo": "https://www.mlbstatic.com/team-logos/team-cap-on-light/110.svg",
     "colors": {
       "first": "#000000",
       "second": "#df4601",
@@ -284,7 +284,7 @@
   {
     "name": "Boston Red Sox",
     "abbreviation": "BOS",
-    "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/303.svg",
+    "logo": "https://www.mlbstatic.com/team-logos/team-cap-on-light/111.svg",
     "colors": {
       "first": "#bd3039",
       "second": "#192c55",
@@ -344,7 +344,7 @@
   {
     "name": "Washington Nationals",
     "abbreviation": "WAS",
-    "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/322.svg",
+    "logo": "https://www.mlbstatic.com/team-logos/team-cap-on-light/120.svg",
     "colors": {
       "first": "#ab0003",
       "second": "#212759",

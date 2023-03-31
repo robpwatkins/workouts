@@ -25,7 +25,6 @@ const userSchema = new Schema({
   },
   username: {
     type: String,
-    required: true,
     unique: true
   },
   last_login: {
@@ -55,14 +54,10 @@ userSchema.statics.signup = async function(email, password) {
   const salt = await bcrypt.genSalt(10);
   const hash = await bcrypt.hash(password, salt);
 
-  const username = await getUniqueUsername(this);
-  console.log('username: ', username);
-
   const user = await this.create({
     provider: 'email',
     email,
-    password: hash,
-    username
+    password: hash
   });
 
   console.log('user: ', user);

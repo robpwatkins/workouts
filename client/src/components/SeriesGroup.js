@@ -25,6 +25,7 @@ const SeriesGroup = ({ dates, series }) => {
           logo: homeLogo,
           colors: { first: homePrimary }
         } = teams.find(team => team.abbreviation === home);
+        
         return (
           <Series
             key={seriesId}

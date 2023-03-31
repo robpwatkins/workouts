@@ -21,7 +21,7 @@ function App() {
             <Routes>
               <Route
                 path="/"
-                element={<Home />}
+                element={(user && !user.username) ? <Username /> : <Home />}
               />
               <Route
                 path="/standings"

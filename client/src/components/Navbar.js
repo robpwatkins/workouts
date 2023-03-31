@@ -35,10 +35,12 @@ const Navbar = () => {
         <div className="account">
           {(loaded && user) && (
             <div>
-              <button className="username" onClick={() => setActive(!active)}>
-                <span>{user.username}</span>
-                <FontAwesomeIcon className="down-chevron" icon={faCaretDown} />
-              </button>
+              {user.username && (
+                <button className="username" onClick={() => setActive(!active)}>
+                  <span>{user.username}</span>
+                  <FontAwesomeIcon className="down-chevron" icon={faCaretDown} />
+                </button>
+              )}
               <Link
                 className={`dropdown-toggle${!active ? " d-none" : ""}`}
                 to="/username"

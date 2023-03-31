@@ -1,24 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../hooks/useAuthContext';
 
 const Username = () => {
-  const [originalUsername, setOriginalUsername] = useState('');
   const [username, setUsername] = useState('');
   const [timeoutId, setTimeoutId] = useState(null);
   // const [waiting, setWaiting] = useState(false);
   const [error, setError] = useState('');
   const [checkingUsername, setCheckingUsername] = useState('');
-  const { user, dispatch } = useAuthContext();
+  const { dispatch } = useAuthContext();
 
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (user) {
-      setOriginalUsername(user.username);
-      setUsername(user.username);
-    }
-  }, [user]);
 
   const validateUsername = async (value) => {
     if (value.length < 3) {
@@ -26,8 +18,8 @@ const Username = () => {
       return false;
     }
 
-    if (value.length > 42) {
-      setError('Please limit to 42 characters max');
+    if (value.length > 23) {
+      setError('Please limit to 23 characters max');
       return false;
     }
     
@@ -57,7 +49,7 @@ const Username = () => {
     
     setUsername(e.target.value);
     
-    if (!e.target.value || e.target.value === originalUsername) return;
+    if (!e.target.value) return;
     
     clearTimeout(timeoutId);
     setTimeoutId(setTimeout(validateUsername, 1000, e.target.value));
@@ -86,8 +78,7 @@ const Username = () => {
 
   return (
     <form className="username" onSubmit={e => handleSubmit(e)}>
-      <h2>Personalize your username</h2>
-      <p>Your current username was randomly generated. You can create a new username to identify yourself.</p>
+      <h2>Create a username</h2>
       <p>Username may contain letters, numbers and single hyphens, and may not begin or end with a hyphen.</p>
       <input
         type="username"
@@ -96,7 +87,6 @@ const Username = () => {
       />
       {error && <div className="error">{error}</div>}
       <button disabled={checkingUsername || !!error}>Continue</button>
-      <button className="skip" onClick={() => navigate("/")}>Skip for now</button>
     </form>
   )
 };
