@@ -21,11 +21,11 @@ function App() {
             <Routes>
               <Route
                 path="/"
-                element={(user && !user.username) ? <Username /> : <Home />}
+                element={(user && !user.username_customized) ? <Username /> : <Home />}
               />
               <Route
                 path="/standings"
-                element={<Standings />}
+                element={user ? (!user.username_customized ? <Username /> : <Standings />) : <Navigate to="/" />}
               />
               <Route
                 path="/login"

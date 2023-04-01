@@ -72,6 +72,7 @@ app.post('/user/update', async (req, res) => {
     const user = await User.findById({ _id: req.user._id });
     
     user.username = req.body.username;
+    user.username_customized = true;
 
     const updatedUser = await user.save();
 

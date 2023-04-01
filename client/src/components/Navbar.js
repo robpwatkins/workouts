@@ -27,15 +27,17 @@ const Navbar = () => {
             <NavLink to="/" className={({ isActive }) => isActive ? 'active' : 'inactive'}>
               <p className="home">Home</p>
             </NavLink>
-            <NavLink to="/standings" className={({ isActive }) => isActive ? 'active' : 'inactive'}>
-              <p className="standings">Standings</p>
-            </NavLink>
+            {user && user.username_customized && (
+              <NavLink to="/standings" className={({ isActive }) => isActive ? 'active' : 'inactive'}>
+                <p className="standings">Standings</p>
+              </NavLink>
+            )}
           </div>
         )}
         <div className="account">
           {(loaded && user) && (
             <div>
-              {user.username && (
+              {user.username_customized && (
                 <button className="username" onClick={() => setActive(!active)}>
                   <span>{user.username}</span>
                   <FontAwesomeIcon className="down-chevron" icon={faCaretDown} />

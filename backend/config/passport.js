@@ -37,10 +37,13 @@ module.exports = function(passport) {
     callbackURL: process.env.GOOGLE_CALLBACK_URL
   },
   async (accessToken, refreshToken, profile, done) => {
+    const [{ value: email }] = profile.emails;
+
     const newUser = {
       googleId: profile.id,
-      email: profile.emails[0].value,
-      username: await getUniqueUsername(User),
+      email,
+      username: email,
+      username_customized: false,
       provider: 'google'
     }
 
@@ -54,6 +57,8 @@ module.exports = function(passport) {
           const message = `Please log in with your original method (${user.provider})`;
           return done(null, false, { message });
         }
+
+        console.log('newUser: ', newUser);
 
         user = await User.create(newUser);
         
@@ -75,10 +80,13 @@ module.exports = function(passport) {
     ],
   },
   async (accessToken, refreshToken, profile, done) => {
+    const [{ value: email }] = profile.emails;
+
     const newUser = {
       facebookId: profile.id,
-      email: profile.emails[0].value,
-      username: await getUniqueUsername(User),
+      email,
+      username: email,
+      username_customized: false,
       provider: 'facebook'
     };
 

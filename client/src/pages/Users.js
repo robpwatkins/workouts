@@ -26,20 +26,23 @@ const Users = () => {
 
   return (
     <div>
-      {users.length ? users.map((user, idx) => (
-        <div key={user.username} className="home">
-          <p>
-            {user.username}
-          </p>
-          <p
-            id={user.username}
-            className={`${idx} delete-user`}
-            onClick={e => handleClick(e)}
-          >
-            x
-          </p>
-        </div>
-      )) : ''}
+      {users.length ? users
+        .filter(user => user.username_customized)
+        .map((user, idx) => (
+          <div key={user.username} className="home">
+            <p>
+              <b>{user.username}: </b> {user.email}
+            </p>
+            <p
+              id={user.username}
+              className={`${idx} delete-user`}
+              onClick={e => handleClick(e)}
+            >
+              x
+            </p>
+          </div>
+        )
+      ) : ''}
     </div>
   )
 };
