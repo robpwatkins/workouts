@@ -4,8 +4,8 @@
     "abbreviation": "LAA",
     "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/301.svg",
     "colors": {
-      "first": "#ba0021",
-      "second": "#862633",
+      "primary": "#ba0021",
+      "secondary": "#862633",
       "third": "#003263",
       "fourth": "#c4ced4"
     }
@@ -15,8 +15,8 @@
     "abbreviation": "LAD",
     "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/321.svg",
     "colors": {
-      "first": "#005a9c",
-      "second": "#ef3e42",
+      "primary": "#005a9c",
+      "secondary": "#ef3e42",
       "third": "",
       "fourth": ""
     }
@@ -26,8 +26,8 @@
     "abbreviation": "SD",
     "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/326.svg",
     "colors": {
-      "first": "#002d62",
-      "second": "",
+      "primary": "#002d62",
+      "secondary": "",
       "third": "",
       "fourth": ""
     }
@@ -37,8 +37,8 @@
     "abbreviation": "SF",
     "logo": "https://www.mlbstatic.com/team-logos/team-cap-on-light/137.svg",
     "colors": {
-      "first": "#fd5a1e",
-      "second": "#000000",
+      "primary": "#fd5a1e",
+      "secondary": "#000000",
       "third": "#8b6f4e",
       "fourth": "#e6d8af"
     }
@@ -48,8 +48,8 @@
     "abbreviation": "TB",
     "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/329.svg",
     "colors": {
-      "first": "#092c5c",
-      "second": "#8fbce6",
+      "primary": "#092c5c",
+      "secondary": "#8fbce6",
       "third": "#f5d130",
       "fourth": "#"
     }
@@ -59,8 +59,8 @@
     "abbreviation": "KC",
     "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/307.svg",
     "colors": {
-      "first": "#174885",
-      "second": "#c0995a",
+      "primary": "#174885",
+      "secondary": "#c0995a",
       "third": "#7bb2dd",
       "fourth": "#"
     }
@@ -70,8 +70,8 @@
     "abbreviation": "SEA",
     "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/312.svg",
     "colors": {
-      "first": "#0c2c56",
-      "second": "#c4ced4",
+      "primary": "#0c2c56",
+      "secondary": "#c4ced4",
       "third": "#005c5c",
       "fourth": "#ffc528",
       "fifth": "#fff6dd"
@@ -82,8 +82,8 @@
     "abbreviation": "DET",
     "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/306.svg",
     "colors": {
-      "first": "#182d55",
-      "second": "#f26722",
+      "primary": "#182d55",
+      "secondary": "#f26722",
       "third": "#",
       "fourth": "#",
       "fifth": "#"
@@ -94,8 +94,8 @@
     "abbreviation": "ARZ",
     "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/330.svg",
     "colors": {
-      "first": "#a71930",
-      "second": "#e3d4ad",
+      "primary": "#a71930",
+      "secondary": "#e3d4ad",
       "third": "#000000",
       "fourth": "#3fc2cc",
       "fifth": "#"
@@ -106,8 +106,8 @@
     "abbreviation": "CLE",
     "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/305.svg",
     "colors": {
-      "first": "#134A8E",
-      "second": "#E31937",
+      "primary": "#134A8E",
+      "secondary": "#E31937",
       "third": "#FFFFFF",
       "fourth": "#",
       "fifth": "#"
@@ -118,8 +118,8 @@
     "abbreviation": "HOU",
     "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/320.svg",
     "colors": {
-      "first": "#002d62",
-      "second": "#eb6e1f",
+      "primary": "#002d62",
+      "secondary": "#eb6e1f",
       "third": "#f4911e",
       "fourth": "#e7e9ea",
       "fifth": "#"
@@ -130,8 +130,8 @@
     "abbreviation": "MIL",
     "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/308.svg",
     "colors": {
-      "first": "#0a2351",
-      "second": "#b6922e",
+      "primary": "#0a2351",
+      "secondary": "#b6922e",
       "third": "#",
       "fourth": "#",
       "fifth": "#"
@@ -142,8 +142,8 @@
     "abbreviation": "NYY",
     "logo": "https://www.mlbstatic.com/team-logos/team-cap-on-light/147.svg",
     "colors": {
-      "first": "#132448",
-      "second": "#c4ced3",
+      "primary": "#132448",
+      "secondary": "#c4ced3",
       "third": "#",
       "fourth": "#",
       "fifth": "#"
@@ -154,8 +154,8 @@
     "abbreviation": "STL",
     "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/328.svg",
     "colors": {
-      "first": "#c41e3a",
-      "second": "#22205f",
+      "primary": "#c41e3a",
+      "secondary": "#22205f",
       "third": "#fdda00",
       "fourth": "#",
       "fifth": "#"
@@ -166,8 +166,8 @@
     "abbreviation": "ATL",
     "logo": "https://www.mlbstatic.com/team-logos/team-cap-on-light/144.svg",
     "colors": {
-      "first": "#13274f",
-      "second": "#ce1141",
+      "primary": "#13274f",
+      "secondary": "#ce1141",
       "third": "#eaaa00",
       "fourth": "#",
       "fifth": "#"
@@ -178,8 +178,8 @@
     "abbreviation": "BAL",
     "logo": "https://www.mlbstatic.com/team-logos/team-cap-on-light/110.svg",
     "colors": {
-      "first": "#000000",
-      "second": "#df4601",
+      "primary": "#000000",
+      "secondary": "#df4601",
       "third": "#a2aaad",
       "fourth": "#",
       "fifth": "#"
@@ -190,8 +190,8 @@
     "abbreviation": "MIN",
     "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/309.svg",
     "colors": {
-      "first": "#002b5c",
-      "second": "#d31145",
+      "primary": "#002b5c",
+      "secondary": "#d31145",
       "third": "#cfac7a",
       "fourth": "#",
       "fifth": "#"
@@ -202,8 +202,8 @@
     "abbreviation": "PIT",
     "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/325.svg",
     "colors": {
-      "first": "#000000",
-      "second": "#fdb827",
+      "primary": "#000000",
+      "secondary": "#fdb827",
       "third": "#",
       "fourth": "#",
       "fifth": "#"
@@ -214,8 +214,8 @@
     "abbreviation": "MIA",
     "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/319.svg",
     "colors": {
-      "first": "#000000",
-      "second": "#ff6600",
+      "primary": "#000000",
+      "secondary": "#ff6600",
       "third": "#0077c8",
       "fourth": "#ffd100",
       "fifth": "#"
@@ -226,8 +226,8 @@
     "abbreviation": "CIN",
     "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/317.svg",
     "colors": {
-      "first": "#c6011f",
-      "second": "#000000",
+      "primary": "#c6011f",
+      "secondary": "#000000",
       "third": "#",
       "fourth": "#",
       "fifth": "#"
@@ -238,8 +238,8 @@
     "abbreviation": "NYM",
     "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/323.svg",
     "colors": {
-      "first": "#002d72",
-      "second": "#ff5910",
+      "primary": "#002d72",
+      "secondary": "#ff5910",
       "third": "#",
       "fourth": "#",
       "fifth": "#"
@@ -250,8 +250,8 @@
     "abbreviation": "PHI",
     "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/324.svg",
     "colors": {
-      "first": "#e81828",
-      "second": "#284898",
+      "primary": "#e81828",
+      "secondary": "#284898",
       "third": "#",
       "fourth": "#",
       "fifth": "#"
@@ -262,8 +262,8 @@
     "abbreviation": "TEX",
     "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/313.svg",
     "colors": {
-      "first": "#003278",
-      "second": "#c0111f",
+      "primary": "#003278",
+      "secondary": "#c0111f",
       "third": "#",
       "fourth": "#",
       "fifth": "#"
@@ -274,8 +274,8 @@
     "abbreviation": "TOR",
     "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/314.svg",
     "colors": {
-      "first": "#134a8e",
-      "second": "#1d2d5c",
+      "primary": "#134a8e",
+      "secondary": "#1d2d5c",
       "third": "#e8291c",
       "fourth": "#",
       "fifth": "#"
@@ -286,8 +286,8 @@
     "abbreviation": "BOS",
     "logo": "https://www.mlbstatic.com/team-logos/team-cap-on-light/111.svg",
     "colors": {
-      "first": "#bd3039",
-      "second": "#192c55",
+      "primary": "#bd3039",
+      "secondary": "#192c55",
       "third": "#",
       "fourth": "#",
       "fifth": "#"
@@ -298,8 +298,8 @@
     "abbreviation": "CHC",
     "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/316.svg",
     "colors": {
-      "first": "#0e3386",
-      "second": "#cc3433",
+      "primary": "#0e3386",
+      "secondary": "#cc3433",
       "third": "#",
       "fourth": "#",
       "fifth": "#"
@@ -310,8 +310,8 @@
     "abbreviation": "OAK",
     "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/311.svg",
     "colors": {
-      "first": "#003831",
-      "second": "#efb21e",
+      "primary": "#003831",
+      "secondary": "#efb21e",
       "third": "#",
       "fourth": "#",
       "fifth": "#"
@@ -322,8 +322,8 @@
     "abbreviation": "COL",
     "logo": "https://www.mlbstatic.com/team-logos/team-cap-on-light/115.svg",
     "colors": {
-      "first": "#33006f",
-      "second": "#000000",
+      "primary": "#33006f",
+      "secondary": "#000000",
       "third": "#c4ced4",
       "fourth": "#",
       "fifth": "#"
@@ -334,8 +334,8 @@
     "abbreviation": "CWS",
     "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/304.svg",
     "colors": {
-      "first": "#000000",
-      "second": "#c4ced4",
+      "primary": "#000000",
+      "secondary": "#c4ced4",
       "third": "#",
       "fourth": "#",
       "fifth": "#"
@@ -346,8 +346,8 @@
     "abbreviation": "WAS",
     "logo": "https://www.mlbstatic.com/team-logos/team-cap-on-light/120.svg",
     "colors": {
-      "first": "#ab0003",
-      "second": "#212759",
+      "primary": "#ab0003",
+      "secondary": "#212759",
       "third": "#",
       "fourth": "#",
       "fifth": "#"

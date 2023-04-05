@@ -67,6 +67,10 @@ header a {
   width: 50px;
 }
 
+.series-card .at {
+  position: absolute;
+}
+
 .series-group h3 {
   width: 100%;
   margin: 10px 0;
@@ -85,7 +89,7 @@ header a {
   justify-content: space-around;
   height: 84px;
   width: 100%;
-  padding: 0;
+  /* padding: 0; */
   font-size: 17px;
   border: none;
   background-color: unset;
@@ -95,9 +99,32 @@ header a {
 .bar {
   display: none;
   position: absolute;
-  bottom: 0;
+}
+
+.bar.top, .bar.bottom {
   width: 100%;
   height: 6px;
+}
+
+.bar.right, .bar.left {
+  width: 6px;
+  height: 100%;
+}
+
+.bar.top {
+  top: 0;
+}
+
+.bar.right {
+  right: 0;
+}
+
+.bar.bottom {
+  bottom: 0;
+}
+
+.bar.left {
+  left: 0;
 }
 
 .bar.visitor {
@@ -112,14 +139,39 @@ header a {
   display: block;
 }
 
-.opaque {
-  opacity: .5;
+.d-none {
+  display: none !important;
 }
 
-.series-group .winner {
-  font-size: 25px;
+.opaque {
+  opacity: .5;
+  cursor: unset;
+}
+
+.series-group .team-and-record {
+  position: relative;
+}
+
+.series-group .team {
+  margin: 0;
+}
+
+.series-group .record {
+  position: absolute;
+  width: 100%;
+  margin: 0;
+  font-weight: normal;
+}
+
+.series-group .record::before {
+  content: '';
+  display: block;
+  border-bottom: 2px solid #333;
+}
+
+.winner .team {
   font-weight: bold;
-  text-decoration: underline;
+  /* text-decoration: underline; */
 }
 
 .delete-user {
@@ -257,10 +309,6 @@ nav {
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 4px;
-}
-
-.d-none {
-  display: none !important;
 }
 
 .account a {

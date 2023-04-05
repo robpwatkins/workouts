@@ -20,7 +20,8 @@ const Users = () => {
       method: 'DELETE',
     });
     let tempUsers = users.slice();
-    tempUsers.splice(e.target.classList[0], 1);
+    const userIdx = tempUsers.findIndex(user => user.username === username);
+    tempUsers.splice(userIdx, 1);
     setUsers(tempUsers);
   }
 
@@ -28,14 +29,14 @@ const Users = () => {
     <div>
       {users.length ? users
         .filter(user => user.username_customized)
-        .map((user, idx) => (
+        .map(user => (
           <div key={user.username} className="home">
             <p>
               <b>{user.username}: </b> {user.email}
             </p>
             <p
               id={user.username}
-              className={`${idx} delete-user`}
+              className="delete-user"
               onClick={e => handleClick(e)}
             >
               x
