@@ -16,8 +16,9 @@ const getAllSeries = async (spreadsheetId, range) => {
       seriesGroup = {};
       seriesGroup.dates = row[0];
     } else {
-      if (!seriesGroup.series) seriesGroup.series = [row];
-      else seriesGroup.series.push(row);
+      const seriesId = `${seriesGroup.dates}:${row[0]}@${row[2]}`;
+      if (!seriesGroup.series) seriesGroup.series = [{ seriesId, seriesInfo: row }];
+      else seriesGroup.series.push({ seriesId, seriesInfo: row });
     }
   })
   return allSeries;

@@ -71,16 +71,47 @@ header a {
   position: absolute;
 }
 
-.series-group h3 {
+.dates-and-record {
   width: 100%;
   margin: 10px 0;
-  padding: 5px 0;
-  font-weight: 500;
+  padding: 7px 0;
   text-align: center;
   background-color: #fff;
-  border: 1px solid #ccc;
-  border-right: none;
+  /* border: 1px solid #ccc; */
+  /* border-right: none; */
+  border-left: 2px solid #eee;
+  border-right: 2px solid #eee;
+  /* border-top: 1px solid #ccc; */
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
 }
+
+.series-group h3 {
+  display: inline-block;
+}
+
+.series-group h3, .series-group h5 {
+  font-weight: 500;
+  margin: 0;
+}
+
+.series-group h5 {
+  margin-top: 2px;
+}
+
+.series-group .no-user {
+  margin: 9px 0;
+}
+
+.series-group h3::after {
+  content: '';
+  display: block;
+  margin-top: 2px;
+  border-bottom: 2px solid #333;
+}
+
+/* .series-group .incomplete {
+  margin: 0 0 17px 0;
+} */
 
 .series-group button {
   position: relative;
