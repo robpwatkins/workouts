@@ -376,7 +376,7 @@ nav {
 }
 
 /* auth forms */
-form.signup, form.login, form.username {
+form.signup, form.login, form.username, form.admin {
   max-width: 375px;
   margin: 30px auto;
   padding: 20px;

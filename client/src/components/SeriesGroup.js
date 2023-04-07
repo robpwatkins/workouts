@@ -11,29 +11,29 @@ const SeriesGroup = ({ dates, series }) => {
   const { picks } = usePicksContext();
 
   useEffect(() => {
-    setCompleted(!(series.some(singleSeries => (
-      singleSeries.seriesInfo[1] === 'FALSE' && singleSeries.seriesInfo[3] === 'FALSE'
-    ))));
+    setCompleted(!(series.some(singleSeries => (!singleSeries.seriesInfo.record))));
   }, [series]);
 
   useEffect(() => {
-    let runningWins = 0;
-    let runningLosses = 0;
-    let update = false;
-
-    series.forEach(singleSeries => {
-      const { seriesId } = singleSeries;
-      const { finalized, successful } = picks.find(pick => pick.series_id === seriesId) || {};
-      if (finalized) {
-        update = true;
-        if (successful) runningWins++;
-        else runningLosses++;
+    if (picks && picks.length) {
+      let winCount = 0;
+      let lossCount = 0;
+      let update = false;
+  
+      series.forEach(singleSeries => {
+        const { seriesId } = singleSeries;
+        const { finalized, successful } = picks.find(pick => pick.series_id === seriesId) || {};
+        if (finalized) {
+          update = true;
+          if (successful) winCount++;
+          else lossCount++;
+        }
+      })
+  
+      if (update) {
+        setWins(winCount);
+        setLosses(lossCount);
       }
-    })
-
-    if (update) {
-      setWins(runningWins);
-      setLosses(runningLosses);
     }
   }, [series, picks]);
 
@@ -45,16 +45,16 @@ const SeriesGroup = ({ dates, series }) => {
       </div>
       {series.map(singleSeries => {
         const { seriesId, seriesInfo } = singleSeries;
-        const [visitor, visitorWinStr, home, homeWinStr, record] = seriesInfo;
+        const { visitor, visitorWin, home, homeWin, record } = seriesInfo;
 
         return (
           <Series
             key={seriesId}
             seriesId={seriesId}
             visitor={visitor}
-            visitorWin={visitorWinStr === 'TRUE'}
+            visitorWin={visitorWin}
             home={home}
-            homeWin={homeWinStr === 'TRUE'}
+            homeWin={homeWin}
             record={record}
           />
         )

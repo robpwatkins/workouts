@@ -43,7 +43,7 @@ const Team = ({ seriesId, team, type, win, record, logo, primary, successfulPick
     }
   };
 
-  const { pick } = picks ? (picks.find(pick => pick.series_id === seriesId) || {}) : {};
+  const { pick } = (picks && picks.length) ? (picks.find(pick => pick.series_id === seriesId) || {}) : {};
 
   return (
     <button 

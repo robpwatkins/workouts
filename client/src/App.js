@@ -8,6 +8,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Username from './pages/Username';
 import Users from './pages/Users';
+import Admin from './pages/Admin';
 
 function App() {
   const { user, loaded } = useAuthContext();
@@ -42,6 +43,10 @@ function App() {
               <Route
                 path="/users"
                 element={<Users />}
+              />
+              <Route
+                path="/admin"
+                element={(user && user.admin) ? <Admin /> : <Navigate to="/" />}
               />
             </Routes>
           </div>

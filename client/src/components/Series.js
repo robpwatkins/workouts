@@ -5,7 +5,7 @@ import teams from '../teams.json';
 const Series = ({ seriesId, visitor, visitorWin, home, homeWin, record }) => {
   const { picks } = usePicksContext();
 
-  const { pick } = picks ? (picks.find(pick => pick.series_id === seriesId) || {}) : {};
+  const { pick } = (picks && picks.length) ? (picks.find(pick => pick.series_id === seriesId) || {}) : {};
   const { logo: visitorLogo, colors: { primary: visitorPrimary } } = teams
     .find(team => team.abbreviation === visitor);
   const { logo: homeLogo, colors: { primary: homePrimary } } = teams
