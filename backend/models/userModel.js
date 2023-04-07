@@ -37,6 +37,17 @@ const userSchema = new Schema({
   provider: {
     type: String,
     required: true
+  },
+  admin: {
+    type: Boolean
+  },
+  total_wins: {
+    type: Number,
+    require: true
+  },
+  total_losses: {
+    type: Number,
+    require: true
   }
 })
 

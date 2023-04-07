@@ -1,9 +1,5 @@
 const Admin = () => {
-  const updateUserRecords = async (id) => {
-
-  };
-
-  const handleClick = async (e) => {
+  const updateUserPicks = async (e) => {
     e.preventDefault();
 
     const seriesResponse = await fetch('http://localhost:4001/all-series');
@@ -12,15 +8,20 @@ const Admin = () => {
     const picksResponse = await fetch('http://localhost:4001/api/picks', { credentials: 'include' });
     const picks = await picksResponse.json();
 
-    for (const { series: seriesGroup } of allSeries) {
-      for (const singleSeries of seriesGroup) {
+    for await (const { series: seriesGroup } of allSeries) {
+      for await (const singleSeries of seriesGroup) {
         const { seriesId, seriesInfo } = singleSeries;
         const { visitor, visitorWin, home, homeWin } = seriesInfo;
         if (visitorWin || homeWin) {
           const winner = visitorWin ? visitor : home;
-          const seriesPicks = picks.filter(pick => pick.series_id === seriesId);
+          const seriesPicks = picks.filter(pick => (pick.series_id === seriesId && !pick.finalized));
 
-          for (const { _id, pick, user_id } of seriesPicks) {
+          let wins = 0;
+          let losses = 0;
+
+          for await (const { _id, pick, user_id } of seriesPicks) {
+            const successful = pick === winner;
+            
             try {
               const options = {
                 method: 'PATCH',
@@ -32,18 +33,22 @@ const Admin = () => {
                 })
               };
     
-              const pickResponse = await fetch(`http://localhost:4001/api/picks/${_id}`, options);
+              await fetch(`http://localhost:4001/api/picks/${_id}`, options);
   
-              if (pickResponse.ok) console.log('Pick updated!');
+              successful ? wins++ : losses++;
 
-              // const getUserResponse = await fetch('http://localhost:4001/')
+              if (wins + losses === seriesPicks.length) {
+                const userResponse = await fetch(`http://localhost:4001/user/update/${user_id}`, {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  credentials: 'include',
+                  body: JSON.stringify({ total_wins: wins, total_losses: losses })
+                });
 
-              const updateUserResponse = await fetch('http://localhost:4001/user/update', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                credentials: 'include',
-                body: JSON.stringify({ total_wins: 4, total_losses: 6 })
-              });
+                const json = await userResponse.json();
+
+                if (userResponse.ok) console.log(`${json.username} updated!`);
+              }
             } catch (error) {
               console.log('error: ', error);
             }
@@ -53,9 +58,44 @@ const Admin = () => {
     }
   };
 
+  const updateUserRecords = async (e) => {
+    e.preventDefault();
+
+    const picksResponse = await fetch('http://localhost:4001/api/picks', { credentials: 'include' });
+    const picks = await picksResponse.json();
+
+    const usersResponse = await fetch('http://localhost:4001/users', { credentials: 'include' });
+    const users = await usersResponse.json();
+
+    for await (const { _id } of users) {
+      let wins = 0;
+      let losses = 0;
+
+      const userPicks = picks.filter(pick => (pick.user_id === _id && pick.finalized));
+
+      for await (const pick of userPicks) {
+        pick.successful ? wins++ : losses++;
+  
+        if ((wins + losses) === userPicks.length) {
+          const userResponse = await fetch(`http://localhost:4001/user/update/${_id}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include',
+            body: JSON.stringify({ total_wins: wins, total_losses: losses })
+          });
+  
+          const json = await userResponse.json();
+  
+          if (userResponse.ok) console.log(`${json.username} updated!`);
+        }  
+      }
+    }
+  };
+
   return (
     <form className="admin">
-      <button onClick={handleClick}>UPDATE PICKS</button>
+      <button onClick={updateUserPicks}>Finalize picks</button>
+      <button onClick={updateUserRecords}>Update user records</button>
     </form>
   )
 };

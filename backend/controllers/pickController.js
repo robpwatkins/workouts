@@ -5,7 +5,7 @@ const { isValid } = mongoose.Types.ObjectId;
 
 const getPicks = async (req, res) => {
   const user_id = req.user._id;
-  const picks = await Pick.find({ user_id });
+  const picks = await Pick.find(req.user.admin ? {} : { user_id });
   res.status(200).json(picks);
 };
 

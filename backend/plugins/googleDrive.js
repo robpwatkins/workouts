@@ -13,12 +13,23 @@ const getAllSeries = async (spreadsheetId, range) => {
     if (!row.length) return;
     if (row.length === 1 || index === rows.length - 1) {
       if (seriesGroup) allSeries.push(seriesGroup);
-      seriesGroup = {};
-      seriesGroup.dates = row[0];
+      if (row.length === 1) {
+        seriesGroup = {};
+        seriesGroup.dates = row[0];
+      }
     } else {
-      const seriesId = `${seriesGroup.dates}:${row[0]}@${row[2]}`;
-      if (!seriesGroup.series) seriesGroup.series = [{ seriesId, seriesInfo: row }];
-      else seriesGroup.series.push({ seriesId, seriesInfo: row });
+      const [visitor, visitorWinStr, home, homeWinStr, record] = row;
+      const seriesId = `${seriesGroup.dates}:${visitor}@${home}`;
+      const visitorWin = visitorWinStr === 'TRUE';
+      const homeWin = homeWinStr === 'TRUE';
+      if (!seriesGroup.series) seriesGroup.series = [{
+        seriesId,
+        seriesInfo: { visitor, visitorWin, home, homeWin, record }
+      }];
+      else seriesGroup.series.push({
+        seriesId,
+        seriesInfo: { visitor, visitorWin, home, homeWin, record }
+      });
     }
   })
   return allSeries;

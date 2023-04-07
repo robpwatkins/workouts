@@ -59,6 +59,8 @@ app.get('/user', (req, res) => {
 });
 
 app.get('/users', async (req, res) => {
+  if (!req.user.admin) return res.status(401).send('Unauthorized');
+  
   try {
     const users = await User.find();
     res.json(users);
@@ -67,12 +69,20 @@ app.get('/users', async (req, res) => {
   }
 })
 
-app.post('/user/update', async (req, res) => {
+app.post('/user/update/?:userId', async (req, res) => {
   try {
-    const user = await User.findById({ _id: req.user._id });
-    
-    user.username = req.body.username;
-    user.username_customized = true;
+    const _id = (req.user.admin && req.params.userId) ? req.params.userId : req.user._id;
+    const user = await User.findById({ _id });
+
+    const { username, total_wins, total_losses } = req.body;
+
+    if (username) {
+      user.username = username;
+      user.username_customized = true;
+    } else if (total_wins && total_losses) {
+      user.total_wins = total_wins;
+      user.total_losses = total_losses;
+    }
 
     const updatedUser = await user.save();
 

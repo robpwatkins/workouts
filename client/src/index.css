@@ -74,19 +74,15 @@ header a {
 .dates-and-record {
   width: 100%;
   margin: 10px 0;
-  padding: 7px 0;
   text-align: center;
   background-color: #fff;
-  /* border: 1px solid #ccc; */
-  /* border-right: none; */
-  border-left: 2px solid #eee;
-  border-right: 2px solid #eee;
-  /* border-top: 1px solid #ccc; */
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+  border-right: 1px solid #ddd;
+  border-left: 1px solid #ddd;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.10);
 }
 
 .series-group h3 {
-  display: inline-block;
+  padding: 7px 0;
 }
 
 .series-group h3, .series-group h5 {
@@ -95,23 +91,13 @@ header a {
 }
 
 .series-group h5 {
-  margin-top: 2px;
+  padding: 2px 0;
+  border-top: 1px solid #ddd;
 }
 
 .series-group .no-user {
   margin: 9px 0;
 }
-
-.series-group h3::after {
-  content: '';
-  display: block;
-  margin-top: 2px;
-  border-bottom: 2px solid #333;
-}
-
-/* .series-group .incomplete {
-  margin: 0 0 17px 0;
-} */
 
 .series-group button {
   position: relative;
@@ -120,7 +106,6 @@ header a {
   justify-content: space-around;
   height: 84px;
   width: 100%;
-  /* padding: 0; */
   font-size: 17px;
   border: none;
   background-color: unset;
@@ -376,7 +361,7 @@ nav {
 }
 
 /* auth forms */
-form.signup, form.login, form.username, form.admin {
+form.signup, form.login, form.username, form.admin, .standings .snapshot {
   max-width: 375px;
   margin: 30px auto;
   padding: 20px;
@@ -446,4 +431,18 @@ form.social-login {
 
 .fbook-icon {
   color: #415a94;
+}
+
+.standings .headings {
+  display: flex;
+}
+
+.standings .headings h4 {
+  display: block;
+  flex: 1;
+  border: 1px solid #eee;
+}
+
+.admin button {
+  margin: 10px 0;
 }
