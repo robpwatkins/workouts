@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.use(ensureAuth);
 
-router.get('/', ensureAuth, getPicks);
+router.get('/:all?', ensureAuth, getPicks);
 router.get('/:id', ensureAuth, getPick);
 router.post('/', ensureAuth, createPick);
 // router.delete('/:id', ensureAuth, deleteWorkout);

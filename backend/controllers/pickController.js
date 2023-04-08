@@ -4,8 +4,8 @@ const mongoose = require('mongoose');
 const { isValid } = mongoose.Types.ObjectId;
 
 const getPicks = async (req, res) => {
-  const user_id = req.user._id;
-  const picks = await Pick.find(req.user.admin ? {} : { user_id });
+  const search = !req.params.all ? { user_id: req.user._id } : {};
+  const picks = await Pick.find(search);
   res.status(200).json(picks);
 };
 

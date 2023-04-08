@@ -71,7 +71,7 @@ header a {
   position: absolute;
 }
 
-.dates-and-record {
+.dates-and-record, .all-picks .username {
   width: 100%;
   margin: 10px 0;
   text-align: center;
@@ -433,14 +433,48 @@ form.social-login {
   color: #415a94;
 }
 
-.standings .headings {
+.snapshot {
+  max-width: 600px !important;
+  padding: 0 !important;
+}
+
+.standings .headings, .values {
   display: flex;
 }
 
-.standings .headings h4 {
-  display: block;
+.headings p, .values p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   flex: 1;
-  border: 1px solid #eee;
+  height: 30px;
+  margin: 0;
+  border: 1px solid #ddd;
+}
+
+.headings {
+  font-weight: bold;
+}
+
+.all-picks {
+  display: flex;
+}
+
+.picks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.all-picks .username {
+  display: block;
+  width: unset !important;
+  margin: 0 !important;
+  padding: 10px;
+}
+
+.picks h4 {
+  margin: 0;
 }
 
 .admin button {
