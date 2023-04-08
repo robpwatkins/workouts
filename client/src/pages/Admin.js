@@ -5,7 +5,7 @@ const Admin = () => {
     const seriesResponse = await fetch('http://localhost:4001/all-series');
     const allSeries = await seriesResponse.json();
     
-    const picksResponse = await fetch('http://localhost:4001/api/picks', { credentials: 'include' });
+    const picksResponse = await fetch('http://localhost:4001/api/picks/all', { credentials: 'include' });
     const picks = await picksResponse.json();
 
     for await (const { series: seriesGroup } of allSeries) {
@@ -33,7 +33,7 @@ const Admin = () => {
                 })
               };
     
-              await fetch(`http://localhost:4001/api/picks/${_id}`, options);
+              const response = await fetch(`http://localhost:4001/api/picks/${_id}`, options);
   
               successful ? wins++ : losses++;
 
@@ -61,7 +61,7 @@ const Admin = () => {
   const updateUserRecords = async (e) => {
     e.preventDefault();
 
-    const picksResponse = await fetch('http://localhost:4001/api/picks', { credentials: 'include' });
+    const picksResponse = await fetch('http://localhost:4001/api/picks/all', { credentials: 'include' });
     const picks = await picksResponse.json();
 
     const usersResponse = await fetch('http://localhost:4001/users', { credentials: 'include' });

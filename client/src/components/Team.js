@@ -8,17 +8,17 @@ const Team = ({ seriesId, team, type, win, record, logo, primary, successfulPick
   const [hovered, setHovered] = useState(false);
 
   const handleMouseEnter = () => {
-    if (win) return;
+    // if (win) return;
     setHovered(true);
   };
 
   const handleMouseLeave = () => {
-    if (win) return;
+    // if (win) return;
     setHovered(false);
   };
 
   const handleClick = async (e) => {
-    if (!user || win) return;
+    // if (!user || win) return;
 
     const [series_id, pick] = (e.target.matches('img') ? e.target.parentElement : e.target).classList;
 
