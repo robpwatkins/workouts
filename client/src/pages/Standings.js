@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import Picks from '../components/Picks';
+import AllPicks from '../components/AllPicks';
 import Snapshot from '../components/Snapshot';
 
 const Standings = () => {
@@ -46,7 +46,8 @@ const Standings = () => {
   return (
     <div className="standings">
       <Snapshot users={users} />
-      <div className="all-picks">
+      <AllPicks users={users} series={finalizedSeries} picks={picks} />
+      {/* <div className="all-picks">
         {users.length ? (users.map(user => {
           return (
             <div key={user.username} className="picks">
@@ -68,7 +69,7 @@ const Standings = () => {
             </div>
           )
         })) : ''}
-      </div>
+      </div> */}
     </div>
   )
 };

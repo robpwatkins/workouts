@@ -40,7 +40,6 @@ const Picks = ({ user, picks, seriesGroup }) => {
   return (
     <div className="series-picks">
       <div className="dates-and-record">
-        <h4>{dates}</h4>
         <h5>{wins}-{losses}</h5>
       </div>
       {series.map(singleSeries => {

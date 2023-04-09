@@ -12,30 +12,7 @@ const Pick = ({ visitor, visitorWin, home, homeWin, pick }) => {
 
   return (
     <div className="pick-card">
-      <img src={visitorLogo} alt={`${visitor} logo`} />
-      <span className={visitorWin ? "winner" : ""}>{visitor}</span>
-      <span>@</span>
-      <span className={homeWin ? "winner" : ""}>{home}</span>
-      <img src={homeLogo} alt={`${home} logo`} />
-      <div
-        className={`bar top${successfulPick ? " d-block" : " d-none"}`}
-        style={successfulPick ? { backgroundColor: winnerPrimary } : null}
-      >
-      </div>
-      <div
-        className={`bar right${successfulPick ? " d-block" : " d-none"}`}
-        style={successfulPick ? { backgroundColor: winnerPrimary } : null}
-      >
-      </div>
-      <div 
-        className={`bar bottom d-block${!successfulPick ? ` ${winner}` : ""}`}
-        style={{ backgroundColor: `${successfulPick ? winnerPrimary : loserPrimary}` }}
-      ></div>
-      <div
-        className={`bar left${successfulPick ? " d-block" : " d-none"}`}
-        style={successfulPick ? { backgroundColor: winnerPrimary } : null}
-      >
-      </div>
+      <span>{successfulPick ? "✓" : "✕"}</span>
     </div>
   )
 };

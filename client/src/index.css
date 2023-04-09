@@ -34,7 +34,7 @@ header a {
   color: #333;
   text-decoration: none;
 }
-.pages{
+.pages {
   max-width: 1400px;
   padding: 20px;
   margin: 0 auto;
@@ -51,7 +51,7 @@ header a {
   flex-direction: column;
 }
 
-.series-card {
+.home .series-card {
   position: relative;
   display: flex;
   justify-content: center;
@@ -63,7 +63,7 @@ header a {
   box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
 }
 
-.series-card img {
+.home .series-card img {
   width: 50px;
 }
 
@@ -475,6 +475,7 @@ form.social-login {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 200px;
 }
 
 .all-picks .username {
@@ -510,7 +511,7 @@ form.social-login {
   margin: 0;
 }
 
-.series-picks h4::after, .pick-card .winner::after {
+.series-picks h4::after, .all-picks .winner::after {
   content: '';
   display: block;
   border-bottom: 2px solid #333;
@@ -520,22 +521,36 @@ form.social-login {
   font-weight: normal;
 }
 
-.pick-card {
+.series-cards h4 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 35px;
+  margin: 7px 0;
+  background-color: #fff;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.05); 
+}
+
+.series-cards {
+  margin-top: 67px;
+}
+
+.all-picks .series-card {
   position: relative;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 225px;
+  width: 175px;
   height: 50px;
-  margin: 7px;
+  margin: 7px 0;
   padding: 10px;
   background-color: #fff;
   border-radius: 2px;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.05); 
 }
 
-.pick-card img {
-  width: 40px;
+.all-picks .series-card img {
+  width: 30px;
 }
 
 .admin button {
