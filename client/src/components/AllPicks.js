@@ -5,6 +5,7 @@ const AllPicks = ({ users, series, picks }) => {
   return (
     <div className="all-picks">
       <div className="series-cards">
+        <div className="series-count">21</div>
         {series.map(seriesGroup => {
           const { dates, series } = seriesGroup;
           return (

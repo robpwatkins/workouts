@@ -471,11 +471,20 @@ form.social-login {
   display: flex;
 }
 
+.series-count {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 65px;
+  background-color: #fff;
+}
+
 .picks {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 200px;
+  margin: 0 1px;
 }
 
 .all-picks .username {
@@ -485,26 +494,33 @@ form.social-login {
 
 .username-and-record {
   width: 100%;
+  margin: 0;
+  background-color: unset;
+  box-shadow: unset;
 }
 
-.username-and-record h3, h5 {
+.username-and-record h3, .username-and-record h5 {
   margin: 0;
+  background-color: #fff;
 }
 
 .username-and-record h5 {
+  margin: 2px 0 0;
   padding: 2px 0;
   font-weight: normal;
-  border-top: 1px solid #ddd;
+  /* border-top: 1px solid #ccc; */
 }
 
 .series-picks {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 }
 
 .series-picks .dates-and-record {
   text-align: center;
+  width: 100%;
 }
 
 .series-picks h4 {
@@ -518,21 +534,44 @@ form.social-login {
 }
 
 .series-picks h5 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 25px;
+  margin: 0;
   font-weight: normal;
+  /* border: 1px solid #ddd; */
+}
+
+.series-picks .pick {
+  width: 100%;
+}
+
+.series-picks span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  margin: 1px;
+  background-color: #fff;
+  /* border: 1px solid #ccc; */
 }
 
 .series-cards h4 {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 35px;
-  margin: 7px 0;
-  background-color: #fff;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.05); 
+  height: 25px;
+  margin: 0;
+  background-color: #eee;
+  /* border: 1px solid #ddd; */
+  /* box-shadow: 2px 2px 5px rgba(0,0,0,0.05);  */
 }
 
 .series-cards {
-  margin-top: 67px;
+  /* margin-top: 63px; */
 }
 
 .all-picks .series-card {
@@ -541,12 +580,13 @@ form.social-login {
   justify-content: space-around;
   align-items: center;
   width: 175px;
-  height: 50px;
-  margin: 7px 0;
+  height: 30px;
+  margin: 1px 0;
   padding: 10px;
   background-color: #fff;
-  border-radius: 2px;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.05); 
+  /* border: 1px solid #eee; */
+  /* border-radius: 2px; */
+  /* box-shadow: 2px 2px 5px rgba(0,0,0,0.05);  */
 }
 
 .all-picks .series-card img {
