@@ -447,6 +447,7 @@ form.social-login {
 .snapshot {
   max-width: 600px !important;
   padding: 0 !important;
+  background-color: unset !important;
 }
 
 .standings .headings, .values {
@@ -459,8 +460,8 @@ form.social-login {
   align-items: center;
   flex: 1;
   height: 30px;
-  margin: 0;
-  border: 1px solid #ddd;
+  margin: 1px;
+  background-color: #fff;
 }
 
 .headings {
@@ -475,7 +476,7 @@ form.social-login {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 65px;
+  height: 64.5px;
   background-color: #fff;
 }
 
@@ -497,6 +498,7 @@ form.social-login {
   margin: 0;
   background-color: unset;
   box-shadow: unset;
+  border: none;
 }
 
 .username-and-record h3, .username-and-record h5 {
@@ -533,14 +535,14 @@ form.social-login {
   border-bottom: 2px solid #333;
 }
 
-.series-picks h5 {
-  display: flex;
+.series-picks .spacer {
+  /* display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
   width: 100%;
   height: 25px;
   margin: 0;
-  font-weight: normal;
+  /* font-weight: normal; */
   /* border: 1px solid #ddd; */
 }
 
@@ -554,7 +556,7 @@ form.social-login {
   align-items: center;
   width: 100%;
   height: 50px;
-  margin: 1px;
+  margin-bottom: 2px;
   background-color: #fff;
   /* border: 1px solid #ccc; */
 }
@@ -581,7 +583,7 @@ form.social-login {
   align-items: center;
   width: 175px;
   height: 30px;
-  margin: 1px 0;
+  margin-bottom: 2px;
   padding: 10px;
   background-color: #fff;
   /* border: 1px solid #eee; */

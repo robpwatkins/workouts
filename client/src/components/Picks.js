@@ -39,9 +39,7 @@ const Picks = ({ user, picks, seriesGroup }) => {
 
   return (
     <div className="series-picks">
-      <div className="dates-and-record">
-        <h5>{wins}-{losses}</h5>
-      </div>
+      <div className="spacer"></div>
       {series.map(singleSeries => {
         const { seriesId, seriesInfo } = singleSeries;
         const { visitor, visitorWin, home, homeWin } = seriesInfo;
