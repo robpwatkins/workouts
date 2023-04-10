@@ -536,21 +536,16 @@ form.social-login {
 }
 
 .series-picks .spacer {
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
   width: 100%;
   height: 25px;
   margin: 0;
-  /* font-weight: normal; */
-  /* border: 1px solid #ddd; */
 }
 
 .series-picks .pick {
   width: 100%;
 }
 
-.series-picks span {
+.series-picks .pick {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -558,7 +553,10 @@ form.social-login {
   height: 50px;
   margin-bottom: 2px;
   background-color: #fff;
-  /* border: 1px solid #ccc; */
+}
+
+.pick {
+  font-size: 20px;
 }
 
 .series-cards h4 {
@@ -568,12 +566,6 @@ form.social-login {
   height: 25px;
   margin: 0;
   background-color: #eee;
-  /* border: 1px solid #ddd; */
-  /* box-shadow: 2px 2px 5px rgba(0,0,0,0.05);  */
-}
-
-.series-cards {
-  /* margin-top: 63px; */
 }
 
 .all-picks .series-card {
@@ -586,9 +578,6 @@ form.social-login {
   margin-bottom: 2px;
   padding: 10px;
   background-color: #fff;
-  /* border: 1px solid #eee; */
-  /* border-radius: 2px; */
-  /* box-shadow: 2px 2px 5px rgba(0,0,0,0.05);  */
 }
 
 .all-picks .series-card img {
