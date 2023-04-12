@@ -18,7 +18,7 @@ const Signup = () => {
   };
 
   const handleClick = (buttonType) => {
-    window.open(`http://localhost:4001/auth/${buttonType}`, '_self');
+    window.open(`/auth/${buttonType}`, '_self');
   };
   
   return (

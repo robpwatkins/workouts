@@ -1,24 +1,28 @@
 const Snapshot = ({ users }) => {
   return (
-    <div className="snapshot">
-      <div className="headings">
-        <p className="heading"></p>
-        <p className="heading">Wins</p>
-        <p className="heading">Losses</p>
-        <p className="heading">PCT.</p>
-        <p className="heading">Streak</p>
-      </div>
-      {users.length ? (users.map(user => (
-        <div key={`snapshot-${user.username}`} className="values">
-          <p>{user.username}</p>
-          <p>{user.total_wins}</p>
-          <p>{user.total_losses}</p>
-          <p>{(user.total_wins / (user.total_wins + user.total_losses)).toFixed(3)}</p>
-          <p>-</p>
-        </div>
-      ))) : ''}
-    </div>
-  )
+    <table className="snapshot">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Wins</th>
+          <th>Losses</th>
+          <th>PCT.</th>
+          <th>Streak</th>
+        </tr>
+      </thead>
+      <tbody>
+        {users.map(user => (
+          <tr key={user.username}>
+            <td>{user.username}</td>
+            <td>{user.total_wins}</td>
+            <td>{user.total_losses}</td>
+            <td>{(user.total_wins / (user.total_wins + user.total_losses)).toFixed(3)}</td>
+            <td>-</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
 };
 
 export default Snapshot;

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import AllPicks from '../components/AllPicks';
+import Picks from '../components/Picks';
 import Snapshot from '../components/Snapshot';
 
 const Standings = () => {
@@ -9,14 +9,14 @@ const Standings = () => {
 
   useEffect(() => {
     const fetchUsers = async () => {
-      const response = await fetch('http://localhost:4001/users', { credentials: 'include' });
+      const response = await fetch('/users', { credentials: 'include' });
       const users = await response.json();
       const sortedUsers = users.sort((a, b) => a.total_wins + b.total_wins);
       setUsers(sortedUsers);
     }
 
     const fetchPicks = async () => {
-      const response = await fetch('http://localhost:4001/api/picks/all', { credentials: 'include' });
+      const response = await fetch('/api/picks/all', { credentials: 'include' });
       const json = await response.json();
       if (response.ok) setPicks(json);
     };
@@ -27,7 +27,7 @@ const Standings = () => {
 
   useEffect(() => {
     const getFinalizedSeries = async () => {
-      const response = await fetch('http://localhost:4001/all-series');
+      const response = await fetch('/all-series');
       const json = await response.json();
 
       const _finalizedSeries = json.filter(seriesGroup => {
@@ -46,30 +46,11 @@ const Standings = () => {
   return (
     <div className="standings">
       <Snapshot users={users} />
-      <AllPicks users={users} series={finalizedSeries} picks={picks} />
-      {/* <div className="all-picks">
-        {users.length ? (users.map(user => {
-          return (
-            <div key={user.username} className="picks">
-              <div className="username-and-record">
-                <h3 className="username">{user.username}</h3>
-                <h5 className="d-block">{`${user.total_wins}-${user.total_losses}`}</h5>
-              </div>
-              {finalizedSeries.length ? (finalizedSeries.map(seriesGroup => {
-                const userPicks = picks.filter(pick => pick.user_id === user._id);
-                return (
-                  <Picks
-                    key={seriesGroup.dates}
-                    user={user}
-                    picks={userPicks}
-                    seriesGroup={seriesGroup}
-                  />
-                )
-              })) : ""}
-            </div>
-          )
-        })) : ''}
-      </div> */}
+      <Picks
+        users={users}
+        finalizedSeries={finalizedSeries}
+        picks={picks}
+      />
     </div>
   )
 };

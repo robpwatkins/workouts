@@ -7,7 +7,7 @@ export const useLogout = () => {
 
   const logout = async () => {
     try {
-      await fetch('http://localhost:4001/logout', {
+      await fetch('/logout', {
         method: 'POST',
         credentials: 'include',
       });

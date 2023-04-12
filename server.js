@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
+const path = require('path');
 const pickRoutes = require('./routes/picks');
 const userRoutes = require('./routes/user');
 const authRoutes = require('./routes/auth');
@@ -40,6 +41,14 @@ app.use((req, res, next) => {
   console.log(req.path, req.method);
   next();
 });
+
+// app.use(express.static(path.join(__dirname, "./client/build")));
+// app.get("*", (_, res) => {
+//   res.sendFile(
+//     path.join(__dirname, "./client/build/index.html"),
+//     (err) => res.status(500).send(err)
+//   );
+// });
 
 app.use('/api/picks', pickRoutes);
 app.use('/api/user', userRoutes);

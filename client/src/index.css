@@ -372,7 +372,7 @@ nav {
 }
 
 /* auth forms */
-form.signup, form.login, form.username, form.admin, .standings .snapshot {
+form.signup, form.login, form.username, form.admin {
   max-width: 375px;
   margin: 30px auto;
   padding: 20px;
@@ -445,12 +445,11 @@ form.social-login {
 }
 
 .snapshot {
-  max-width: 600px !important;
-  padding: 0 !important;
-  background-color: unset !important;
+  width: 475px;
+  margin: 0 auto 35px;
 }
 
-.standings .headings, .values {
+/* .standings .headings, .values {
   display: flex;
 }
 
@@ -510,7 +509,7 @@ form.social-login {
   margin: 2px 0 0;
   padding: 2px 0;
   font-weight: normal;
-  /* border-top: 1px solid #ccc; */
+  border-top: 1px solid #ccc;
 }
 
 .series-picks {
@@ -566,22 +565,57 @@ form.social-login {
   height: 25px;
   margin: 0;
   background-color: #eee;
-}
+} */
 
-.all-picks .series-card {
+.series-td {
   position: relative;
   display: flex;
   justify-content: space-around;
   align-items: center;
   width: 175px;
-  height: 30px;
-  margin-bottom: 2px;
-  padding: 10px;
+}
+
+.series-td .winner::after {
+  content: '';
+  display: block;
+  border-bottom: 2px solid #333;
+}
+
+td img {
+  width: 30px;
+}
+
+table {
+  background-color: #eee;
+}
+
+.series-count {
+  flex: 2;
+}
+
+th, td {
+  padding: 5px;
+}
+
+tr {
   background-color: #fff;
 }
 
-.all-picks .series-card img {
-  width: 30px;
+tr:hover {
+  background-color: #ddd;
+}
+
+td {
+  text-align: center;
+}
+
+.picks th {
+  width: 175px;
+}
+
+.picks .dates td {
+  font-weight: bold;
+  background-color: #f7f7f7;
 }
 
 .admin button {

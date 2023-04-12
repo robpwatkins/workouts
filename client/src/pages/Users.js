@@ -5,7 +5,7 @@ const Users = () => {
 
   useEffect(() => {
     const getUsers = async () => {
-      const response = await fetch('http://localhost:4001/users', { credentials: 'include' });
+      const response = await fetch('/users', { credentials: 'include' });
       const users = await response.json();
       
       setUsers(users);
@@ -16,7 +16,7 @@ const Users = () => {
 
   const handleClick = async (e) => {
     const { id: username } = e.target;
-    await fetch(`http://localhost:4001/user/delete/${username}`, {
+    await fetch(`/user/delete/${username}`, {
       method: 'DELETE',
     });
     let tempUsers = users.slice();

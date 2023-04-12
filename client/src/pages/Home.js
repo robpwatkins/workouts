@@ -10,13 +10,13 @@ const Home = () => {
 
   useEffect(() => {
     const fetchAllSeries = async () => {
-      const response = await fetch('http://localhost:4001/all-series');
+      const response = await fetch('/all-series');
       const json = await response.json();
       setAllSeries(json.slice(0, 5));
     };
 
     const fetchPicks = async () => {
-      const response = await fetch('http://localhost:4001/api/picks', { credentials: 'include' });
+      const response = await fetch('/api/picks', { credentials: 'include' });
       const json = await response.json();
       if (response.ok) dispatch({ type: 'SET_PICKS', payload: json });
     };

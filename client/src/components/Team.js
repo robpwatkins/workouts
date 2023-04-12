@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { useAuthContext } from '../hooks/useAuthContext';
+// import { useAuthContext } from '../hooks/useAuthContext';
 import { usePicksContext } from '../hooks/usePicksContexts';
 
 const Team = ({ seriesId, team, type, win, record, logo, primary, successfulPick, opponentPrimary }) => {
-  const { user } = useAuthContext();
+  // const { user } = useAuthContext();
   const { picks, dispatch } = usePicksContext();
   const [hovered, setHovered] = useState(false);
 
@@ -31,7 +31,7 @@ const Team = ({ seriesId, team, type, win, record, logo, primary, successfulPick
       body: JSON.stringify({ pick, ...!currentPick && { series_id } })
     }
 
-    const url = `http://localhost:4001/api/picks${currentPick ? `/${currentPick._id}` : ''}`;
+    const url = `/api/picks${currentPick ? `/${currentPick._id}` : ''}`;
 
     const response = await fetch(url, options);
     const json = await response.json();

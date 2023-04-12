@@ -2,10 +2,10 @@ const Admin = () => {
   const updateUserPicks = async (e) => {
     e.preventDefault();
 
-    const seriesResponse = await fetch('http://localhost:4001/all-series');
+    const seriesResponse = await fetch('/all-series');
     const allSeries = await seriesResponse.json();
     
-    const picksResponse = await fetch('http://localhost:4001/api/picks/all', { credentials: 'include' });
+    const picksResponse = await fetch('/api/picks/all', { credentials: 'include' });
     const picks = await picksResponse.json();
 
     for await (const { series: seriesGroup } of allSeries) {
@@ -33,12 +33,12 @@ const Admin = () => {
                 })
               };
     
-              const response = await fetch(`http://localhost:4001/api/picks/${_id}`, options);
+              await fetch(`/api/picks/${_id}`, options);
   
               successful ? wins++ : losses++;
 
               if (wins + losses === seriesPicks.length) {
-                const userResponse = await fetch(`http://localhost:4001/user/update/${user_id}`, {
+                const userResponse = await fetch(`/user/update/${user_id}`, {
                   method: 'POST',
                   headers: { 'Content-Type': 'application/json' },
                   credentials: 'include',
@@ -61,10 +61,10 @@ const Admin = () => {
   const updateUserRecords = async (e) => {
     e.preventDefault();
 
-    const picksResponse = await fetch('http://localhost:4001/api/picks/all', { credentials: 'include' });
+    const picksResponse = await fetch('/api/picks/all', { credentials: 'include' });
     const picks = await picksResponse.json();
 
-    const usersResponse = await fetch('http://localhost:4001/users', { credentials: 'include' });
+    const usersResponse = await fetch('/users', { credentials: 'include' });
     const users = await usersResponse.json();
 
     for await (const { _id } of users) {
@@ -77,7 +77,7 @@ const Admin = () => {
         pick.successful ? wins++ : losses++;
   
         if ((wins + losses) === userPicks.length) {
-          const userResponse = await fetch(`http://localhost:4001/user/update/${_id}`, {
+          const userResponse = await fetch(`/user/update/${_id}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             credentials: 'include',

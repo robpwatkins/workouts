@@ -11,7 +11,7 @@ export const useLogin = () => {
     setError(null);
 
     try {
-      const response = await fetch('http://localhost:4001/auth/login', {
+      const response = await fetch('/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
