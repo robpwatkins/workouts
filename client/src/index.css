@@ -1,0 +1,623 @@
+/* google font */
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+/* layout */
+:root {
+  --primary: #000089cc;
+  /* --secondary: #CD0001; */
+  /* --error: #e7195a; */
+  --error: #cd0000cc;
+  --error-bg: #cd000014;
+}
+body {
+  background: #f1f1f1;
+  margin: 0;
+  color: #333;
+  font-family: "Inter";
+}
+header {
+  background: #fff;
+}
+header .container {
+  position: relative;
+  max-width: 1400px;
+  height: 100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: transparent;
+  z-index: 0;
+}
+header a {
+  color: #333;
+  text-decoration: none;
+}
+.pages {
+  max-width: 1400px;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+/* homepage */
+.home {
+  display: flex;
+  overflow: scroll;
+}
+
+.series-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.home .series-card {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+  margin: 10px 10px;
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+}
+
+.home .series-card img {
+  width: 50px;
+}
+
+.series-card .at {
+  position: absolute;
+}
+
+.series-group .dates-and-record, .username-and-record {
+  width: 100%;
+  margin: 10px 0;
+  text-align: center;
+  background-color: #fff;
+  border-right: 1px solid #ddd;
+  border-left: 1px solid #ddd;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.10);
+}
+
+.series-group h3 {
+  padding: 7px 0;
+}
+
+.series-group h3, .series-group h5 {
+  font-weight: 500;
+  margin: 0;
+}
+
+.series-group h5 {
+  padding: 2px 0;
+  border-top: 1px solid #ddd;
+}
+
+.series-group .no-user {
+  margin: 9px 0;
+}
+
+.series-group button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 84px;
+  width: 100%;
+  font-size: 17px;
+  border: none;
+  background-color: unset;
+  cursor: pointer;
+}
+
+.bar {
+  display: none;
+  position: absolute;
+}
+
+.bar.top, .bar.bottom {
+  width: 100%;
+  height: 6px;
+}
+
+.bar.right, .bar.left {
+  width: 6px;
+  height: 100%;
+}
+
+.bar.top {
+  top: 0;
+}
+
+.bar.right {
+  right: 0;
+}
+
+.bar.bottom {
+  bottom: 0;
+}
+
+.bar.left {
+  left: 0;
+}
+
+.bar.visitor {
+  border-bottom-left-radius: 2px;
+}
+
+.bar.home {
+  border-bottom-right-radius: 2px;
+}
+
+.pick-card .bar.visitor, .pick-card .bar.home {
+  width: 50%;
+}
+
+.pick-card .bar.visitor {
+  left: 50%;
+}
+
+.pick-card .bar.home {
+  right: 50%;
+}
+
+.d-block {
+  display: block;
+}
+
+.d-none {
+  display: none !important;
+}
+
+.opaque {
+  opacity: .5;
+  cursor: unset;
+}
+
+.series-group .team-and-record {
+  position: relative;
+}
+
+.series-group .team {
+  margin: 0;
+}
+
+.series-group .record {
+  position: absolute;
+  width: 100%;
+  margin: 0;
+  font-weight: normal;
+}
+
+.series-group .record::before {
+  content: '';
+  display: block;
+  border-bottom: 2px solid #333;
+}
+
+.winner {
+  font-weight: bold;
+}
+
+.delete-user {
+  margin-left: 5px;
+}
+
+.delete-user:hover {
+  cursor: pointer;
+}
+
+.workout-details, .team-details {
+  background: #fff;
+  border-radius: 4px;
+  margin: 20px auto;
+  padding: 20px;
+  position: relative;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+}
+.workout-details h4, .team-details h3 {
+  margin: 0 0 10px 0;
+  /* font-size: 1.2em; */
+  /* color: var(--primary); */
+}
+
+.team-details h1 {
+  margin-top: 5px;
+}
+
+.workout-details p {
+  margin: 0;
+  font-size: 0.9em;
+  color: #555;
+}
+.workout-details span {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  background: #f1f1f1;
+  padding: 6px;
+  border-radius: 50%;
+  color: #333;
+}
+
+/* new workout form */
+label, input {
+  display: block;
+}
+input {
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+form button {
+  width: 100%;
+  font-size: 15px;
+  background: var(--primary);
+  border: 0;
+  color: #fff;
+  padding: 10px;
+  font-family: "Inter";
+  border-radius: 4px;
+  cursor: pointer;
+}
+div.error {
+  padding: 10px;
+  background: var(--error-bg);
+  border: 1px solid var(--error);
+  color: var(--error);
+  border-radius: 4px;
+  margin: 20px 0;
+}
+
+input.error {
+  border: 1px solid var(--error);
+}
+
+/* navbar */
+nav {
+  display: flex;
+  align-items: center;
+}
+
+.tabs {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: flex-end;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 10px;
+  z-index: -1;
+}
+
+.tabs p {
+  margin: 0 10px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.tabs .home {
+  width: 57px;
+}
+
+.tabs .standings {
+  width: 98px;
+}
+
+.tabs .active {
+  font-weight: bold;
+}
+
+.account .username {
+  width: auto;
+  border: none;
+  cursor: pointer;
+}
+
+.account .down-chevron {
+  margin-left: 5px;
+  font-size: 13px;
+}
+
+.account .dropdown-toggle {
+  display: block;
+  position: absolute;
+  right: 84px;
+  width: auto;
+  padding: 8px;
+  color: unset;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.account a {
+  display: inline-block;
+  width: 75px;
+  text-align: center;
+  color: var(--primary);
+  border-radius: 4px;
+}
+
+.account a.login {
+  margin-left: 12px;
+  padding: 7px 0;
+  color: #fff;
+  background-color: var(--primary);
+}
+
+.account a.signup {
+  padding: 5px 0;
+  border: 2px solid var(--primary);
+}
+
+.account button {
+  width: 75px;
+  background: #fff;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+  padding: 5px 0;
+  border-radius: 4px;
+  font-family: "Inter";
+  cursor: pointer;
+  font-size: 1em;
+  margin-left: 10px;
+}
+
+/* auth forms */
+form.signup, form.login, form.username, form.admin {
+  max-width: 375px;
+  margin: 30px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 4px;
+}
+
+form.username .skip {
+  display: block;
+  width: auto;
+  margin: 0 auto;
+  color: #333;
+  text-decoration: underline;
+  background-color: unset;
+}
+
+form .account {
+  font-size: 15px;
+  margin-top: 20px;
+}
+
+.account a {
+  margin-left: 5px;
+  font-size: 15px;
+  color: var(--primary);
+  /* text-decoration: none; */
+}
+
+.social-heading {
+  text-align: center;
+}
+
+.social-heading::before,
+.social-heading::after {
+    display: inline-block;
+    content: "";
+    border-top: .5px solid black;
+    width: 160px;
+    margin: 0px 15px 5px;
+}
+
+form.social-login {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 115px;
+}
+
+.social-button {
+  position: relative;
+  color: #333;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+.social-icon {
+  position: absolute;
+  top: 7.5px;
+  left: 15px;
+  width: 23px;
+  height: 23px;
+}
+
+.google-icon {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 48 48'%3E%3Cdefs%3E%3Cpath id='a' d='M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.2-2.7-.5-4z'/%3E%3C/defs%3E%3CclipPath id='b'%3E%3Cuse xlink:href='%23a' overflow='visible'/%3E%3C/clipPath%3E%3Cpath clip-path='url(%23b)' fill='%23FBBC05' d='M0 37V11l17 13z'/%3E%3Cpath clip-path='url(%23b)' fill='%23EA4335' d='M0 11l17 13 7-6.1L48 14V0H0z'/%3E%3Cpath clip-path='url(%23b)' fill='%2334A853' d='M0 37l30-23 7.9 1L48 0v48H0z'/%3E%3Cpath clip-path='url(%23b)' fill='%234285F4' d='M48 48L17 24l-4-3 35-10z'/%3E%3C/svg%3E");
+}
+
+.fbook-icon {
+  color: #415a94;
+}
+
+.snapshot {
+  width: 475px;
+  margin: 0 auto 35px;
+}
+
+/* .standings .headings, .values {
+  display: flex;
+}
+
+.headings p, .values p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  height: 30px;
+  margin: 1px;
+  background-color: #fff;
+}
+
+.headings {
+  font-weight: bold;
+}
+
+.all-picks {
+  display: flex;
+}
+
+.series-count {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 64.5px;
+  background-color: #fff;
+}
+
+.picks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 200px;
+  margin: 0 1px;
+}
+
+.all-picks .username {
+  display: block;
+  padding: 10px;
+}
+
+.username-and-record {
+  width: 100%;
+  margin: 0;
+  background-color: unset;
+  box-shadow: unset;
+  border: none;
+}
+
+.username-and-record h3, .username-and-record h5 {
+  margin: 0;
+  background-color: #fff;
+}
+
+.username-and-record h5 {
+  margin: 2px 0 0;
+  padding: 2px 0;
+  font-weight: normal;
+  border-top: 1px solid #ccc;
+}
+
+.series-picks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.series-picks .dates-and-record {
+  text-align: center;
+  width: 100%;
+}
+
+.series-picks h4 {
+  margin: 0;
+}
+
+.series-picks h4::after, .all-picks .winner::after {
+  content: '';
+  display: block;
+  border-bottom: 2px solid #333;
+}
+
+.series-picks .spacer {
+  width: 100%;
+  height: 25px;
+  margin: 0;
+}
+
+.series-picks .pick {
+  width: 100%;
+}
+
+.series-picks .pick {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  margin-bottom: 2px;
+  background-color: #fff;
+}
+
+.pick {
+  font-size: 20px;
+}
+
+.series-cards h4 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 25px;
+  margin: 0;
+  background-color: #eee;
+} */
+
+.series-td {
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 175px;
+}
+
+.series-td .winner::after {
+  content: '';
+  display: block;
+  border-bottom: 2px solid #333;
+}
+
+td img {
+  width: 30px;
+}
+
+table {
+  background-color: #eee;
+}
+
+.series-count {
+  flex: 2;
+}
+
+th, td {
+  padding: 5px;
+}
+
+tr {
+  background-color: #fff;
+}
+
+tr:hover {
+  background-color: #ddd;
+}
+
+td {
+  text-align: center;
+}
+
+.picks th {
+  width: 175px;
+}
+
+.picks .dates td {
+  font-weight: bold;
+  background-color: #f7f7f7;
+}
+
+.admin button {
+  margin: 10px 0;
+}

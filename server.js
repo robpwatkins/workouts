@@ -42,13 +42,13 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(express.static(path.join(__dirname, "./client/build")));
-app.get("*", (_, res) => {
-  res.sendFile(
-    path.join(__dirname, "./client/build/index.html"),
-    (err) => res.status(500).send(err)
-  );
-});
+// app.use(express.static(path.join(__dirname, "./client/build")));
+// app.get("*", (_, res) => {
+//   res.sendFile(
+//     path.join(__dirname, "./client/build/index.html"),
+//     (err) => res.status(500).send(err)
+//   );
+// });
 
 app.use('/api/picks', pickRoutes);
 app.use('/api/user', userRoutes);
