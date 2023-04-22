@@ -17,12 +17,6 @@ const app = express();
 
 const port = process.env.PORT || 4000;
 
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => {
-    app.listen(port, () => console.log(`Connected to DB and listening on port ${port}!!`))
-  })
-  .catch((error) => console.log('error: ', error));
-
 app.use(express.json());
 app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
 
@@ -126,3 +120,9 @@ app.get('/all-series', async (req, res) => {
   const allSeries = await getAllSeries('1YJw6UclwKyGjdwns9vgU3VrivderKfpM3FPKIRR6uVE', 'Series');
   res.json(allSeries);
 })
+
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => {
+    app.listen(port, () => console.log(`Connected to DB and listening on port ${port}!!`))
+  })
+  .catch((error) => console.log('error: ', error));
