@@ -33,7 +33,7 @@ router.post('/login', (req, res, next) => {
   })(req, res, next);
 });
 
-const clientUrl = process.env.NODE_ENV === 'production' ? process.env.CLIENT_URL_PROD : process.env.CLIENT_URL_DEV;
+const clientUrl = process.env.NODE_ENV === 'development' ? process.env.CLIENT_URL_DEV : process.env.CLIENT_URL_PROD;
 
 router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 
