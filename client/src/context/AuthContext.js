@@ -32,6 +32,7 @@ export const AuthContextProvider = ({ children }) => {
         const response = await fetch('/user', {
           credentials: 'include'
         });
+        console.log('response: ', response);
         const { user, error } = await response.json();
 
         if (error) return dispatch({ type: 'ERROR', payload: error });

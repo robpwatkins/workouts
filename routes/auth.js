@@ -39,7 +39,7 @@ router.get('/google', passport.authenticate('google', { scope: ['profile', 'emai
 
 router.get(
   '/google/callback',
-  passport.authenticate('google', { failureRedirect: 'http://localhost:3000/login', failureMessage: true }),
+  passport.authenticate('google', { failureRedirect: `${clientUrl}/login`, failureMessage: true }),
   (req, res) => {
     const redirectUrl = req.user.last_login ? clientUrl : `${clientUrl}/username`;
     req.user.last_login = Date.now();
@@ -52,7 +52,7 @@ router.get('/facebook', passport.authenticate('facebook', { scope: ['public_prof
 
 router.get(
   '/facebook/callback',
-  passport.authenticate('facebook', { failureRedirect: 'http://localhost:3000/login', failureMessage: true }),
+  passport.authenticate('facebook', { failureRedirect: `${clientUrl}/login`, failureMessage: true }),
   (req, res) => {
     const redirectUrl = req.user.last_login ? clientUrl : `${clientUrl}/username`;
     req.user.last_login = Date.now();
