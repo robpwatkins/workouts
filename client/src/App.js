@@ -12,7 +12,6 @@ import Admin from './pages/Admin';
 
 function App() {
   const { user, loaded } = useAuthContext();
-  console.log('user: ', user);
 
   return (
     <div className="App">

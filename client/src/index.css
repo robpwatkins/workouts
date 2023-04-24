@@ -311,6 +311,10 @@ nav {
   width: 98px;
 }
 
+.tabs .admin {
+  width: 60px;
+}
+
 .tabs .active {
   font-weight: bold;
 }
@@ -602,7 +606,7 @@ tr {
 }
 
 tr:hover {
-  background-color: #ddd;
+  background-color: #eaeaea;
 }
 
 td {

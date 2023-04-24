@@ -1,4 +1,11 @@
+import { useState } from 'react';
+
 const Admin = () => {
+  const [dates, setDates] = useState('');
+  const [showDates, setShowDates] = useState(false);
+  const [user, setUser] = useState('');
+  const [showUser, setShowUser] = useState(false);
+
   const updateUserPicks = async (e) => {
     e.preventDefault();
 
@@ -8,7 +15,7 @@ const Admin = () => {
     const picksResponse = await fetch('/api/picks/all', { credentials: 'include' });
     const picks = await picksResponse.json();
 
-    for await (const { series: seriesGroup } of allSeries) {
+    for await (const { dates: seriesDates, series: seriesGroup } of allSeries) {
       for await (const singleSeries of seriesGroup) {
         const { seriesId, seriesInfo } = singleSeries;
         const { visitor, visitorWin, home, homeWin } = seriesInfo;
@@ -19,7 +26,7 @@ const Admin = () => {
           let wins = 0;
           let losses = 0;
 
-          for await (const { _id, pick, user_id } of seriesPicks) {
+          for await (const { _id, pick } of seriesPicks) {
             const successful = pick === winner;
             
             try {
@@ -38,16 +45,8 @@ const Admin = () => {
               successful ? wins++ : losses++;
 
               if (wins + losses === seriesPicks.length) {
-                const userResponse = await fetch(`/user/update/${user_id}`, {
-                  method: 'POST',
-                  headers: { 'Content-Type': 'application/json' },
-                  credentials: 'include',
-                  body: JSON.stringify({ total_wins: wins, total_losses: losses })
-                });
-
-                const json = await userResponse.json();
-
-                if (userResponse.ok) console.log(`${json.username} updated!`);
+                setDates(seriesDates);
+                setShowDates(true);
               }
             } catch (error) {
               console.log('error: ', error);
@@ -78,7 +77,7 @@ const Admin = () => {
   
         if ((wins + losses) === userPicks.length) {
           const userResponse = await fetch(`/user/update/${_id}`, {
-            method: 'POST',
+            method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             credentials: 'include',
             body: JSON.stringify({ total_wins: wins, total_losses: losses })
@@ -86,7 +85,10 @@ const Admin = () => {
   
           const json = await userResponse.json();
   
-          if (userResponse.ok) console.log(`${json.username} updated!`);
+          if (userResponse.ok) {
+            setUser(json.username);
+            setShowUser(true);
+          }
         }  
       }
     }
@@ -95,7 +97,9 @@ const Admin = () => {
   return (
     <form className="admin">
       <button onClick={updateUserPicks}>Finalize picks</button>
+      <p className={`picks-finalized${!showDates ? " d-none" : ""}`}>Picks finalized for {dates}!</p>
       <button onClick={updateUserRecords}>Update user records</button>
+      <p className={`records-updated${!showUser ? " d-none" : ""}`}>Records updated for {user}!</p>
     </form>
   )
 };

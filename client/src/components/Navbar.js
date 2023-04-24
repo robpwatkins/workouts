@@ -20,7 +20,7 @@ const Navbar = () => {
     <header>
       <div className="container">
         <Link to="/">
-          <h1>MLB Fantasy</h1>
+          <h1>MLB Fantasyyy</h1>
         </Link>
         {loaded && (
           <div className="tabs">
@@ -30,6 +30,11 @@ const Navbar = () => {
             {user && user.username_customized && (
               <NavLink to="/standings" className={({ isActive }) => isActive ? 'active' : 'inactive'}>
                 <p className="standings">Standings</p>
+              </NavLink>
+            )}
+            {user && user.admin && (
+              <NavLink to="/admin" className={({ isActive }) => isActive ? 'active' : 'inactive'}>
+                <p className="admin">Admin</p>
               </NavLink>
             )}
           </div>

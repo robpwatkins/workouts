@@ -1,14 +1,22 @@
-import { Fragment } from 'react';
+import { useState, useEffect, Fragment } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faXmark } from '@fortawesome/free-solid-svg-icons';
 import teams from '../teams.json';
 
 const Picks = ({ users, finalizedSeries, picks }) => {
+  const [seriesCount, setSeriesCount] = useState('');
+
+  useEffect(() => {
+    let count = 0;
+    finalizedSeries.forEach(seriesGroup => count += seriesGroup.series.length);
+    setSeriesCount(count);
+  }, [finalizedSeries]);
+
   return (
     <table className="picks">
       <thead>
         <tr>
-          <th className="series-count">21</th>
+          <th className="series-count">{seriesCount || ''}</th>
           {users.map(user => (
             <th key={user.username}>{user.username}</th>
           ))}
@@ -55,7 +63,7 @@ const Picks = ({ users, finalizedSeries, picks }) => {
                     </td>
                     {users.map(user => {
                       const { successful } = picks
-                        .find(pick => (pick.series_id === seriesId && pick.user_id === user._id));
+                        .find(pick => (pick.series_id === seriesId && pick.user_id === user._id)) || {};
 
                       return (
                         <td key={`${user.username}:${seriesId}`}>
