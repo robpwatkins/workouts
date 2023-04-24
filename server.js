@@ -62,7 +62,7 @@ app.get('/users', async (req, res) => {
   }
 })
 
-app.post('/user/update/:userId?', async (req, res) => {
+app.patch('/user/update/:userId?', async (req, res) => {
   try {
     const _id = !!(req.user.admin && req.params.userId) ? req.params.userId : req.user._id;
     const user = await User.findById({ _id });
