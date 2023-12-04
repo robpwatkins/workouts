@@ -91,8 +91,8 @@ header a {
 }
 
 .series-group h5 {
-  padding: 2px 0;
-  border-top: 1px solid #ddd;
+  padding-bottom: 2px;
+  /* border-top: 1px solid #ddd; */
 }
 
 .series-group .no-user {
