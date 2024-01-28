@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
@@ -39,6 +41,8 @@ app.use((req, res, next) => {
 app.use('/api/picks', pickRoutes);
 app.use('/api/user', userRoutes);
 app.use('/auth', authRoutes);
+
+app.get('/ping', (req, res) => res.json('pong!'));
 
 app.get('/user', (req, res) => {
   try {

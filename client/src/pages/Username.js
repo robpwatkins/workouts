@@ -31,7 +31,7 @@ const Username = () => {
       return false;
     }
   
-    const response = await fetch(`/username-check?username=${value}`);
+    const response = await fetch(`http://localhost:4001/username-check?username=${value}`);
     const exists = await response.json();
   
     if (exists) {
@@ -59,8 +59,8 @@ const Username = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('/user/update', {
-        method: 'POST',
+      const response = await fetch('http://localhost:4001/user/update', {
+        method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
         body: JSON.stringify({ username })
