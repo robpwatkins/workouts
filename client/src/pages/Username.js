@@ -31,7 +31,7 @@ const Username = () => {
       return false;
     }
   
-    const response = await fetch(`http://localhost:4001/username-check?username=${value}`);
+    const response = await fetch(`http://${process.env.REACT_APP_BASE_URL}/username-check?username=${value}`);
     const exists = await response.json();
   
     if (exists) {
@@ -59,7 +59,7 @@ const Username = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:4001/user/update', {
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/user/update`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
