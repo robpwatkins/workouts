@@ -11,6 +11,8 @@ const authRoutes = require('./routes/auth');
 const User = require('./models/userModel');
 const { getAllSeries } = require('./plugins/googleDrive');
 
+require('dotenv').config();
+
 require('./config/passport')(passport);
 
 const app = express();
@@ -35,6 +37,12 @@ app.use((req, res, next) => {
   console.log(req.path, req.method);
   next();
 });
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+
+  app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, 'client', 'build','index.html')));
+}
 
 app.use('/api/picks', pickRoutes);
 app.use('/api/user', userRoutes);

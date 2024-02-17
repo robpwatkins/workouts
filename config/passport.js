@@ -5,6 +5,8 @@ const bcrypt = require('bcrypt');
 const { getUniqueUsername } = require('../utils/username');
 const User = require('../models/userModel');
 
+require('dotenv').config();
+
 module.exports = function(passport) {
   passport.use(new LocalStrategy({
     usernameField: 'email',

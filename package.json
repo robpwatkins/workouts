@@ -6,15 +6,22 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "dev": "dotenv nodemon server.js"
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "clientinstall": "npm install --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "render-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build -- prefix client"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.0",
+    "concurrently": "^8.2.2",
     "connect-mongo": "^4.6.0",
     "cors": "^2.8.5",
+    "dotenv": "^16.4.4",
+    "dotenv-cli": "^7.3.0",
     "express": "^4.18.2",
     "express-session": "^1.17.3",
     "googleapis": "^114.0.0",
