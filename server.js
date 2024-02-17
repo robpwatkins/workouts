@@ -48,6 +48,8 @@ app.use('/api/picks', pickRoutes);
 app.use('/api/user', userRoutes);
 app.use('/auth', authRoutes);
 
+app.get('/ping', (req, res) => res.send('pong!'));
+
 app.get('/user', (req, res) => {
   try {
     if (req.session.messages && req.session.messages.length) {
