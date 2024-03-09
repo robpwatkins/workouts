@@ -46,6 +46,7 @@ app.use('/api/user', userRoutes);
 app.use('/auth', authRoutes);
 
 app.get('/user', (req, res) => {
+  console.log('req.user: ', req.user);
   try {
     if (req.session.messages && req.session.messages.length) {
       const [error] = req.session.messages;
