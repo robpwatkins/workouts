@@ -60,7 +60,7 @@ const Username = () => {
 
     try {
       const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/user/update`, {
-        method: 'POST',
+        method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
         body: JSON.stringify({ username })
