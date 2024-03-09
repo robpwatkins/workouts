@@ -31,7 +31,7 @@ const Username = () => {
       return false;
     }
   
-    const response = await fetch(`/username-check?username=${value}`);
+    const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/username-check?username=${value}`);
     const exists = await response.json();
   
     if (exists) {
@@ -59,7 +59,7 @@ const Username = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('/user/update', {
+      const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/user/update`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
