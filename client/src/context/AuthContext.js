@@ -34,6 +34,7 @@ export const AuthContextProvider = ({ children }) => {
         });
         console.log('response: ', response);
         const { user, error } = await response.json();
+        console.log({ user, error });
 
         if (error) return dispatch({ type: 'ERROR', payload: error });
         if (!user) return dispatch({ type: 'LOADED', payload: true });
