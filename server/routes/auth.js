@@ -1,8 +1,9 @@
 const express = require('express');
 const passport = require('passport');
 const User = require('../models/userModel');
-
 const router = express.Router();
+
+require('dotenv').config();
 
 router.post('/signup', async (req, res, next) => {
   const { email, password } = req.body;
@@ -33,7 +34,9 @@ router.post('/login', (req, res, next) => {
   })(req, res, next);
 });
 
-const clientUrl = process.env.NODE_ENV === 'development' ? process.env.CLIENT_URL_DEV : process.env.CLIENT_URL_PROD;
+const clientUrl = process.env.NODE_ENV === 'development'
+  ? process.env.CLIENT_URL_DEV
+  : process.env.CLIENT_URL_PROD;
 
 router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 

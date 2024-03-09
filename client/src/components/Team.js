@@ -31,7 +31,7 @@ const Team = ({ seriesId, team, type, win, record, logo, primary, successfulPick
       body: JSON.stringify({ pick, ...!currentPick && { series_id } })
     }
 
-    const url = `/api/picks${currentPick ? `/${currentPick._id}` : ''}`;
+    const url = `${process.env.REACT_APP_SERVER_URL}/api/picks${currentPick ? `/${currentPick._id}` : ''}`;
 
     const response = await fetch(url, options);
     const json = await response.json();
