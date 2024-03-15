@@ -113,13 +113,13 @@ app.get('/all-series', async (req, res) => {
   res.json(allSeries);
 })
 
-app.use(express.static(path.join(__dirname, "./client/build")));
-app.get("*", (_, res) => {
-  res.sendFile(
-    path.join(__dirname, "./client/build/index.html"),
-    (err) => res.status(500).send(err)
-  );
-});
+app.use(express.static(path.join(__dirname, "/client/build")));
+// app.get("*", (_, res) => {
+//   res.sendFile(
+//     path.join(__dirname, "./client/build/index.html"),
+//     (err) => res.status(500).send(err)
+//   );
+// });
 
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
