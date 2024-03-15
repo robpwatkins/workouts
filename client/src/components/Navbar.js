@@ -20,7 +20,7 @@ const Navbar = () => {
     <header>
       <div className="container">
         <Link to="/">
-          <h1>MLB Series Challenge!!</h1>
+          <h1>MLB Series Challenge</h1>
         </Link>
         {loaded && (
           <div className="tabs">
