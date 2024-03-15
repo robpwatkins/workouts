@@ -17,6 +17,8 @@ jobs:
       with:
         node-version: ${{ matrix.node }}
     - run: |
+        export NVM_DIR=/root/.nvm
+        source /root/.nvm/nvm.sh
         npm i
         cd client
         npm i
