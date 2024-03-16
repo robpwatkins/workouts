@@ -18,7 +18,7 @@ const Login = () => {
   };
   
   const handleClick = (buttonType) => {
-    window.open(`http://localhost:4001/auth/${buttonType}`, '_self');
+    window.open(`https://mlb-fantasy.fly.dev/auth/${buttonType}`, '_self');
     // window.open(`/auth/${buttonType}`, '_self');
   }
 
