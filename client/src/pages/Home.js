@@ -10,9 +10,10 @@ const Home = () => {
 
   useEffect(() => {
     const fetchPing = async () => {
-      const response = await ((await fetch('https://mlb-fantasy.fly.dev/ping')).text());
-
+      const response = await fetch('https://mlb-fantasy.fly.dev/ping');
       console.log('response: ', response);
+      const text = await response.text();
+      console.log('text: ', text);
     };
 
     fetchPing();
