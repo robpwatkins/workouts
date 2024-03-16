@@ -111,15 +111,17 @@ app.post('/logout', (req, res, next) => {
 app.get('/all-series', async (req, res) => {
   const allSeries = await getAllSeries('1YJw6UclwKyGjdwns9vgU3VrivderKfpM3FPKIRR6uVE', 'Series');
   res.json(allSeries);
-})
-
-app.use(express.static(path.join(__dirname, "./client/build")));
-app.get("*", (_, res) => {
-  res.sendFile(
-    path.join(__dirname, "./client/build/index.html"),
-    (err) => res.status(500).send(err)
-  );
 });
+
+app.get('/ping', (req, res) => res.send('pong!'));
+
+// app.use(express.static(path.join(__dirname, "./client/build")));
+// app.get("*", (_, res) => {
+//   res.sendFile(
+//     path.join(__dirname, "./client/build/index.html"),
+//     (err) => res.status(500).send(err)
+//   );
+// });
 
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
