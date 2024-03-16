@@ -10,13 +10,13 @@ const Home = () => {
 
   useEffect(() => {
     const fetchAllSeries = async () => {
-      const response = await fetch('/all-series');
+      const response = await fetch('https://mlb-fantasy-moni7.ondigitalocean.app/all-series');
       const json = await response.json();
       setAllSeries(json.slice(0, 7));
     };
 
     const fetchPicks = async () => {
-      const response = await fetch('/api/picks', { credentials: 'include' });
+      const response = await fetch('https://mlb-fantasy-moni7.ondigitalocean.app/api/picks', { credentials: 'include' });
       const json = await response.json();
       if (response.ok) dispatch({ type: 'SET_PICKS', payload: json });
     };
