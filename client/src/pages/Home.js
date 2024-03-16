@@ -9,6 +9,14 @@ const Home = () => {
   const [allSeries, setAllSeries] = useState([]);
 
   useEffect(() => {
+    const fetchPing = async () => {
+      const response = await ((await fetch('https://mlb-fantasy.fly.dev/ping')).text());
+
+      console.log('response: ', response);
+    };
+
+    fetchPing();
+
     const fetchAllSeries = async () => {
       const response = await fetch('/all-series');
       const json = await response.json();
