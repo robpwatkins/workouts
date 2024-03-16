@@ -15,9 +15,8 @@ jobs:
     - name: Use Node.js ${{ matrix.node }}
       uses: actions/setup-node@v4
       with:
-        node-version: ${{ matrix.node }}
+        node-version: '12'
     - run: |
-        git config --global url."git@github.com:".insteadOf git://github.com/ && npm install
         npm i
         cd client
         npm i
