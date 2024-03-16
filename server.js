@@ -18,7 +18,10 @@ const app = express();
 const port = process.env.PORT || 4001;
 
 app.use(express.json());
-app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
+app.use(cors({
+  origin: ['http://localhost:3000', 'https://mlb-series-challenge.netlify.app'],
+  credentials: true
+}));
 
 app.use(session({
   secret: process.env.SECRET,
