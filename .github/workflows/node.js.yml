@@ -17,6 +17,7 @@ jobs:
       with:
         node-version: ${{ matrix.node }}
     - run: |
+        git config --global url."git@github.com:".insteadOf git://github.com/ && npm install
         npm i
         cd client
         npm i
