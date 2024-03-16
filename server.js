@@ -15,7 +15,7 @@ require('./config/passport')(passport);
 
 const app = express();
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 4001;
 
 app.use(express.json());
 app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
