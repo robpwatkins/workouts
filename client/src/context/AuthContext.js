@@ -29,10 +29,11 @@ export const AuthContextProvider = ({ children }) => {
       dispatch({ type: 'LOADED', payload: false });
 
       try {
-        const response = await fetch('/user', {
+        const response = await fetch('https://mlb-fantasy.fly.dev/user', {
           credentials: 'include'
         });
         console.log('response: ', response);
+        console.log('json: ', await response.json());
         const { user, error } = await response.json();
 
         if (error) return dispatch({ type: 'ERROR', payload: error });
