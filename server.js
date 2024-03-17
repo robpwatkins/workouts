@@ -21,7 +21,7 @@ const port = process.env.PORT || 4000;
 
 app.use(express.json());
 app.use(cors({
-  origin: ['http://localhost:3000', 'https://theserieschallenge.com'],
+  origin: ['http://localhost:3000', 'https://api.theserieschallenge.com'],
   credentials: true
 }));
 
@@ -46,7 +46,6 @@ app.use('/api/user', userRoutes);
 app.use('/auth', authRoutes);
 
 app.get('/user', (req, res) => {
-  console.log('req.user: ', req.user);
   try {
     if (req.session.messages && req.session.messages.length) {
       const [error] = req.session.messages;
@@ -121,13 +120,7 @@ app.get('/all-series', async (req, res) => {
 
 app.get('/ping', (req, res) => res.send('pong!!!'));
 
-// app.use(express.static(path.join(__dirname, "./client/build")));
-// app.get("*", (_, res) => {
-//   res.sendFile(
-//     path.join(__dirname, "./client/build/index.html"),
-//     (err) => res.status(500).send(err)
-//   );
-// });
+app.use(express.static(path.join(__dirname, "./client/build")));
 
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {

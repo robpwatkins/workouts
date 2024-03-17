@@ -29,7 +29,7 @@ export const AuthContextProvider = ({ children }) => {
       dispatch({ type: 'LOADED', payload: false });
 
       try {
-        const response = await fetch('https://api.theserieschallenge.com/user', {
+        const response = await fetch('/user', {
           credentials: 'include'
         });
         console.log('response: ', response);

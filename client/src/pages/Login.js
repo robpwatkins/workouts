@@ -18,7 +18,7 @@ const Login = () => {
   };
   
   const handleClick = (buttonType) => {
-    window.open(`https://api.theserieschallenge.com/auth/${buttonType}`, '_self');
+    window.open(`/auth/${buttonType}`, '_self');
     // window.open(`/auth/${buttonType}`, '_self');
   }
 

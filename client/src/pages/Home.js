@@ -10,16 +10,14 @@ const Home = () => {
 
   useEffect(() => {
     const fetchAllSeries = async () => {
-      const response = await fetch('https://api.theserieschallenge.com/all-series');
+      const response = await fetch('/all-series');
       const json = await response.json();
       setAllSeries(json.slice(0, 7));
     };
 
     const fetchPicks = async () => {
-      const response = await fetch('https://api.theserieschallenge.com/api/picks', { credentials: 'include' });
-      console.log('response: ', response);
+      const response = await fetch('/api/picks', { credentials: 'include' });
       const json = await response.json();
-      console.log('json: ', json);
       if (response.ok) dispatch({ type: 'SET_PICKS', payload: json });
     };
 
