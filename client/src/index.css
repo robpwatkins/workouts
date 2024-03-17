@@ -4,21 +4,26 @@
 
 /* layout */
 :root {
-  --primary: #000089cc;
+  --primary: #002d72e3;
+  /* --primary: #000089cc; */
   /* --secondary: #CD0001; */
   /* --error: #e7195a; */
-  --error: #cd0000cc;
+  /* --error: #cd0000cc; */
+  --error: #c33b3bed;
   --error-bg: #cd000014;
 }
+
 body {
   background: #f1f1f1;
   margin: 0;
   color: #333;
   font-family: "Inter";
 }
+
 header {
   background: #fff;
 }
+
 header .container {
   position: relative;
   max-width: 1400px;
@@ -30,10 +35,18 @@ header .container {
   background-color: transparent;
   z-index: 0;
 }
+
+header h1 {
+  text-decoration: underline;
+  text-decoration-color: var(--error);
+  text-underline-offset: 4px;
+}
+
 header a {
   color: #333;
   text-decoration: none;
 }
+
 .pages {
   max-width: 1400px;
   padding: 20px;
@@ -319,6 +332,13 @@ nav {
   font-weight: bold;
 }
 
+.tabs .active::after {
+  content: '';
+  display: block;
+  border-bottom: 3px solid var(--error);
+  margin-bottom: -5px;
+}
+
 .account .username {
   width: auto;
   border: none;
@@ -347,19 +367,21 @@ nav {
   width: 75px;
   text-align: center;
   color: var(--primary);
-  border-radius: 4px;
+  font-weight: 600;
+  letter-spacing: .4px;
+  border-radius: 7px;
 }
 
 .account a.login {
   margin-left: 12px;
-  padding: 7px 0;
+  padding: 8px 0;
   color: #fff;
   background-color: var(--primary);
 }
 
 .account a.signup {
   padding: 5px 0;
-  border: 2px solid var(--primary);
+  border: 3px solid var(--primary);
 }
 
 .account button {

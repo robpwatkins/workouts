@@ -11,6 +11,8 @@ const authRoutes = require('./routes/auth');
 const User = require('./models/userModel');
 const { getAllSeries } = require('./plugins/googleDrive');
 
+require('dotenv').config();
+
 require('./config/passport')(passport);
 
 const app = express();
@@ -18,7 +20,10 @@ const app = express();
 const port = process.env.PORT || 4000;
 
 app.use(express.json());
-app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
+app.use(cors({
+  origin: ['http://localhost:3000', 'https://api.theserieschallenge.com'],
+  credentials: true
+}));
 
 app.use(session({
   secret: process.env.SECRET,
@@ -111,15 +116,11 @@ app.post('/logout', (req, res, next) => {
 app.get('/all-series', async (req, res) => {
   const allSeries = await getAllSeries('1YJw6UclwKyGjdwns9vgU3VrivderKfpM3FPKIRR6uVE', 'Series');
   res.json(allSeries);
-})
+});
+
+app.get('/ping', (req, res) => res.send('pong!!!'));
 
 app.use(express.static(path.join(__dirname, "./client/build")));
-app.get("*", (_, res) => {
-  res.sendFile(
-    path.join(__dirname, "./client/build/index.html"),
-    (err) => res.status(500).send(err)
-  );
-});
 
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
