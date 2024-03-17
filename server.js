@@ -116,7 +116,7 @@ app.get('/all-series', async (req, res) => {
   res.json(allSeries);
 });
 
-app.get('/ping', (req, res) => res.send('pong!'));
+app.get('/ping', (req, res) => res.send('pong!!!'));
 
 // app.use(express.static(path.join(__dirname, "./client/build")));
 // app.get("*", (_, res) => {
