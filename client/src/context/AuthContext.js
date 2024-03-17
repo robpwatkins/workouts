@@ -33,7 +33,6 @@ export const AuthContextProvider = ({ children }) => {
           credentials: 'include'
         });
         console.log('response: ', response);
-        console.log('json: ', await response.json());
         const { user, error } = await response.json();
 
         if (error) return dispatch({ type: 'ERROR', payload: error });
