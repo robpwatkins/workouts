@@ -11,6 +11,8 @@ const authRoutes = require('./routes/auth');
 const User = require('./models/userModel');
 const { getAllSeries } = require('./plugins/googleDrive');
 
+require('dotenv').config();
+
 require('./config/passport')(passport);
 
 const app = express();

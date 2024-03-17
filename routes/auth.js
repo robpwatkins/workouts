@@ -1,8 +1,9 @@
 const express = require('express');
 const passport = require('passport');
 const User = require('../models/userModel');
-
 const router = express.Router();
+
+require('dotenv').config();
 
 router.post('/signup', async (req, res, next) => {
   const { email, password } = req.body;
