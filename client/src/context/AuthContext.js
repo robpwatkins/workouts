@@ -29,7 +29,7 @@ export const AuthContextProvider = ({ children }) => {
       dispatch({ type: 'LOADED', payload: false });
 
       try {
-        const response = await fetch('https://mlb-fantasy-moni7.ondigitalocean.app/user', {
+        const response = await fetch('https://api.theserieschallenge.com/user', {
           credentials: 'include'
         });
         console.log('response: ', response);

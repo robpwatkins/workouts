@@ -18,7 +18,7 @@ const Login = () => {
   };
   
   const handleClick = (buttonType) => {
-    window.open(`https://mlb-fantasy-moni7.ondigitalocean.app/auth/${buttonType}`, '_self');
+    window.open(`https://api.theserieschallenge.com/auth/${buttonType}`, '_self');
     // window.open(`/auth/${buttonType}`, '_self');
   }
 
