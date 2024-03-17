@@ -17,7 +17,9 @@ const Home = () => {
 
     const fetchPicks = async () => {
       const response = await fetch('https://api.theserieschallenge.com/api/picks', { credentials: 'include' });
+      console.log('response: ', response);
       const json = await response.json();
+      console.log('json: ', json);
       if (response.ok) dispatch({ type: 'SET_PICKS', payload: json });
     };
 
