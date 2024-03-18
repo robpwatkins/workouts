@@ -41,8 +41,10 @@ header .container {
 header h1 {
   font-family: "Playball", cursive;
   font-size: 45px;
+  color: var(--primary);
+  text-shadow: -1px 1px 0px #bbb;
   text-decoration: underline;
-  text-decoration-thickness: 3px;
+  text-decoration-thickness: 4px;
   text-decoration-color: var(--error);
   text-underline-offset: 5px;
 }
@@ -340,8 +342,8 @@ nav {
 .tabs .active::after {
   content: '';
   display: block;
-  border-bottom: 3px solid var(--error);
-  margin-bottom: -5px;
+  border-bottom: 4px solid var(--error);
+  margin: 1px 0 -5px;
 }
 
 .account .username {
