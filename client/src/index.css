@@ -23,13 +23,13 @@ body {
 }
 
 header {
-  background: #fff;
+  /* background-color: #f6f0f0; */
+  background-color: #faf3f3;
 }
 
 header .container {
   position: relative;
   max-width: 1400px;
-  height: 100px;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -39,11 +39,11 @@ header .container {
 }
 
 header h1 {
+  margin: 1.5rem;
   font-family: "Playball", cursive;
   font-size: 45px;
   word-spacing: -4px;
   color: var(--primary);
-  text-shadow: -1px 1px 0px #bbb;
   text-decoration: underline;
   text-decoration-thickness: 4px;
   text-decoration-color: var(--error);
@@ -59,6 +59,7 @@ header a {
   max-width: 1400px;
   padding: 20px;
   margin: 0 auto;
+  background-color: #ece0e0;
 }
 
 /* homepage */
@@ -96,7 +97,7 @@ header a {
   width: 100%;
   margin: 10px 0;
   text-align: center;
-  background-color: #fff;
+  background-color: #faf3f3;
   border-right: 1px solid #ddd;
   border-left: 1px solid #ddd;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.10);
@@ -193,7 +194,7 @@ header a {
 }
 
 .opaque {
-  opacity: .5;
+  opacity: .6;
   cursor: unset;
 }
 
@@ -382,14 +383,14 @@ nav {
 
 .account a.login {
   margin-left: 12px;
-  padding: 8px 0;
+  padding: 7.5px 0;
   color: #fff;
   background-color: var(--primary);
 }
 
 .account a.signup {
   padding: 5px 0;
-  border: 3px solid var(--primary);
+  border: 2.5px solid var(--primary);
 }
 
 .account button {
