@@ -17,7 +17,9 @@ function App() {
     <div className="App">
       {loaded && (
         <BrowserRouter>
-          <Navbar />
+          <header>
+            <Navbar />
+          </header>
           <div className="pages">
             <Routes>
               <Route
