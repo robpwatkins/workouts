@@ -12,14 +12,14 @@ const NavItemsMobile = ({ user, loaded, mobileNavOpen, setMobileNavOpen }) => {
           >
             <p className="home">Home</p>
           </NavLink>
-          {user && user.username_customized && (
+          {/* {user && user.username_customized && (
             <NavLink
               to="/standings" className={({ isActive }) => isActive ? 'active' : 'inactive'}
               onClick={() => setMobileNavOpen(!mobileNavOpen)}
             >
               <p className="standings">Standings</p>
             </NavLink>
-          )}
+          )} */}
           {user && user.admin && (
             <NavLink
               to="/admin" className={({ isActive }) => isActive ? 'active' : 'inactive'}

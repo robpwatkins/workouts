@@ -114,7 +114,9 @@ app.post('/logout', (req, res, next) => {
 });
 
 app.get('/all-series', async (req, res) => {
-  const allSeries = await getAllSeries('1YJw6UclwKyGjdwns9vgU3VrivderKfpM3FPKIRR6uVE', 'Series');
+  // const sheetId = '1YJw6UclwKyGjdwns9vgU3VrivderKfpM3FPKIRR6uVE';
+  const sheetId = '1oarQfQLPKH7N8hHp5s1D3Oy5j9LM1SeNELrj_7I1E94';
+  const allSeries = await getAllSeries(sheetId, 'Series');
   res.json(allSeries);
 });
 
