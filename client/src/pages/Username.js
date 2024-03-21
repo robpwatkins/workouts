@@ -60,7 +60,7 @@ const Username = () => {
 
     try {
       const response = await fetch('/user/update', {
-        method: 'POST',
+        method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
         body: JSON.stringify({ username })
@@ -86,7 +86,9 @@ const Username = () => {
         value={username}
       />
       {error && <div className="error">{error}</div>}
-      <button disabled={checkingUsername || !!error}>Continue</button>
+      <button disabled={checkingUsername || !!error}>
+        {checkingUsername ? 'Checking' : 'Continue'}
+      </button>
     </form>
   )
 };

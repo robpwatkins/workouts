@@ -20,26 +20,40 @@ const Team = ({ seriesId, team, type, win, record, logo, primary, successfulPick
   const handleClick = async (e) => {
     // if (!user || win) return;
 
-    const [series_id, pick] = (e.target.matches('img') ? e.target.parentElement : e.target).classList;
-
-    const currentPick = picks.find(pick => pick.series_id === series_id);
-
-    const options = {
-      method: currentPick ? 'PATCH' : 'POST',
+    const pick = (e.target.matches('img') ? e.target.parentElement : e.target).classList[1];
+    const currentSeriesPick = picks.find(pick => pick.series_id === seriesId);
+    const url = `/api/picks${currentSeriesPick ? `/${currentSeriesPick._id}` : ''}`;
+    const response = await fetch(url, {
+      method: currentSeriesPick ? 'PATCH' : 'POST',
       credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ pick, ...!currentPick && { series_id } })
-    }
+      body: JSON.stringify({ pick, ...!currentSeriesPick && { series_id: seriesId } })
+    });
 
-    const url = `/api/picks${currentPick ? `/${currentPick._id}` : ''}`;
+    if (response.ok) {
+      const json = await response.json();
 
-    const response = await fetch(url, options);
-    const json = await response.json();
+      if (!currentSeriesPick) {
+        const [seriesGroupDates] = seriesId.split(':');
+        const currentSeriesGroupPick = picks
+          .find(pick => pick.series_id.includes(seriesGroupDates));
+        
+        if (currentSeriesGroupPick) {
+          const response = await fetch(`/api/picks/${currentSeriesGroupPick._id}`, {
+            method: 'DELETE',
+            credentials: 'include',
+          });
+    
+          if (!response.ok) return;
 
-    if (!currentPick) dispatch({ type: 'CREATE_PICK', payload: json });
-    else {
-      const updatedPicks = picks.map(pick => pick._id === json._id ? json : pick);
-      dispatch({ type: 'SET_PICKS', payload: updatedPicks });
+          dispatch({ type: 'DELETE_PICK', payload: currentSeriesGroupPick });
+        }
+
+        dispatch({ type: 'CREATE_PICK', payload: json });
+      } else {
+        const updatedPicks = picks.map(pick => pick._id === json._id ? json : pick);
+        dispatch({ type: 'SET_PICKS', payload: updatedPicks });
+      }
     }
   };
 

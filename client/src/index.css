@@ -460,6 +460,10 @@ form.username .skip {
   background-color: unset;
 }
 
+form.username button:disabled {
+  opacity: .6;
+}
+
 form .account {
   font-size: 15px;
   margin-top: 20px;

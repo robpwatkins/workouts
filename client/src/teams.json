@@ -347,8 +347,8 @@
   {
     "name": "Colorado Rockies",
     "abbreviation": "COL",
-    "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/318.svg",
-    "logo1": "https://www.mlbstatic.com/team-logos/team-cap-on-light/115.svg",
+    "logo": "https://www.mlbstatic.com/team-logos/team-cap-on-light/115.svg",
+    "logo1": "https://sports.cbsimg.net/fly/images/mlb/logos/team/318.svg",
     "colors": {
       "primary": "#33006f",
       "secondary": "#000000",
