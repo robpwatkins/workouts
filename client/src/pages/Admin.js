@@ -5,14 +5,14 @@ const Admin = () => {
   const [showDates, setShowDates] = useState(false);
   const [user, setUser] = useState('');
   const [showUser, setShowUser] = useState(false);
+  const serverUrl = process.env.REACT_APP_SERVER_URL;
 
   const updateUserPicks = async (e) => {
     e.preventDefault();
 
-    const seriesResponse = await fetch('/all-series');
+    const seriesResponse = await fetch(`${serverUrl}/all-series`);
     const allSeries = await seriesResponse.json();
-
-    const picksResponse = await fetch('/api/picks/all', { credentials: 'include' });
+    const picksResponse = await fetch(`${serverUrl}/api/picks/all`, { credentials: 'include' });
     const picks = await picksResponse.json();
 
     for await (const { dates: seriesDates, series: seriesGroup } of allSeries) {
@@ -30,7 +30,7 @@ const Admin = () => {
             const successful = pick === winner;
             
             try {
-              const options = {
+              await fetch(`${serverUrl}/api/picks/${_id}`, {
                 method: 'PATCH',
                 credentials: 'include',
                 headers: { 'Content-Type': 'application/json' },
@@ -38,9 +38,7 @@ const Admin = () => {
                   successful: pick === winner,
                   finalized: true
                 })
-              };
-    
-              await fetch(`/api/picks/${_id}`, options);
+              });
   
               successful ? wins++ : losses++;
 
@@ -60,10 +58,9 @@ const Admin = () => {
   const updateUserRecords = async (e) => {
     e.preventDefault();
 
-    const picksResponse = await fetch('/api/picks/all', { credentials: 'include' });
+    const picksResponse = await fetch(`${serverUrl}/api/picks/all`, { credentials: 'include' });
     const picks = await picksResponse.json();
-
-    const usersResponse = await fetch('/users', { credentials: 'include' });
+    const usersResponse = await fetch(`${serverUrl}/users`, { credentials: 'include' });
     const users = await usersResponse.json();
 
     for await (const { _id } of users) {
@@ -76,13 +73,12 @@ const Admin = () => {
         pick.successful ? wins++ : losses++;
   
         if ((wins + losses) === userPicks.length) {
-          const userResponse = await fetch(`/user/update/${_id}`, {
+          const userResponse = await fetch(`${serverUrl}/user/update/${_id}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             credentials: 'include',
             body: JSON.stringify({ total_wins: wins, total_losses: losses })
           });
-  
           const json = await userResponse.json();
   
           if (userResponse.ok) {

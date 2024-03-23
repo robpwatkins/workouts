@@ -7,26 +7,24 @@ const Home = () => {
   const { user } = useAuthContext();
   const { dispatch } = usePicksContext();
   const [allSeries, setAllSeries] = useState([]);
+  const serverUrl = process.env.REACT_APP_SERVER_URL;
 
   useEffect(() => {
     const fetchAllSeries = async () => {
-      const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/all-series`);
+      const response = await fetch(`${serverUrl}/all-series`);
       const json = await response.json();
       setAllSeries(json.slice(0, 6));
     };
 
     const fetchPicks = async () => {
-      const response = await fetch(
-        `${process.env.REACT_APP_SERVER_URL}/api/picks`,
-        { credentials: 'include' }
-      );
+      const response = await fetch(`${serverUrl}/api/picks`, { credentials: 'include' });
       const json = await response.json();
       if (response.ok) dispatch({ type: 'SET_PICKS', payload: json });
     };
 
     fetchAllSeries();
     if (user) fetchPicks();
-  }, [dispatch, user]);
+  }, [dispatch, user, serverUrl]);
 
   return (
     <div className="home">      

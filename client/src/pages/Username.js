@@ -9,6 +9,7 @@ const Username = () => {
   const [error, setError] = useState('');
   const [checkingUsername, setCheckingUsername] = useState('');
   const { dispatch } = useAuthContext();
+  const serverUrl = process.env.REACT_APP_SERVER_URL;
 
   const navigate = useNavigate();
 
@@ -31,7 +32,7 @@ const Username = () => {
       return false;
     }
   
-    const response = await fetch(`/username-check?username=${value}`);
+    const response = await fetch(`${serverUrl}/username-check?username=${value}`);
     const exists = await response.json();
   
     if (exists) {
@@ -59,7 +60,7 @@ const Username = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('/user/update', {
+      const response = await fetch(`${serverUrl}/user/update`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',

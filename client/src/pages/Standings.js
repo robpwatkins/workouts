@@ -6,30 +6,29 @@ const Standings = () => {
   const [users, setUsers] = useState([]);
   const [picks, setPicks] = useState([]);
   const [finalizedSeries, setFinalizedSeries] = useState([]);
+  const serverUrl = process.env.REACT_APP_SERVER_URL;
 
   useEffect(() => {
     const fetchUsers = async () => {
-      const response = await fetch('/users', { credentials: 'include' });
+      const response = await fetch(`${serverUrl}/users`, { credentials: 'include' });
       const users = await response.json();
       const sortedUsers = users.sort((a, b) => a.total_wins + b.total_wins);
       setUsers(sortedUsers);
     }
 
     const fetchPicks = async () => {
-      const response = await fetch('/api/picks/all', {
-        credentials: 'include'
-      });
+      const response = await fetch(`${serverUrl}/api/picks/all`, { credentials: 'include' });
       const json = await response.json();
       if (response.ok) setPicks(json);
     };
 
     fetchUsers();
     fetchPicks();
-  }, []);
+  }, [serverUrl]);
 
   useEffect(() => {
     const getFinalizedSeries = async () => {
-      const response = await fetch('/all-series');
+      const response = await fetch(`${serverUrl}/all-series`);
       const json = await response.json();
 
       const _finalizedSeries = json.filter(seriesGroup => {
@@ -43,7 +42,7 @@ const Standings = () => {
     };
 
     getFinalizedSeries();
-  }, [picks]);
+  }, [picks, serverUrl]);
 
   return (
     <div className="standings">

@@ -14,7 +14,7 @@ export const useSignup = () => {
     setError(null);
     
     try {
-      const response = await fetch('/auth/signup', {
+      const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/auth/signup`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',

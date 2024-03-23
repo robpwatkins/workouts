@@ -2,23 +2,22 @@ import { useEffect, useState } from 'react';
 
 const Users = () => {
   const [users, setUsers] = useState([]);
+  const serverUrl = process.env.REACT_APP_SERVER_URL;
 
   useEffect(() => {
     const getUsers = async () => {
-      const response = await fetch('/users', { credentials: 'include' });
+      const response = await fetch(`${serverUrl}/users`, { credentials: 'include' });
       const users = await response.json();
       
       setUsers(users);
     }
 
     getUsers();
-  }, []);
+  }, [serverUrl]);
 
   const handleClick = async (e) => {
     const { id: username } = e.target;
-    await fetch(`/user/delete/${username}`, {
-      method: 'DELETE',
-    });
+    await fetch(`${serverUrl}/user/delete/${username}`, { method: 'DELETE' });
     let tempUsers = users.slice();
     const userIdx = tempUsers.findIndex(user => user.username === username);
     tempUsers.splice(userIdx, 1);

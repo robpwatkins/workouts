@@ -6,6 +6,7 @@ const Team = ({ seriesId, team, type, win, record, logo, primary, successfulPick
   // const { user } = useAuthContext();
   const { picks, dispatch } = usePicksContext();
   const [hovered, setHovered] = useState(false);
+  const serverUrl = process.env.REACT_APP_SERVER_URL;
 
   const handleMouseEnter = () => {
     if (concluded) return;
@@ -34,9 +35,9 @@ const Team = ({ seriesId, team, type, win, record, logo, primary, successfulPick
         .find(pick => pick.series_id.includes(seriesGroupDates));
       
       if (currentSeriesGroupPick) {
-        const response = await fetch(`/api/picks/${currentSeriesGroupPick._id}`, {
+        const response = await fetch(`${serverUrl}/api/picks/${currentSeriesGroupPick._id}`, {
           method: 'DELETE',
-          credentials: 'include',
+          credentials: 'include'
         });
   
         if (!response.ok) return;
@@ -45,19 +46,17 @@ const Team = ({ seriesId, team, type, win, record, logo, primary, successfulPick
       }
     }
 
-    const url = `/api/picks${currentSeriesPick ? `/${currentSeriesPick._id}` : ''}`;
-    const response = await fetch(url, {
-      method: currentSeriesPick ? 'PATCH' : 'POST',
-      credentials: 'include',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ pick, ...!currentSeriesPick && { series_id: seriesId } })
-    });
+    const response = await fetch(
+      `${serverUrl}/api/picks${currentSeriesPick ? `/${currentSeriesPick._id}` : ''}`,
+      {
+        method: currentSeriesPick ? 'PATCH' : 'POST',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ pick, ...!currentSeriesPick && { series_id: seriesId } })
+      }
+    );
 
-    if (response.ok) {
-      const json = await response.json();
-
-      dispatch({ type: 'CREATE_PICK', payload: json });
-    }
+    if (response.ok) dispatch({ type: 'CREATE_PICK', payload: await response.json() });
   };
 
   const { pick } = (picks && picks.length) ? (picks.find(pick => pick.series_id === seriesId) || {}) : {};
