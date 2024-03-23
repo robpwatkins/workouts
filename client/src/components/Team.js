@@ -1,5 +1,6 @@
 import { useState } from 'react';
 // import { useAuthContext } from '../hooks/useAuthContext';
+import { isMobile } from 'react-device-detect';
 import { usePicksContext } from '../hooks/usePicksContexts';
 
 const Team = ({ seriesId, team, type, win, record, logo, primary, successfulPick, opponentPrimary, concluded }) => {
@@ -9,7 +10,7 @@ const Team = ({ seriesId, team, type, win, record, logo, primary, successfulPick
   const serverUrl = process.env.REACT_APP_SERVER_URL;
 
   const handleMouseEnter = () => {
-    if (concluded) return;
+    if (concluded || isMobile) return;
     setHovered(true);
   };
 

@@ -27,7 +27,7 @@ const Username = () => {
     const isValid = /^(?!.*--)(?!-)(?!.*-$)[0-9A-Za-z-]*$/.test(value);
 
     if (!isValid) {
-      setError('Invalid username — see above guidelines');
+      setError('Invalid nickname — see above guidelines');
       setCheckingUsername(false);
       return false;
     }
@@ -36,7 +36,7 @@ const Username = () => {
     const exists = await response.json();
   
     if (exists) {
-      setError('Username exists');
+      setError('Nickname is taken');
       setCheckingUsername(false);
       return false;
     }
@@ -79,8 +79,8 @@ const Username = () => {
 
   return (
     <form className="username" onSubmit={e => handleSubmit(e)}>
-      <h2>Create a username</h2>
-      <p>Username may contain letters, numbers and single hyphens, and may not begin or end with a hyphen.</p>
+      <h2>Create a nickname</h2>
+      <p>Your nickname may contain letters, numbers and single hyphens, and may not begin or end with a hyphen.</p>
       <input
         type="username"
         onChange={e => handleChange(e)}

@@ -161,6 +161,7 @@ header a {
   height: 84px;
   width: 100%;
   font-size: 17px;
+  color: #000;
   border: none;
   background-color: unset;
 }
@@ -723,18 +724,33 @@ td {
 
   header .fa-bars {
     display: block;
-    margin-left: 37px;
+    margin-left: 23px;
     font-size: calc(5px + 4vw);
     color: var(--primary);
   }
 
   header .title {
-    flex: 2;
+    flex: 4;
+    text-align: center;
     z-index: 2;
+  }
+
+  .title h1 {
+    margin: 1.25rem 0;
+    letter-spacing: normal;
+    font-weight: 400;
   }
 
   header .account {
     flex: 1;
+  }
+
+  .account a.login {
+    width: unset;
+    margin-right: 20px;
+    margin-left: 0;
+    padding: 7.5px;
+    font-size: 13px;
   }
 
   header .nav-items.mobile {
@@ -774,6 +790,10 @@ td {
     justify-content: flex-end;
   }
 
+  header .account button {
+    width: unset;
+  }
+
   header .account .signup {
     display: none;
   }
@@ -784,7 +804,7 @@ td {
 
   header .account .login,
   header .account .logout {
-    margin-right: 37px;
+    margin-right: 20px;
   }
 
   header .account .logout {
