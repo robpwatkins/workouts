@@ -50,10 +50,17 @@ const deletePick = async (req, res) => {
   res.status(200).json(pick);
 };
 
+const deleteAllPicks = async (req, res) => {
+  const picks = await Pick.find({});
+
+  console.log('picks: ', picks);
+};
+
 module.exports = {
   getPicks,
   getPick,
   createPick,
   updatePick,
-  deletePick
+  deletePick,
+  deleteAllPicks
 };

@@ -17,5 +17,6 @@ router.get('/:id', ensureAuth, getPick);
 router.post('/', ensureAuth, createPick);
 router.patch('/:id', ensureAuth, updatePick);
 router.delete('/:id', ensureAuth, deletePick);
+router.delete('/delete-all', ensureAuth, deletePick);
 
 module.exports = router;

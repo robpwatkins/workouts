@@ -29,6 +29,9 @@ const Team = ({ seriesId, team, type, win, record, logo, primary, successfulPick
 
     const pick = e.currentTarget.classList[1];
     const currentSeriesPick = picks.find(pick => pick.series_id === seriesId);
+    const currentTeamPicks = picks.filter(pick => pick.pick === team);
+
+    if (currentTeamPicks.length === 2) return alert(`You've already picked ${team} twice!`);
 
     if (!currentSeriesPick) {
       const [seriesGroupDates] = seriesId.split(':');
