@@ -21,7 +21,7 @@ const port = process.env.PORT || 4000;
 
 app.use(express.json());
 app.use(cors({
-  origin: ['http://localhost:3000', 'https://api.theserieschallenge.com'],
+  origin: ['http://localhost:3000', 'https://theserieschallenge.com'],
   credentials: true
 }));
 
