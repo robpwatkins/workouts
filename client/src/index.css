@@ -163,6 +163,9 @@ header a {
   font-size: 17px;
   border: none;
   background-color: unset;
+}
+
+.series-group button.in-play {
   cursor: pointer;
 }
 

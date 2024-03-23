@@ -19,7 +19,6 @@ const Login = () => {
   
   const handleClick = (buttonType) => {
     window.open(`${process.env.REACT_APP_SERVER_URL || ''}/auth/${buttonType}`, '_self');
-    // window.open(`/auth/${buttonType}`, '_self');
   }
 
   return (

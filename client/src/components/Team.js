@@ -2,13 +2,13 @@ import { useState } from 'react';
 // import { useAuthContext } from '../hooks/useAuthContext';
 import { usePicksContext } from '../hooks/usePicksContexts';
 
-const Team = ({ seriesId, team, type, win, record, logo, primary, successfulPick, opponentPrimary }) => {
+const Team = ({ seriesId, team, type, win, record, logo, primary, successfulPick, opponentPrimary, concluded }) => {
   // const { user } = useAuthContext();
   const { picks, dispatch } = usePicksContext();
   const [hovered, setHovered] = useState(false);
 
   const handleMouseEnter = () => {
-    // if (win) return;
+    if (concluded) return;
     setHovered(true);
   };
 
@@ -18,10 +18,33 @@ const Team = ({ seriesId, team, type, win, record, logo, primary, successfulPick
   };
 
   const handleClick = async (e) => {
-    // if (!user || win) return;
+    // if (!user) {
+    //   const confirmation = window.confirm('You need to be logged in to make picks!\nClick OK to log in / sign up.');
+    //   return confirmation ? window.location.href = '/login' : null;
+    // }
 
-    const pick = (e.target.matches('img') ? e.target.parentElement : e.target).classList[1];
+    if (concluded) return;
+
+    const pick = e.currentTarget.classList[1];
     const currentSeriesPick = picks.find(pick => pick.series_id === seriesId);
+
+    if (!currentSeriesPick) {
+      const [seriesGroupDates] = seriesId.split(':');
+      const currentSeriesGroupPick = picks
+        .find(pick => pick.series_id.includes(seriesGroupDates));
+      
+      if (currentSeriesGroupPick) {
+        const response = await fetch(`/api/picks/${currentSeriesGroupPick._id}`, {
+          method: 'DELETE',
+          credentials: 'include',
+        });
+  
+        if (!response.ok) return;
+
+        dispatch({ type: 'DELETE_PICK', payload: currentSeriesGroupPick });
+      }
+    }
+
     const url = `/api/picks${currentSeriesPick ? `/${currentSeriesPick._id}` : ''}`;
     const response = await fetch(url, {
       method: currentSeriesPick ? 'PATCH' : 'POST',
@@ -33,27 +56,7 @@ const Team = ({ seriesId, team, type, win, record, logo, primary, successfulPick
     if (response.ok) {
       const json = await response.json();
 
-      if (!currentSeriesPick) {
-        const [seriesGroupDates] = seriesId.split(':');
-        const currentSeriesGroupPick = picks
-          .find(pick => pick.series_id.includes(seriesGroupDates));
-        
-        if (currentSeriesGroupPick) {
-          const response = await fetch(`/api/picks/${currentSeriesGroupPick._id}`, {
-            method: 'DELETE',
-            credentials: 'include',
-          });
-    
-          if (!response.ok) return;
-
-          dispatch({ type: 'DELETE_PICK', payload: currentSeriesGroupPick });
-        }
-
-        dispatch({ type: 'CREATE_PICK', payload: json });
-      } else {
-        const updatedPicks = picks.map(pick => pick._id === json._id ? json : pick);
-        dispatch({ type: 'SET_PICKS', payload: updatedPicks });
-      }
+      dispatch({ type: 'CREATE_PICK', payload: json });
     }
   };
 
@@ -61,10 +64,11 @@ const Team = ({ seriesId, team, type, win, record, logo, primary, successfulPick
 
   return (
     <button 
-      className={`${seriesId} ${team} ${type} ${win ? " winner" : ""}`}
+      className={`${seriesId} ${team} ${type}${!concluded ? " in-play" : ""} ${win ? " winner" : ""}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onClick={handleClick}
+      style={((pick === team && !concluded) || hovered || successfulPick) ? { backgroundColor: opponentPrimary ? `${opponentPrimary}55` : `${primary}55` } : {}}
     >
       {type === "visitor" && <img src={logo} alt={`${team} logo`} />}
       <div className="team-and-record">
@@ -73,12 +77,12 @@ const Team = ({ seriesId, team, type, win, record, logo, primary, successfulPick
       </div>
       {type === "home" && <img src={logo} alt={`${team} logo`} />}
       <div
-        className={`bar top${successfulPick ? " d-block" : " d-none"}`}
+        className={`bar top ${type}${pick === team || hovered || successfulPick ? " d-block" : ""}`}
         style={{ backgroundColor: opponentPrimary || primary }}
       >
       </div>
       <div
-        className={`bar${type === "visitor" ? " left" : " right"}${successfulPick ? " d-block" : " d-none"}`}
+        className={`bar ${type}${type === "visitor" ? " left" : " right"}${pick === team || hovered || successfulPick ? " d-block" : " d-none"}`}
         style={{ backgroundColor: opponentPrimary || primary }}
       >
       </div>

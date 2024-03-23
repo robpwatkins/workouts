@@ -25,7 +25,7 @@ const createPick = async (req, res) => {
     const newPick = await Pick.create({ series_id, pick, user_id });
     res.status(200).json(newPick);
   } catch (error) {
-    console.log('error: ', error);
+    console.log('error!: ', error);
     res.status(400).json({ error: error.message });
   }
 };

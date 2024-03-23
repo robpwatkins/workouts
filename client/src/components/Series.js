@@ -25,6 +25,7 @@ const Series = ({ seriesId, visitor, visitorWin, home, homeWin, record }) => {
         primary={visitorPrimary}
         successfulPick={successfulPick}
         opponentPrimary={(successfulPick && pick === home) ? homePrimary : null}
+        concluded={visitorWin || homeWin}
       />
       <span className="at">@</span>
       <Team
@@ -38,6 +39,7 @@ const Series = ({ seriesId, visitor, visitorWin, home, homeWin, record }) => {
         primary={homePrimary}
         successfulPick={successfulPick}
         opponentPrimary={(successfulPick && pick === visitor) ? visitorPrimary : null}
+        concluded={visitorWin || homeWin}
       />
     </div>
   )
