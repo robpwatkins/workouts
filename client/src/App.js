@@ -9,6 +9,7 @@ import Signup from './pages/Signup';
 import Username from './pages/Username';
 import Users from './pages/Users';
 import Admin from './pages/Admin';
+import Privacy from './pages/Privacy';
 
 function App() {
   const { user, loaded } = useAuthContext();
@@ -50,6 +51,7 @@ function App() {
                 path="/admin"
                 element={(user && user.admin) ? <Admin /> : <Navigate to="/" />}
               />
+              <Route path="/privacy" element={<Privacy />} />
             </Routes>
           </div>
         </BrowserRouter>
