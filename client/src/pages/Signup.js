@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useSignup } from '../hooks/useSignup';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebook } from '@fortawesome/free-brands-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faFacebook } from '@fortawesome/free-brands-svg-icons';
 
 const Signup = () => {
   const [email, setEmail] = useState('');
