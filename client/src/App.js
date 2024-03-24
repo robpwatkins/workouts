@@ -9,8 +9,6 @@ import Signup from './pages/Signup';
 import Username from './pages/Username';
 import Users from './pages/Users';
 import Admin from './pages/Admin';
-import Privacy from './pages/Privacy';
-import DeleteFacebookData from './pages/DeleteFacebookData';
 
 function App() {
   const { user, loaded } = useAuthContext();
@@ -39,8 +37,6 @@ function App() {
                 path="/admin"
                 element={(user && user.admin) ? <Admin /> : <Navigate to="/" />}
               />
-              <Route path="/privacy" element={<Privacy />} />
-              <Route path="/delete-facebook-data" element={<DeleteFacebookData />} />
             </Routes>
           </div>
         </BrowserRouter>

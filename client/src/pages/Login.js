@@ -49,10 +49,10 @@ const Login = () => {
           <span className="social-icon google-icon "></span>
           Continue with Google
         </button>
-        <button className="social-button fbook-button" onClick={() => handleClick('facebook')}>
+        {/* <button className="social-button fbook-button" onClick={() => handleClick('facebook')}>
           <FontAwesomeIcon className="social-icon fbook-icon" icon={faFacebook} />
           Continue with Facebook
-        </button>
+        </button> */}
       </form>
     </>
   );

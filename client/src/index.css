@@ -497,7 +497,7 @@ form.social-login {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  height: 115px;
+  height: 40px;
 }
 
 .social-button {
