@@ -24,30 +24,17 @@ function App() {
           </header>
           <div className="pages">
             <Routes>
-              <Route
-                path="/"
+              <Route path="/"
                 element={(user && !user.username_customized) ? <Username /> : <Home />}
               />
               <Route
                 path="/standings"
                 element={user ? (!user.username_customized ? <Username /> : <Standings />) : <Navigate to="/" />}
               />
-              <Route
-                path="/login"
-                element={!user ? <Login /> : <Navigate to="/" />}
-              />
-              <Route
-                path="/signup"
-                element={!user ? <Signup /> : <Navigate to="/" />}
-              />
-              <Route
-                path="/username"
-                element={user ?  <Username /> : <Navigate to="/" />}
-              />
-              <Route
-                path="/users"
-                element={<Users />}
-              />
+              <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />
+              <Route path="/signup" element={!user ? <Signup /> : <Navigate to="/" />} />
+              <Route path="/username" element={user ?  <Username /> : <Navigate to="/" />} />
+              <Route path="/users" element={<Users />} />
               <Route
                 path="/admin"
                 element={(user && user.admin) ? <Admin /> : <Navigate to="/" />}
