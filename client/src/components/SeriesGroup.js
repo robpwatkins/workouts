@@ -45,7 +45,7 @@ const SeriesGroup = ({ dates, series }) => {
       </div>
       {series.map(singleSeries => {
         const { seriesId, seriesInfo } = singleSeries;
-        const { visitor, visitorWin, home, homeWin, record } = seriesInfo;
+        const { visitor, visitorWin, home, homeWin, record, gameCount } = seriesInfo;
 
         return (
           <Series
@@ -56,6 +56,7 @@ const SeriesGroup = ({ dates, series }) => {
             home={home}
             homeWin={homeWin}
             record={record}
+            gameCount={gameCount}
           />
         )
       })}

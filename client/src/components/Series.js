@@ -2,7 +2,7 @@ import Team from './Team';
 import { usePicksContext } from '../hooks/usePicksContexts';
 import teams from '../teams.json';
 
-const Series = ({ seriesId, visitor, visitorWin, home, homeWin, record }) => {
+const Series = ({ seriesId, visitor, visitorWin, home, homeWin, record, gameCount }) => {
   const { picks } = usePicksContext();
 
   const { pick } = (picks && picks.length) ? (picks.find(pick => pick.series_id === seriesId) || {}) : {};
@@ -14,6 +14,7 @@ const Series = ({ seriesId, visitor, visitorWin, home, homeWin, record }) => {
 
   return (
     <div className={`series-card${(visitorWin || homeWin) ? " opaque" : ''}`}>
+      <p className="game-count">{gameCount === '4' ? `- ${gameCount} games -` : ''}</p>
       <Team
         key={`${seriesId}-${visitor}`}
         seriesId={seriesId}

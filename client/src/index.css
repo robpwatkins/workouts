@@ -117,6 +117,13 @@ header a {
   box-shadow: 2px 2px 5px rgba(0,0,0,0.33);
 }
 
+.series-card .game-count {
+  position: absolute;
+  top: 50%;
+  font-size: 14px;
+  font-weight: bold;
+}
+
 .home .series-card img {
   width: 50px;
 }
@@ -819,12 +826,21 @@ td {
   form.login,
   form.username,
   form.admin {
-    margin: 0;
-    border-radius: 0;
+    max-width: 335px;
+    margin: 0 auto;
   }
 
   .social-heading::before,
   .social-heading::after {
-    width: 110px;
+    width: 100px;
+  }
+}
+
+@media (max-width: 374px) {
+  form.signup,
+  form.login,
+  form.username,
+  form.admin {
+    border-radius: 0;
   }
 }

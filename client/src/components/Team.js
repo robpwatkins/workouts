@@ -70,6 +70,7 @@ const Team = ({ seriesId, team, type, win, record, logo, primary, successfulPick
       className={`${seriesId} ${team} ${type}${!concluded ? " in-play" : ""} ${win ? " winner" : ""}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      onTouchEnd={() => setHovered(false)}
       onClick={handleClick}
       style={((pick === team && !concluded) || hovered || successfulPick) ? { backgroundColor: opponentPrimary ? `${opponentPrimary}55` : `${primary}55` } : {}}
     >

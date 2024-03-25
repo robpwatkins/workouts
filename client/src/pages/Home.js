@@ -26,6 +26,8 @@ const Home = () => {
     if (user) fetchPicks();
   }, [dispatch, user, serverUrl]);
 
+  console.log('allSeries: ', allSeries);
+
   return (
     <div className="home">      
       {allSeries.length ? allSeries.map(seriesGroup => {
