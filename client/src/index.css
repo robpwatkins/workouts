@@ -837,7 +837,7 @@ td {
   }
 }
 
-@media (max-width: 374px) {
+@media (max-width: 375px) {
   form.signup,
   form.login,
   form.username,
