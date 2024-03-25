@@ -76,7 +76,11 @@ const Team = ({ seriesId, team, type, win, record, logo, primary, successfulPick
     >
       {type === "visitor" && <img src={logo} alt={`${team} logo`} />}
       <div className="team-and-record">
-        <p className="team">{team}</p>
+        <p className="team">
+          {(team.length < 3 && type === 'visitor') ? <span className="spacer">A</span> : ''}
+          {team}
+          {(team.length < 3 && type === 'home') ? <span className="spacer">A</span> : ''}
+        </p>
         <h5 className={`${win ? "record d-block" : "d-none"}`}>{record}</h5>
       </div>
       {type === "home" && <img src={logo} alt={`${team} logo`} />}

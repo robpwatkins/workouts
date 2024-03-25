@@ -250,6 +250,10 @@ header a {
   margin: 0;
 }
 
+.team .spacer {
+  opacity: 0;
+}
+
 .series-group .record {
   position: absolute;
   width: 100%;
