@@ -14,7 +14,7 @@ const Series = ({ seriesId, visitor, visitorWin, home, homeWin, record, gameCoun
 
   return (
     <div className={`series-card${(visitorWin || homeWin) ? " opaque" : ''}`}>
-      <p className="game-count">{gameCount === '4' ? `- ${gameCount} games -` : ''}</p>
+      <p className="game-count">{gameCount === '4' ? `${gameCount} games` : ''}</p>
       <Team
         key={`${seriesId}-${visitor}`}
         seriesId={seriesId}

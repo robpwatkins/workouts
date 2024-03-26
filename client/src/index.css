@@ -120,9 +120,14 @@ header a {
 
 .series-card .game-count {
   position: absolute;
-  top: 50%;
-  font-size: 14px;
-  font-style: italic;
+  top: 69%;
+  margin: 0;
+  padding: 0px 4px 2px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  background-color: #000;
+  border-radius: 3px;
 }
 
 .home .series-card img {
