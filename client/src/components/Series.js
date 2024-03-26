@@ -14,7 +14,6 @@ const Series = ({ seriesId, visitor, visitorWin, home, homeWin, record, gameCoun
 
   return (
     <div className={`series-card${(visitorWin || homeWin) ? " opaque" : ''}`}>
-      <p className="game-count">{gameCount === '4' ? `${gameCount} games` : ''}</p>
       <Team
         key={`${seriesId}-${visitor}`}
         seriesId={seriesId}
@@ -42,6 +41,7 @@ const Series = ({ seriesId, visitor, visitorWin, home, homeWin, record, gameCoun
         opponentPrimary={(successfulPick && pick === visitor) ? visitorPrimary : null}
         concluded={visitorWin || homeWin}
       />
+      {gameCount === '4' && <p className="game-count">{gameCount} games</p>}
     </div>
   )
 };
