@@ -2,7 +2,7 @@ import Team from './Team';
 import { usePicksContext } from '../hooks/usePicksContexts';
 import teams from '../teams.json';
 
-const Series = ({ seriesId, visitor, visitorWin, home, homeWin, record, gameCount }) => {
+const Series = ({ seriesId, visitor, visitorWin, home, homeWin, record, gameCount, locked }) => {
   const { picks } = usePicksContext();
 
   const { pick } = (picks && picks.length) ? (picks.find(pick => pick.series_id === seriesId) || {}) : {};
@@ -13,7 +13,7 @@ const Series = ({ seriesId, visitor, visitorWin, home, homeWin, record, gameCoun
   const successfulPick = (visitorWin && pick === visitor) || (homeWin && pick === home);
 
   return (
-    <div className={`series-card${(visitorWin || homeWin) ? " opaque" : ''}`}>
+    <div className={`series-card${locked ? " opaque" : ''}`}>
       <Team
         key={`${seriesId}-${visitor}`}
         seriesId={seriesId}
@@ -25,7 +25,7 @@ const Series = ({ seriesId, visitor, visitorWin, home, homeWin, record, gameCoun
         primary={visitorPrimary}
         successfulPick={successfulPick}
         opponentPrimary={(successfulPick && pick === home) ? homePrimary : null}
-        concluded={visitorWin || homeWin}
+        locked={locked}
       />
       <span className="at">@</span>
       <Team
@@ -39,7 +39,7 @@ const Series = ({ seriesId, visitor, visitorWin, home, homeWin, record, gameCoun
         primary={homePrimary}
         successfulPick={successfulPick}
         opponentPrimary={(successfulPick && pick === visitor) ? visitorPrimary : null}
-        concluded={visitorWin || homeWin}
+        locked={locked}
       />
       {gameCount === '4' && <p className="game-count">{gameCount} games</p>}
     </div>

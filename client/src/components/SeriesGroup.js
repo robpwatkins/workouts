@@ -4,15 +4,18 @@ import { useAuthContext } from '../hooks/useAuthContext';
 import { usePicksContext } from '../hooks/usePicksContexts';
 
 const SeriesGroup = ({ dates, series }) => {
-  const [completed, setCompleted] = useState(false);
+  const [locked, setLocked] = useState(false);
   const [wins, setWins] = useState('');
   const [losses, setLosses] = useState('');
   const { user } = useAuthContext();
   const { picks } = usePicksContext();
 
   useEffect(() => {
-    setCompleted(!(series.some(singleSeries => (!singleSeries.seriesInfo.record))));
-  }, [series]);
+    const [startingDayStr] = dates.split('-');
+    const startingDate = Date.parse(`${startingDayStr}/24`);
+
+    setLocked(startingDate <= Date.now().valueOf());
+  }, [series, dates]);
 
   useEffect(() => {
     if (picks && picks.length) {
@@ -40,8 +43,8 @@ const SeriesGroup = ({ dates, series }) => {
   return (
     <div className="series-group">
       <div className="dates-and-record">
-        <h3 className={`${user ? "user" : "no-user"}${completed ? " completed opaque" : " incomplete"}`}>{dates}</h3>
-        <h5 className={`${user ? "d-block": "d-none"}${completed ? " opaque" : ""}`}>{`${wins}-${losses}`}</h5>
+        <h3 className={`${user ? "user" : "no-user"}${locked ? " locked opaque" : " incomplete"}`}>{dates}</h3>
+        <h5 className={`${user ? "d-block": "d-none"}${locked ? " opaque" : ""}`}>{`${wins}-${losses}`}</h5>
       </div>
       {series.map(singleSeries => {
         const { seriesId, seriesInfo } = singleSeries;
@@ -57,6 +60,7 @@ const SeriesGroup = ({ dates, series }) => {
             homeWin={homeWin}
             record={record}
             gameCount={gameCount}
+            locked={locked}
           />
         )
       })}

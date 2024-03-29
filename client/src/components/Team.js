@@ -3,14 +3,14 @@ import { useState } from 'react';
 import { isMobile } from 'react-device-detect';
 import { usePicksContext } from '../hooks/usePicksContexts';
 
-const Team = ({ seriesId, team, type, win, record, logo, primary, successfulPick, opponentPrimary, concluded }) => {
+const Team = ({ seriesId, team, type, win, record, logo, primary, successfulPick, opponentPrimary, locked }) => {
   // const { user } = useAuthContext();
   const { picks, dispatch } = usePicksContext();
   const [hovered, setHovered] = useState(false);
   const serverUrl = process.env.REACT_APP_SERVER_URL;
 
   const handleMouseEnter = () => {
-    if (concluded || isMobile) return;
+    if (locked || isMobile) return;
     setHovered(true);
   };
 
@@ -25,7 +25,7 @@ const Team = ({ seriesId, team, type, win, record, logo, primary, successfulPick
     //   return confirmation ? window.location.href = '/login' : null;
     // }
 
-    if (concluded) return;
+    if (locked) return;
 
     const pick = e.currentTarget.classList[1];
     const currentSeriesPick = picks.find(pick => pick.series_id === seriesId);
@@ -67,12 +67,12 @@ const Team = ({ seriesId, team, type, win, record, logo, primary, successfulPick
 
   return (
     <button 
-      className={`${seriesId} ${team} ${type}${!concluded ? " in-play" : ""} ${win ? " winner" : ""}`}
+      className={`${seriesId} ${team} ${type}${!locked ? " in-play" : ""} ${win ? " winner" : ""}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onTouchEnd={() => setHovered(false)}
       onClick={handleClick}
-      style={((pick === team && !concluded) || hovered || successfulPick) ? { backgroundColor: opponentPrimary ? `${opponentPrimary}55` : `${primary}55` } : {}}
+      style={((pick === team && !locked) || hovered || successfulPick) ? { backgroundColor: opponentPrimary ? `${opponentPrimary}55` : `${primary}55` } : {}}
     >
       {type === "visitor" && <img src={logo} alt={`${team} logo`} />}
       <div className="team-and-record">
