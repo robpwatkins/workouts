@@ -12,9 +12,11 @@ const SeriesGroup = ({ dates, series }) => {
 
   useEffect(() => {
     const [startingDayStr] = dates.split('-');
-    const startingDate = Date.parse(`${startingDayStr}/24`);
+    const [month, day] = startingDayStr.split('/').map(str => str.length === 1 ? `0${str}` : str);
+    const startingDate = new Date(`2024-${month}-${day}T00:00:00.000-05:00`);
+    const startingDateNoon = startingDate.setHours(startingDate.getHours() + 12);
 
-    setLocked(startingDate <= Date.now().valueOf());
+    setLocked(startingDateNoon <= Date.now().valueOf());
   }, [series, dates]);
 
   useEffect(() => {
