@@ -96,7 +96,7 @@ header a {
 }
 
 /* homepage */
-.home {
+.home-page {
   display: flex;
   overflow: scroll;
 }
@@ -106,7 +106,7 @@ header a {
   flex-direction: column;
 }
 
-.home .series-card {
+.home-page .series-card {
   position: relative;
   display: flex;
   justify-content: center;
@@ -130,7 +130,7 @@ header a {
   border-radius: 3px;
 }
 
-.home .series-card img {
+.home-page .series-card img {
   width: 50px;
 }
 
