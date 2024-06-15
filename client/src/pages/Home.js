@@ -13,7 +13,7 @@ const Home = () => {
     const fetchAllSeries = async () => {
       const response = await fetch(`${serverUrl}/all-series`);
       const json = await response.json();
-      setAllSeries(json.slice(0, 23));
+      setAllSeries(json.slice(0, 29));
     };
 
     const fetchPicks = async () => {
