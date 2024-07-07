@@ -25,8 +25,6 @@ const Home = () => {
 
     fetchAllSeries();
     if (user) fetchPicks();
-
-    // document.querySelector('.incomplete').scrollIntoView({ block: 'nearest', inline: 'center' })
   }, [dispatch, user, serverUrl]);
 
   useEffect(() => {
