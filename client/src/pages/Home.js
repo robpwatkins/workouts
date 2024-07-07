@@ -7,13 +7,14 @@ const Home = () => {
   const { user } = useAuthContext();
   const { dispatch } = usePicksContext();
   const [allSeries, setAllSeries] = useState([]);
+  const [firstIncomplete, setFirstIncomplete] = useState(null);
   const serverUrl = process.env.REACT_APP_SERVER_URL;
 
   useEffect(() => {
     const fetchAllSeries = async () => {
       const response = await fetch(`${serverUrl}/all-series`);
       const json = await response.json();
-      setAllSeries(json.slice(0, 29));
+      setAllSeries(json.slice(0, 35));
     };
 
     const fetchPicks = async () => {
@@ -26,12 +27,21 @@ const Home = () => {
     if (user) fetchPicks();
   }, [dispatch, user, serverUrl]);
 
+  useEffect(() => {
+    setTimeout(() => setFirstIncomplete(document.querySelector('.incomplete')), 0);
+  }, [allSeries]);
+
+  useEffect(() => {
+    if (firstIncomplete) firstIncomplete.scrollIntoView({ block: 'nearest', inline: 'center' });
+  }, [firstIncomplete]);
+
   console.log('allSeries: ', allSeries);
 
   return (
     <div className="home-page">      
       {allSeries.length ? allSeries.map(seriesGroup => {
         const { dates, series } = seriesGroup;
+
         return (
           <SeriesGroup key={dates} dates={dates} series={series} />
         )
