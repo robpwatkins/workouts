@@ -8,11 +8,11 @@ const NavItemsDesktop = ({ user, loaded }) => {
           <NavLink to="/" className={({ isActive }) => isActive ? 'active' : 'inactive'}>
             <p className="home">Home</p>
           </NavLink>
-          {/* {user && user.username_customized && (
+          {(user && user.username_customized && user.admin) && (
             <NavLink to="/standings" className={({ isActive }) => isActive ? 'active' : 'inactive'}>
               <p className="standings">Standings</p>
             </NavLink>
-          )} */}
+          )}
           {user && user.admin && (
             <NavLink to="/admin" className={({ isActive }) => isActive ? 'active' : 'inactive'}>
               <p className="admin">Admin</p>

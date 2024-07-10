@@ -7,7 +7,6 @@ const Home = () => {
   const { user } = useAuthContext();
   const { dispatch } = usePicksContext();
   const [allSeries, setAllSeries] = useState([]);
-  const [firstIncomplete, setFirstIncomplete] = useState(null);
   const serverUrl = process.env.REACT_APP_SERVER_URL;
 
   useEffect(() => {
@@ -28,14 +27,14 @@ const Home = () => {
   }, [dispatch, user, serverUrl]);
 
   useEffect(() => {
-    setTimeout(() => setFirstIncomplete(document.querySelector('.incomplete')), 0);
+    setTimeout(() => {
+      const firstIncomplete = document.querySelector('.incomplete');
+
+      if (firstIncomplete) firstIncomplete.scrollIntoView({ block: 'nearest', inline: 'center' });
+    }, 0);
   }, [allSeries]);
 
-  useEffect(() => {
-    if (firstIncomplete) firstIncomplete.scrollIntoView({ block: 'nearest', inline: 'center' });
-  }, [firstIncomplete]);
-
-  console.log('allSeries: ', allSeries);
+  // console.log('allSeries: ', allSeries);
 
   return (
     <div className="home-page">      

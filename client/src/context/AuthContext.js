@@ -32,7 +32,7 @@ export const AuthContextProvider = ({ children }) => {
         const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/user`, {
           credentials: 'include'
         });
-        console.log('response: ', response);
+        // console.log('response: ', response);
         const { user, error } = await response.json();
 
         if (error) return dispatch({ type: 'ERROR', payload: error });
