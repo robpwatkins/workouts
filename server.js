@@ -77,7 +77,7 @@ app.patch('/user/update/:userId?', async (req, res) => {
     if (username) {
       user.username = username;
       user.username_customized = true;
-    } else if (total_wins && total_losses) {
+    } else if (total_wins && (total_losses || total_losses === 0)) {
       user.total_wins = total_wins;
       user.total_losses = total_losses;
     }

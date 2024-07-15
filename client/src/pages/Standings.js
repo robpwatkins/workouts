@@ -13,12 +13,18 @@ const Standings = () => {
       const response = await fetch(`${serverUrl}/users`, { credentials: 'include' });
       const users = await response.json();
       const sortedUsers = users.sort((a, b) => a.total_wins + b.total_wins);
-      setUsers(sortedUsers);
+      
+      setUsers(
+        sortedUsers.filter(user => (
+          ['robpwatkins@gmail.com', 'r.watkins@zollege.com'].includes(user.email)
+        ))
+      );
     }
 
     const fetchPicks = async () => {
       const response = await fetch(`${serverUrl}/api/picks/all`, { credentials: 'include' });
       const json = await response.json();
+
       if (response.ok) setPicks(json);
     };
 
@@ -28,21 +34,31 @@ const Standings = () => {
 
   useEffect(() => {
     const getFinalizedSeries = async () => {
-      const response = await fetch(`${serverUrl}/all-series`);
-      const json = await response.json();
+      const allSeries = await (await fetch(`${serverUrl}/all-series`)).json();
 
-      const _finalizedSeries = json.filter(seriesGroup => {
-        const groupFinalized = seriesGroup.series.every(singleSeries => {
+      setFinalizedSeries(
+        allSeries.filter(seriesGroup => seriesGroup.series.some(singleSeries => {
           const { finalized } = picks.find(pick => pick.series_id === singleSeries.seriesId) || {};
+
           return finalized ? singleSeries : null;
-        })
-        return groupFinalized ? seriesGroup : null;
-      })
-      setFinalizedSeries(_finalizedSeries);
+        }))
+      );
+
+      // allSeries.filter(seriesGroup => {
+      //   const groupFinalized = seriesGroup.series.every(singleSeries => {
+      //     const { finalized } = picks.find(pick => pick.series_id === singleSeries.seriesId) || {};
+
+      //     return finalized ? singleSeries : null;
+      //   });
+        
+      //   return groupFinalized ? seriesGroup : null;
+      // })
     };
 
     getFinalizedSeries();
   }, [picks, serverUrl]);
+
+  console.log({ finalizedSeries });
 
   return (
     <div className="standings">
