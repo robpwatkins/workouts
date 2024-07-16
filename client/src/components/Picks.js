@@ -16,27 +16,52 @@ const Picks = ({ users, finalizedSeries, picks }) => {
     <table className="picks">
       <thead>
         <tr>
-          <th className="series-count">{seriesCount || ''}</th>
+          <th className="team-column"></th>
+          <th className="game-count-column"></th>
           {users.map(user => (
-            <th key={user.username}>{user.username}</th>
+            <th className="username" key={user.username}>{user.username}</th>
           ))}
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td className="invisible"></td>
+          <td></td>
+          <td className="series-count">52</td>
           {users.map(user => {
             const { username, total_wins, total_losses } = user;
             return (
-              <td
-                key={`${username}:${total_wins}:${total_losses}`}
-              >
-                {total_wins}-{total_losses}
+              <td className="wins-losses" key={`${username}:${total_wins}:${total_losses}`}>
+                <b><i>{total_wins}-{total_losses}</i></b>
               </td>
             )
           })}
         </tr>
-        {finalizedSeries.map(seriesGroup => {
+        <tr>
+          <td className="team"><b><i>Team</i></b></td>
+          <td></td>
+          {users.map(user => (
+            <td className="oppo-date" key={user.username}><b>Oppo. / Date</b></td>
+          ))}
+        </tr>
+        {teams.map(team => {
+          const { mascot, abbreviation, logo } = team;
+          return (
+            <tr key={mascot}>
+              <td className="team-and-logo">
+                <img src={logo} alt={`${mascot} logo`} />
+                <span>{mascot}</span>
+              </td>
+              <td></td>
+              {users.map(user => {
+                const { username } = user;
+                return (
+                  <td key={`${username}:${abbreviation}`} className="oppo-date"></td>
+                )
+              })}
+            </tr>
+          )
+        })}
+        {/* {finalizedSeries.map(seriesGroup => {
           const { dates, series } = seriesGroup;
           return (
             <Fragment key={dates}>
@@ -78,7 +103,7 @@ const Picks = ({ users, finalizedSeries, picks }) => {
               })}
             </Fragment>
           )
-        })}
+        })} */}
       </tbody>
     </table>
   )

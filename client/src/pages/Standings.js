@@ -6,6 +6,7 @@ const Standings = () => {
   const [users, setUsers] = useState([]);
   const [picks, setPicks] = useState([]);
   const [finalizedSeries, setFinalizedSeries] = useState([]);
+  const [teams, setTeams] = useState([]);
   const serverUrl = process.env.REACT_APP_SERVER_URL;
 
   useEffect(() => {
@@ -33,7 +34,7 @@ const Standings = () => {
   }, [serverUrl]);
 
   useEffect(() => {
-    const getFinalizedSeries = async () => {
+    const getSeriesData = async () => {
       const allSeries = await (await fetch(`${serverUrl}/all-series`)).json();
 
       setFinalizedSeries(
@@ -55,14 +56,12 @@ const Standings = () => {
       // })
     };
 
-    getFinalizedSeries();
+    getSeriesData();
   }, [picks, serverUrl]);
-
-  console.log({ finalizedSeries });
 
   return (
     <div className="standings">
-      <Snapshot users={users} />
+      {/* <Snapshot users={users} /> */}
       <Picks
         users={users}
         finalizedSeries={finalizedSeries}

@@ -1,6 +1,7 @@
 [
   {
     "name": "Los Angeles Angels",
+    "mascot": "Angels",
     "abbreviation": "LAA",
     "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/301.svg",
     "logo1": "https://www.mlbstatic.com/team-logos/team-cap-on-light/108.svg",
@@ -13,6 +14,7 @@
   },
   {
     "name": "Los Angeles Dodgers",
+    "mascot": "Dodgers",
     "abbreviation": "LAD",
     "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/321.svg",
     "logo1": "https://www.mlbstatic.com/team-logos/team-cap-on-light/118.svg",
@@ -25,6 +27,7 @@
   },
   {
     "name": "San Diego Padres",
+    "mascot": "Padres",
     "abbreviation": "SD",
     "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/326.svg",
     "logo1": "https://www.mlbstatic.com/team-logos/team-cap-on-light/135.svg",
@@ -37,6 +40,7 @@
   },
   {
     "name": "San Francisco Giants",
+    "mascot": "Giants",
     "abbreviation": "SF",
     "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/327.svg",
     "logo1": "https://www.mlbstatic.com/team-logos/team-cap-on-light/137.svg",
@@ -49,6 +53,7 @@
   },
   {
     "name": "Tampa Bay Rays",
+    "mascot": "Rays",
     "abbreviation": "TB",
     "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/329.svg",
     "logo1": "https://www.mlbstatic.com/team-logos/team-cap-on-light/139.svg",
@@ -61,6 +66,7 @@
   },
   {
     "name": "Kansas City Royals",
+    "mascot": "Royals",
     "abbreviation": "KC",
     "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/307.svg",
     "logo1": "https://www.mlbstatic.com/team-logos/team-cap-on-light/118.svg",
@@ -72,7 +78,8 @@
     }
   },
   {
-    "name": "Seattle mariners",
+    "name": "Seattle Mariners",
+    "mascot": "Mariners",
     "abbreviation": "SEA",
     "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/312.svg",
     "logo1": "https://www.mlbstatic.com/team-logos/team-cap-on-light/136.svg",
@@ -86,6 +93,7 @@
   },
   {
     "name": "Detroit Tigers",
+    "mascot": "Tigers",
     "abbreviation": "DET",
     "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/306.svg",
     "logo1": "https://www.mlbstatic.com/team-logos/team-cap-on-light/116.svg",
@@ -99,6 +107,7 @@
   },
   {
     "name": "Arizona Diamondbacks",
+    "mascot": "Diamondbacks",
     "abbreviation": "ARZ",
     "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/330.svg",
     "logo1": "https://www.mlbstatic.com/team-logos/team-cap-on-light/109.svg",
@@ -112,6 +121,7 @@
   },
   {
     "name": "Cleveland Guardians",
+    "mascot": "Guardians",
     "abbreviation": "CLE",
     "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/305.svg",
     "logo1": "https://www.mlbstatic.com/team-logos/team-cap-on-light/114.svg",
@@ -125,6 +135,7 @@
   },
   {
     "name": "Houston Astros",
+    "mascot": "Astros",
     "abbreviation": "HOU",
     "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/320.svg",
     "logo1": "https://www.mlbstatic.com/team-logos/team-cap-on-light/117.svg",
@@ -138,6 +149,7 @@
   },
   {
     "name": "Milwaukee Brewers",
+    "mascot": "Brewers",
     "abbreviation": "MIL",
     "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/308.svg",
     "logo1": "https://www.mlbstatic.com/team-logos/team-cap-on-light/158.svg",
@@ -151,6 +163,7 @@
   },
   {
     "name": "New York Yankees",
+    "mascot": "Yankees",
     "abbreviation": "NYY",
     "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/310.svg",
     "logo1": "https://www.mlbstatic.com/team-logos/team-cap-on-light/147.svg",
@@ -164,6 +177,7 @@
   },
   {
     "name": "St. Louis Cardinals",
+    "mascot": "Cardinals",
     "abbreviation": "STL",
     "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/328.svg",
     "logo1": "https://www.mlbstatic.com/team-logos/team-cap-on-light/138.svg",
@@ -177,6 +191,7 @@
   },
   {
     "name": "Atlanta Braves",
+    "mascot": "Braves",
     "abbreviation": "ATL",
     "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/315.svg",
     "logo1": "https://www.mlbstatic.com/team-logos/team-cap-on-light/144.svg",
@@ -190,6 +205,7 @@
   },
   {
     "name": "Baltimore Orioles",
+    "mascot": "Orioles",
     "abbreviation": "BAL",
     "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/302.svg",
     "logo1": "https://www.mlbstatic.com/team-logos/team-cap-on-light/110.svg",
@@ -203,6 +219,7 @@
   },
   {
     "name": "Minnesota Twins",
+    "mascot": "Twins",
     "abbreviation": "MIN",
     "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/309.svg",
     "logo1": "https://www.mlbstatic.com/team-logos/team-cap-on-light/142.svg",
@@ -216,6 +233,7 @@
   },
   {
     "name": "Pittsburgh Pirates",
+    "mascot": "Pirates",
     "abbreviation": "PIT",
     "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/325.svg",
     "logo1": "https://www.mlbstatic.com/team-logos/team-cap-on-light/134.svg",
@@ -229,6 +247,7 @@
   },
   {
     "name": "Miami Marlins",
+    "mascot": "Marlins",
     "abbreviation": "MIA",
     "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/319.svg",
     "logo1": "https://www.mlbstatic.com/team-logos/team-cap-on-light/146.svg",
@@ -242,6 +261,7 @@
   },
   {
     "name": "Cincinnati Reds",
+    "mascot": "Reds",
     "abbreviation": "CIN",
     "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/317.svg",
     "logo1": "https://www.mlbstatic.com/team-logos/team-cap-on-light/113.svg",
@@ -255,6 +275,7 @@
   },
   {
     "name": "New York Mets",
+    "mascot": "Mets",
     "abbreviation": "NYM",
     "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/323.svg",
     "logo1": "https://www.mlbstatic.com/team-logos/team-cap-on-light/121.svg",
@@ -268,6 +289,7 @@
   },
   {
     "name": "Philadelphia Phillies",
+    "mascot": "Phillies",
     "abbreviation": "PHI",
     "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/324.svg",
     "logo1": "https://www.mlbstatic.com/team-logos/team-cap-on-light/143.svg",
@@ -281,6 +303,7 @@
   },
   {
     "name": "Texas Rangers",
+    "mascot": "Rangers",
     "abbreviation": "TEX",
     "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/313.svg",
     "logo1": "https://www.mlbstatic.com/team-logos/team-cap-on-light/140.svg",
@@ -294,6 +317,7 @@
   },
   {
     "name": "Toronto Blue Jays",
+    "mascot": "Blue Jays",
     "abbreviation": "TOR",
     "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/314.svg",
     "logo1": "https://www.mlbstatic.com/team-logos/team-cap-on-light/141.svg",
@@ -307,6 +331,7 @@
   },
   {
     "name": "Boston Red Sox",
+    "mascot": "Red Sox",
     "abbreviation": "BOS",
     "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/303.svg",
     "logo1": "https://www.mlbstatic.com/team-logos/team-cap-on-light/111.svg",
@@ -320,6 +345,7 @@
   },
   {
     "name": "Chicago Cubs",
+    "mascot": "Cubs",
     "abbreviation": "CHC",
     "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/316.svg",
     "logo1": "https://www.mlbstatic.com/team-logos/team-cap-on-light/112.svg",
@@ -333,6 +359,7 @@
   },
   {
     "name": "Oakland Athletics",
+    "mascot": "Athletics",
     "abbreviation": "OAK",
     "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/311.svg",
     "logo1": "https://www.mlbstatic.com/team-logos/team-cap-on-light/133.svg",
@@ -346,6 +373,7 @@
   },
   {
     "name": "Colorado Rockies",
+    "mascot": "Rockies",
     "abbreviation": "COL",
     "logo": "https://www.mlbstatic.com/team-logos/team-cap-on-light/115.svg",
     "logo1": "https://sports.cbsimg.net/fly/images/mlb/logos/team/318.svg",
@@ -359,6 +387,7 @@
   },
   {
     "name": "Chicago White Sox",
+    "mascot": "White Sox",
     "abbreviation": "CWS",
     "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/304.svg",
     "logo1": "https://www.mlbstatic.com/team-logos/team-cap-on-light/145.svg",
@@ -372,6 +401,7 @@
   },
   {
     "name": "Washington Nationals",
+    "mascot": "Nationals",
     "abbreviation": "WAS",
     "logo": "https://sports.cbsimg.net/fly/images/mlb/logos/team/322.svg",
     "logo1": "https://www.mlbstatic.com/team-logos/team-cap-on-light/120.svg",

@@ -705,13 +705,60 @@ td {
   text-align: center;
 }
 
+.picks {
+  margin: 0 auto;
+}
+
 .picks th {
   width: 175px;
+}
+
+.picks th.team-column,
+.picks th.game-count-column {
+  width: 95px;
 }
 
 .picks .dates td {
   font-weight: bold;
   background-color: #f7f7f7;
+}
+
+.picks th.username {
+  font-size: 1.2rem;
+}
+
+.picks td.series-count {
+  vertical-align: bottom;
+  padding: 0;
+  font-size: .75rem;
+}
+
+.picks td.wins-losses,
+.picks td.team {
+  font-size: .95rem;
+}
+
+.picks td.oppo-date {
+  font-size: .85rem;
+}
+
+.picks td.team-and-logo {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.picks td.team-and-logo img {
+  display: inline;
+  margin: 0 auto;
+  opacity: .4;
+}
+
+.picks td.team-and-logo span {
+  position: absolute;
+  font-size: .85rem;
+  font-weight: 500;
 }
 
 .admin button {

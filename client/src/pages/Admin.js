@@ -86,8 +86,6 @@ const Admin = () => {
           pick.user_id === '65ff8c2ad8f1c29f44e381d0'
         ));
 
-      return console.log({ userFinalizedPicks });
-
       for await (const pick of userFinalizedPicks) {
         pick.successful ? wins++ : losses++;
   
