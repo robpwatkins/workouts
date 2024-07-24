@@ -22,9 +22,11 @@ const getAllSeries = async (spreadsheetId, range) => {
       const seriesId = `${seriesGroup.dates}:${visitor}@${home}`;
       const visitorWin = visitorWinStr === 'TRUE';
       const homeWin = homeWinStr === 'TRUE';
-      if (!seriesGroup.series) seriesGroup.series = [{
+      const winner = visitorWin ? visitor : home;
+      const seriesInfo = {
         seriesId,
         seriesInfo: {
+          winner,
           visitor,
           visitorWin,
           home,
@@ -32,18 +34,10 @@ const getAllSeries = async (spreadsheetId, range) => {
           record,
           gameCount: gameCount || '3'
         }
-      }];
-      else seriesGroup.series.push({
-        seriesId,
-        seriesInfo: {
-          visitor,
-          visitorWin,
-          home,
-          homeWin,
-          record,
-          gameCount: gameCount || '3'
-        }
-      });
+      };
+      
+      if (!seriesGroup.series) seriesGroup.series = [seriesInfo];
+      else seriesGroup.series.push(seriesInfo);
     }
   })
   return allSeries;

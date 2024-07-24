@@ -2,15 +2,78 @@ import { useState, useEffect, Fragment } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faXmark } from '@fortawesome/free-solid-svg-icons';
 import teams from '../teams.json';
+import activeUsers from '../activeUsers.json';
 
 const Picks = ({ users, finalizedSeries, picks }) => {
-  const [seriesCount, setSeriesCount] = useState('');
+  // const [seriesCount, setSeriesCount] = useState('');
+  const [finalizedSeriesByTeam, setFinalizedSeriesByTeam] = useState([]);
+  const [userFirstPicks, setUserFirstPicks] = useState([]);
+  const [userSecondPicks, setUserSecondPicks] = useState([]);
+
+  // useEffect(() => {
+  //   let count = 0;
+  //   finalizedSeries.forEach(seriesGroup => count += seriesGroup.series.length);
+  //   setSeriesCount(count);
+  // }, [finalizedSeries]);
 
   useEffect(() => {
-    let count = 0;
-    finalizedSeries.forEach(seriesGroup => count += seriesGroup.series.length);
-    setSeriesCount(count);
-  }, [finalizedSeries]);
+    const firstPicks = [];
+    const secondPicks = [];
+
+    if (picks.length) {
+      const orderedPicks = picks
+        .filter(pick => activeUsers.some(user => pick.user_id === user._id))
+        .sort((a, b) => {
+          const [aDate, bDate] = [a.series_id, b.series_id].map(seriesId => {
+            const [startingDayStr] = seriesId.split('-');
+            const [month, day] = startingDayStr
+              .split('/')
+              .map(str => str.length === 1 ? `0${str}` : str);
+
+            return new Date(`2024-${month}-${day}`);
+          });
+  
+          return aDate - bDate;
+        });
+
+      teams.forEach((team) => {
+        users.forEach((user) => {
+          const currentTeamPicks = orderedPicks
+            .filter(pick => pick.pick === team.abbreviation && pick.user_id === user._id);
+          
+          if (currentTeamPicks.length) {
+            const [firstPick, secondPick] = currentTeamPicks;
+  
+            if (firstPick) firstPicks.push(firstPick);
+            if (secondPick) secondPicks.push(secondPick);
+          }
+        });
+      });
+
+      setUserFirstPicks(firstPicks);
+      setUserSecondPicks(secondPicks);
+      setFinalizedSeriesByTeam(teams.map(team => {
+        const currentFinalizedSeries = finalizedSeries
+        .filter(seriesGroup => seriesGroup.series.some(singleSeries => {
+          return singleSeries.seriesId.includes(team.abbreviation);
+        }))
+        .map(seriesGroup => {
+          return seriesGroup.series.find(singleSeries => {
+            return singleSeries.seriesId.includes(team.abbreviation);
+          });
+        });
+        const wins = currentFinalizedSeries
+          .filter(series => series.seriesInfo.winner === team.abbreviation).length;
+
+        return {
+          team: team.abbreviation,
+          series: currentFinalizedSeries,
+          wins,
+          losses: currentFinalizedSeries.length - wins
+        };
+      }));
+    }
+  }, [picks, finalizedSeries]);
 
   return (
     <table className="picks">
@@ -19,7 +82,7 @@ const Picks = ({ users, finalizedSeries, picks }) => {
           <th className="team-column"></th>
           <th className="game-count-column"></th>
           {users.map(user => (
-            <th className="username" key={user.username}>{user.username}</th>
+            <th colSpan={"2"} className="username" key={user.username}>{user.username}</th>
           ))}
         </tr>
       </thead>
@@ -29,8 +92,9 @@ const Picks = ({ users, finalizedSeries, picks }) => {
           <td className="series-count">52</td>
           {users.map(user => {
             const { username, total_wins, total_losses } = user;
+            
             return (
-              <td className="wins-losses" key={`${username}:${total_wins}:${total_losses}`}>
+              <td colSpan={"2"} className="wins-losses" key={`${username}:${total_wins}:${total_losses}`}>
                 <b><i>{total_wins}-{total_losses}</i></b>
               </td>
             )
@@ -40,23 +104,63 @@ const Picks = ({ users, finalizedSeries, picks }) => {
           <td className="team"><b><i>Team</i></b></td>
           <td></td>
           {users.map(user => (
-            <td className="oppo-date" key={user.username}><b>Oppo. / Date</b></td>
+            <>
+              <td className="oppo" key={`${user.username}1`}><b>Oppo.</b></td>
+              <td className="date" key={`${user.username}2`}><b>Date</b></td>
+            </>
           ))}
         </tr>
-        {teams.map(team => {
-          const { mascot, abbreviation, logo } = team;
+        {[...Array(teams.length * 2)].map((_, idx) => {
+          const { mascot, abbreviation, logo } = idx % 2 === 0
+            ? teams[idx / 2]
+            : teams[(idx - 1) / 2];
+          const { wins, losses } = finalizedSeriesByTeam.length
+            ? finalizedSeriesByTeam.find(series => series.team === abbreviation)
+            : { wins: 0, losses: 0 };
+
           return (
-            <tr key={mascot}>
-              <td className="team-and-logo">
-                <img src={logo} alt={`${mascot} logo`} />
-                <span>{mascot}</span>
-              </td>
-              <td></td>
+            <tr key={`${mascot}${idx}`}>
+              {idx % 2 === 0 && (
+                <>
+                  <td
+                    rowSpan={2}
+                    className="team-and-logo"
+                    style={{ backgroundImage: `url(${logo})`}}
+                  >
+                    <span>{mascot}</span>
+                  </td>
+                  <td rowSpan={2}>{wins}-{losses} (0-0)</td>
+                </>
+              )}
               {users.map(user => {
-                const { username } = user;
+                const currentPicks = idx % 2 === 0 ? userFirstPicks : userSecondPicks;
+                const currentPick = currentPicks
+                  .find(pick => pick.pick === abbreviation && pick.user_id === user._id);
+                const { pick, series_id, successful } = currentPick || {};
+                const [dates, teams] = series_id?.split(':') || [];
+                const [visitor] = teams?.split('@') || [];
+
+                let outcome = '';
+
+                if (successful) outcome = 'win';
+                else if (successful === false) outcome = 'loss';
+
                 return (
-                  <td key={`${username}:${abbreviation}`} className="oppo-date"></td>
-                )
+                  <>
+                    <td
+                      key={`${user.username}1`}
+                      className={`current-oppo ${outcome}`}
+                    >
+                      {(!!pick && pick === visitor) ? '@' : ''}{pick || ''}
+                    </td>
+                    <td
+                      key={`${user.username}2`}
+                      className={`current-date ${outcome}`}
+                    >
+                      {dates || ''}
+                    </td>
+                  </>
+                );
               })}
             </tr>
           )

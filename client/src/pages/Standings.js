@@ -44,16 +44,6 @@ const Standings = () => {
           return finalized ? singleSeries : null;
         }))
       );
-
-      // allSeries.filter(seriesGroup => {
-      //   const groupFinalized = seriesGroup.series.every(singleSeries => {
-      //     const { finalized } = picks.find(pick => pick.series_id === singleSeries.seriesId) || {};
-
-      //     return finalized ? singleSeries : null;
-      //   });
-        
-      //   return groupFinalized ? seriesGroup : null;
-      // })
     };
 
     getSeriesData();

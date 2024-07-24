@@ -21,7 +21,7 @@ const pickSchema = new Schema({
   },
   successful: {
     type: Boolean
-  }
+  },
 }, { timestamps: true });
 
 module.exports = mongoose.model('Pick', pickSchema);

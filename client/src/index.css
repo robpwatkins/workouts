@@ -685,6 +685,16 @@ table {
   background-color: #eee;
 }
 
+table.picks {
+  border-collapse: collapse;
+}
+
+table.picks th,
+table.picks tr,
+table.picks td {
+  border: 1px solid #ddd;
+}
+
 .series-count {
   flex: 2;
 }
@@ -698,7 +708,7 @@ tr {
 }
 
 tr:hover {
-  background-color: #eaeaea;
+  /* background-color: #eaeaea; */
 }
 
 td {
@@ -738,27 +748,58 @@ td {
   font-size: .95rem;
 }
 
-.picks td.oppo-date {
+.picks td.oppo,
+.picks td.date,
+.picks .current-oppo,
+.picks .current-date {
   font-size: .85rem;
+}
+
+.picks td.oppo,
+.picks td.date {
+  color: #fff;
+  background-color: #000;
+}
+
+.picks td.oppo,
+.picks td.current-oppo {
+  border-right-style: hidden;
+}
+
+.picks td.current-oppo.win,
+.picks td.current-date.win {
+  background-color: #d4edda;
+}
+
+.picks td.current-oppo.loss,
+.picks td.current-date.loss {
+  background-color: #f8d7da;
 }
 
 .picks td.team-and-logo {
-  position: relative;
+  /* position: relative;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
 }
 
-.picks td.team-and-logo img {
-  display: inline;
-  margin: 0 auto;
-  opacity: .4;
+.picks td.team-and-logo {
+  background-image: url(https://sports.cbsimg.net/fly/images/mlb/logos/team/301.svg);
+  background-size: contain;
+  background-origin: content-box;
+  background-color: rgba(255, 255, 255, 0.75);
+  background-blend-mode: lighten;
+  background-repeat: no-repeat;
+  background-position: 50%;
 }
 
 .picks td.team-and-logo span {
-  position: absolute;
-  font-size: .85rem;
-  font-weight: 500;
+  font-weight: 600;
+}
+
+.picks .current-oppo:empty::before,
+.picks .current-date:empty::before {
+  content: '\00a0';
 }
 
 .admin button {

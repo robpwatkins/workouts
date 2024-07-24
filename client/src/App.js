@@ -27,7 +27,7 @@ function App() {
               />
               <Route
                 path="/standings"
-                element={user ? (!user.username_customized ? <Username /> : <Standings />) : <Navigate to="/" />}
+                element={/* user ? (!user.username_customized ? <Username /> :  */<Standings />/* ) : <Navigate to="/" /> */}
               />
               <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />
               <Route path="/signup" element={!user ? <Signup /> : <Navigate to="/" />} />
