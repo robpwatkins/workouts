@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Picks from '../components/Picks';
 import Snapshot from '../components/Snapshot';
+import activeUsers from '../activeUsers.json';
 
 const Standings = () => {
   const [users, setUsers] = useState([]);
@@ -14,11 +15,10 @@ const Standings = () => {
       const response = await fetch(`${serverUrl}/users`, { credentials: 'include' });
       const users = await response.json();
       const sortedUsers = users.sort((a, b) => a.total_wins + b.total_wins);
+      // const activeUsers = ['robpwatkins@gmail.com', 'r.watkins@zollege.com'];
       
       setUsers(
-        sortedUsers.filter(user => (
-          ['robpwatkins@gmail.com', 'r.watkins@zollege.com'].includes(user.email)
-        ))
+        sortedUsers.filter(user => activeUsers.some(activeUser => activeUser.email === user.email))
       );
     }
 
@@ -51,7 +51,7 @@ const Standings = () => {
 
   return (
     <div className="standings">
-      {/* <Snapshot users={users} /> */}
+      <Snapshot users={users} />
       <Picks
         users={users}
         finalizedSeries={finalizedSeries}

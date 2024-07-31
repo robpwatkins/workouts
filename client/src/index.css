@@ -677,6 +677,15 @@ form.social-login {
   border-bottom: 2px solid #333;
 }
 
+.standings {
+  overflow: scroll;
+}
+
+table.picks th,
+table.picks td {
+  white-space: nowrap;
+}
+
 td img {
   width: 30px;
 }
@@ -692,7 +701,7 @@ table.picks {
 table.picks th,
 table.picks tr,
 table.picks td {
-  border: 1px solid #ddd;
+  border: 1px solid #ccc;
 }
 
 .series-count {
@@ -762,17 +771,19 @@ td {
 }
 
 .picks td.oppo,
-.picks td.current-oppo {
+.picks td.current-oppo:not(:empty) {
   border-right-style: hidden;
 }
 
 .picks td.current-oppo.win,
 .picks td.current-date.win {
+  font-weight: 800;
   background-color: #d4edda;
 }
 
 .picks td.current-oppo.loss,
 .picks td.current-date.loss {
+  text-decoration: line-through;
   background-color: #f8d7da;
 }
 

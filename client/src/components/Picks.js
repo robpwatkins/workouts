@@ -104,10 +104,10 @@ const Picks = ({ users, finalizedSeries, picks }) => {
           <td className="team"><b><i>Team</i></b></td>
           <td></td>
           {users.map(user => (
-            <>
-              <td className="oppo" key={`${user.username}1`}><b>Oppo.</b></td>
-              <td className="date" key={`${user.username}2`}><b>Date</b></td>
-            </>
+            <Fragment key={`${user.username}`}>
+              <td className="oppo"><b>Oppo.</b></td>
+              <td className="date"><b>Date</b></td>
+            </Fragment>
           ))}
         </tr>
         {[...Array(teams.length * 2)].map((_, idx) => {
@@ -125,7 +125,7 @@ const Picks = ({ users, finalizedSeries, picks }) => {
                   <td
                     rowSpan={2}
                     className="team-and-logo"
-                    style={{ backgroundImage: `url(${logo})`}}
+                    style={{ backgroundImage: `url(${logo})`, filter: 'grayscale(.5)' }}
                   >
                     <span>{mascot}</span>
                   </td>
@@ -138,7 +138,8 @@ const Picks = ({ users, finalizedSeries, picks }) => {
                   .find(pick => pick.pick === abbreviation && pick.user_id === user._id);
                 const { pick, series_id, successful } = currentPick || {};
                 const [dates, teams] = series_id?.split(':') || [];
-                const [visitor] = teams?.split('@') || [];
+                const [home, visitor] = teams?.split('@') || [];
+                const isVisitor = pick === visitor;
 
                 let outcome = '';
 
@@ -146,20 +147,14 @@ const Picks = ({ users, finalizedSeries, picks }) => {
                 else if (successful === false) outcome = 'loss';
 
                 return (
-                  <>
-                    <td
-                      key={`${user.username}1`}
-                      className={`current-oppo ${outcome}`}
-                    >
-                      {(!!pick && pick === visitor) ? '@' : ''}{pick || ''}
+                  <Fragment key={`${user.username}1`}>
+                    <td className={`current-oppo ${outcome}`}>
+                      {(!!pick && isVisitor) ? '@' : ''}{isVisitor ? home : visitor || ''}
                     </td>
-                    <td
-                      key={`${user.username}2`}
-                      className={`current-date ${outcome}`}
-                    >
+                    <td className={`current-date ${outcome}`}>
                       {dates || ''}
                     </td>
-                  </>
+                  </Fragment>
                 );
               })}
             </tr>
