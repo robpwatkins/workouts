@@ -71,15 +71,23 @@ app.patch('/user/update/:userId?', async (req, res) => {
   try {
     const _id = !!(req.user.admin && req.params.userId) ? req.params.userId : req.user._id;
     const user = await User.findById({ _id });
-
-    const { username, total_wins, total_losses } = req.body;
+    const { username, total_wins, total_losses, win_pct, sweeps } = req.body;
 
     if (username) {
       user.username = username;
       user.username_customized = true;
-    } else if (total_wins && (total_losses || total_losses === 0)) {
-      user.total_wins = total_wins;
-      user.total_losses = total_losses;
+    } else if (
+      total_wins &&
+      (total_losses || total_losses === 0) &&
+      (win_pct || win_pct === 0) &&
+      (sweeps || sweeps === 0)
+    ) {
+      [
+        user.total_wins,
+        user.total_losses,
+        user.win_pct,
+        user.sweeps
+      ] = [total_wins, total_losses, win_pct, sweeps];
     }
 
     const updatedUser = await user.save();

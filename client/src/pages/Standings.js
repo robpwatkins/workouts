@@ -38,11 +38,9 @@ const Standings = () => {
       const allSeries = await (await fetch(`${serverUrl}/all-series`)).json();
 
       setFinalizedSeries(
-        allSeries.filter(seriesGroup => seriesGroup.series.some(singleSeries => {
-          const { finalized } = picks.find(pick => pick.series_id === singleSeries.seriesId) || {};
-
-          return finalized ? singleSeries : null;
-        }))
+        allSeries.filter(seriesGroup => {
+          return seriesGroup.series.some(singleSeries => !!singleSeries.seriesInfo.winner);
+        })
       );
     };
 

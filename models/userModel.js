@@ -42,12 +42,16 @@ const userSchema = new Schema({
     type: Boolean
   },
   total_wins: {
-    type: Number,
-    require: true
+    type: Number
   },
   total_losses: {
-    type: Number,
-    require: true
+    type: Number
+  },
+  win_pct: {
+    type: Number
+  },
+  sweeps: {
+    type: Number
   }
 })
 

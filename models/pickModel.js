@@ -22,6 +22,12 @@ const pickSchema = new Schema({
   successful: {
     type: Boolean
   },
+  sweep: {
+    type: Boolean
+  },
+  split: {
+    type: Boolean
+  },
 }, { timestamps: true });
 
 module.exports = mongoose.model('Pick', pickSchema);

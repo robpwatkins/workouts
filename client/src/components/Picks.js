@@ -54,157 +54,166 @@ const Picks = ({ users, finalizedSeries, picks }) => {
       setUserSecondPicks(secondPicks);
       setFinalizedSeriesByTeam(teams.map(team => {
         const currentFinalizedSeries = finalizedSeries
-        .filter(seriesGroup => seriesGroup.series.some(singleSeries => {
-          return singleSeries.seriesId.includes(team.abbreviation);
-        }))
-        .map(seriesGroup => {
-          return seriesGroup.series.find(singleSeries => {
+          .filter(seriesGroup => seriesGroup.series.some(singleSeries => {
             return singleSeries.seriesId.includes(team.abbreviation);
+          }))
+          .map(seriesGroup => {
+            return seriesGroup.series.find(singleSeries => {
+              return singleSeries.seriesId.includes(team.abbreviation);
+            });
           });
-        });
         const wins = currentFinalizedSeries
           .filter(series => series.seriesInfo.winner === team.abbreviation).length;
+        const sweeps = currentFinalizedSeries
+          .filter(series => (
+            series.seriesInfo.sweep && series.seriesInfo.winner === team.abbreviation
+          ));
+        const splits = currentFinalizedSeries.filter(series => series.seriesInfo.split);
 
         return {
           team: team.abbreviation,
           series: currentFinalizedSeries,
           wins,
-          losses: currentFinalizedSeries.length - wins
+          losses: currentFinalizedSeries.length - wins,
+          sweeps: sweeps.length,
+          splits: splits.length
         };
       }));
     }
   }, [picks, finalizedSeries]);
 
   return (
-    <table className="picks">
-      <thead>
-        <tr>
-          <th className="team-column"></th>
-          <th className="game-count-column"></th>
-          {users.map(user => (
-            <th colSpan={"2"} className="username" key={user.username}>{user.username}</th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td></td>
-          <td className="series-count">52</td>
-          {users.map(user => {
-            const { username, total_wins, total_losses } = user;
-            
+    <div className="picks">
+      <table>
+        <thead>
+          <tr>
+            <th className="team-column"></th>
+            <th className="game-count-column"></th>
+            {users.map(user => (
+              <th colSpan={"2"} className="username" key={user.username}>{user.username}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td></td>
+            <td className="series-count">52</td>
+            {users.map(user => {
+              const { username, total_wins, total_losses } = user;
+              
+              return (
+                <td colSpan={"2"} className="wins-losses" key={`${username}:${total_wins}:${total_losses}`}>
+                  <b><i>{total_wins}-{total_losses}</i></b>
+                </td>
+              )
+            })}
+          </tr>
+          <tr>
+            <td className="team"><b><i>Team</i></b></td>
+            <td></td>
+            {users.map(user => (
+              <Fragment key={`${user.username}`}>
+                <td className="oppo"><b>Oppo.</b></td>
+                <td className="date"><b>Date</b></td>
+              </Fragment>
+            ))}
+          </tr>
+          {[...Array(teams.length * 2)].map((_, idx) => {
+            const { mascot, abbreviation, logo } = idx % 2 === 0
+              ? teams[idx / 2]
+              : teams[(idx - 1) / 2];
+            const { wins, losses, sweeps, splits } = finalizedSeriesByTeam.length
+              ? finalizedSeriesByTeam.find(series => series.team === abbreviation)
+              : { wins: 0, losses: 0 };
+
             return (
-              <td colSpan={"2"} className="wins-losses" key={`${username}:${total_wins}:${total_losses}`}>
-                <b><i>{total_wins}-{total_losses}</i></b>
-              </td>
+              <tr key={`${mascot}${idx}`}>
+                {idx % 2 === 0 && (
+                  <>
+                    <td
+                      rowSpan={2}
+                      className="team-and-logo"
+                      style={{ backgroundImage: `url(${logo})`, filter: 'grayscale(.5)' }}
+                    >
+                      <span>{mascot}</span>
+                    </td>
+                    <td rowSpan={2}>{wins}-{losses} ({sweeps}-{splits})</td>
+                  </>
+                )}
+                {users.map(user => {
+                  const currentPicks = idx % 2 === 0 ? userFirstPicks : userSecondPicks;
+                  const currentPick = currentPicks
+                    .find(pick => pick.pick === abbreviation && pick.user_id === user._id);
+                  const { pick, series_id, successful } = currentPick || {};
+                  const [dates, teams] = series_id?.split(':') || [];
+                  const [home, visitor] = teams?.split('@') || [];
+                  const isVisitor = pick === visitor;
+
+                  let outcome = '';
+
+                  if (successful) outcome = 'win';
+                  else if (successful === false) outcome = 'loss';
+
+                  return (
+                    <Fragment key={`${user.username}1`}>
+                      <td className={`current-oppo ${outcome}`}>
+                        {(!!pick && isVisitor) ? '@' : ''}{isVisitor ? home : visitor || ''}
+                      </td>
+                      <td className={`current-date ${outcome}`}>
+                        {dates || ''}
+                      </td>
+                    </Fragment>
+                  );
+                })}
+              </tr>
             )
           })}
-        </tr>
-        <tr>
-          <td className="team"><b><i>Team</i></b></td>
-          <td></td>
-          {users.map(user => (
-            <Fragment key={`${user.username}`}>
-              <td className="oppo"><b>Oppo.</b></td>
-              <td className="date"><b>Date</b></td>
-            </Fragment>
-          ))}
-        </tr>
-        {[...Array(teams.length * 2)].map((_, idx) => {
-          const { mascot, abbreviation, logo } = idx % 2 === 0
-            ? teams[idx / 2]
-            : teams[(idx - 1) / 2];
-          const { wins, losses } = finalizedSeriesByTeam.length
-            ? finalizedSeriesByTeam.find(series => series.team === abbreviation)
-            : { wins: 0, losses: 0 };
+          {/* {finalizedSeries.map(seriesGroup => {
+            const { dates, series } = seriesGroup;
+            return (
+              <Fragment key={dates}>
+                <tr className="dates">
+                  <td>{dates}</td>
+                  {users.map((_, idx) => <td key={idx}></td>)}
+                </tr>
+                {series.map(singleSeries => {
+                  const { seriesId, seriesInfo } = singleSeries;
+                  const { visitor, visitorWin, home, homeWin } = seriesInfo;
+                  const { logo: visitorLogo } = teams
+                    .find(team => team.abbreviation === visitor);
+                  const { logo: homeLogo } = teams
+                    .find(team => team.abbreviation === home);
 
-          return (
-            <tr key={`${mascot}${idx}`}>
-              {idx % 2 === 0 && (
-                <>
-                  <td
-                    rowSpan={2}
-                    className="team-and-logo"
-                    style={{ backgroundImage: `url(${logo})`, filter: 'grayscale(.5)' }}
-                  >
-                    <span>{mascot}</span>
-                  </td>
-                  <td rowSpan={2}>{wins}-{losses} (0-0)</td>
-                </>
-              )}
-              {users.map(user => {
-                const currentPicks = idx % 2 === 0 ? userFirstPicks : userSecondPicks;
-                const currentPick = currentPicks
-                  .find(pick => pick.pick === abbreviation && pick.user_id === user._id);
-                const { pick, series_id, successful } = currentPick || {};
-                const [dates, teams] = series_id?.split(':') || [];
-                const [home, visitor] = teams?.split('@') || [];
-                const isVisitor = pick === visitor;
+                  return (
+                    <tr key={seriesId}>
+                      <td className="series-td">
+                        <img src={visitorLogo} alt={`${visitor} logo`} />
+                        <span className={visitorWin ? "winner": ""}>{visitor}</span>
+                        <span>@</span>
+                        <span className={homeWin ? "winner" : ""}>{home}</span>
+                        <img src={homeLogo} alt={`${home} logo`} />
+                      </td>
+                      {users.map(user => {
+                        const { successful } = picks
+                          .find(pick => (pick.series_id === seriesId && pick.user_id === user._id)) || {};
 
-                let outcome = '';
-
-                if (successful) outcome = 'win';
-                else if (successful === false) outcome = 'loss';
-
-                return (
-                  <Fragment key={`${user.username}1`}>
-                    <td className={`current-oppo ${outcome}`}>
-                      {(!!pick && isVisitor) ? '@' : ''}{isVisitor ? home : visitor || ''}
-                    </td>
-                    <td className={`current-date ${outcome}`}>
-                      {dates || ''}
-                    </td>
-                  </Fragment>
-                );
-              })}
-            </tr>
-          )
-        })}
-        {/* {finalizedSeries.map(seriesGroup => {
-          const { dates, series } = seriesGroup;
-          return (
-            <Fragment key={dates}>
-              <tr className="dates">
-                <td>{dates}</td>
-                {users.map((_, idx) => <td key={idx}></td>)}
-              </tr>
-              {series.map(singleSeries => {
-                const { seriesId, seriesInfo } = singleSeries;
-                const { visitor, visitorWin, home, homeWin } = seriesInfo;
-                const { logo: visitorLogo } = teams
-                  .find(team => team.abbreviation === visitor);
-                const { logo: homeLogo } = teams
-                  .find(team => team.abbreviation === home);
-
-                return (
-                  <tr key={seriesId}>
-                    <td className="series-td">
-                      <img src={visitorLogo} alt={`${visitor} logo`} />
-                      <span className={visitorWin ? "winner": ""}>{visitor}</span>
-                      <span>@</span>
-                      <span className={homeWin ? "winner" : ""}>{home}</span>
-                      <img src={homeLogo} alt={`${home} logo`} />
-                    </td>
-                    {users.map(user => {
-                      const { successful } = picks
-                        .find(pick => (pick.series_id === seriesId && pick.user_id === user._id)) || {};
-
-                      return (
-                        <td key={`${user.username}:${seriesId}`}>
-                          {successful
-                            ? <FontAwesomeIcon icon={faCheck} />
-                            : <FontAwesomeIcon icon={faXmark} />}
-                        </td>
-                      )
-                    })}
-                  </tr>
-                )
-              })}
-            </Fragment>
-          )
-        })} */}
-      </tbody>
-    </table>
+                        return (
+                          <td key={`${user.username}:${seriesId}`}>
+                            {successful
+                              ? <FontAwesomeIcon icon={faCheck} />
+                              : <FontAwesomeIcon icon={faXmark} />}
+                          </td>
+                        )
+                      })}
+                    </tr>
+                  )
+                })}
+              </Fragment>
+            )
+          })} */}
+        </tbody>
+      </table>
+    </div>
   )
 };
 

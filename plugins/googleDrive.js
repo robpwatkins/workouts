@@ -18,21 +18,30 @@ const getAllSeries = async (spreadsheetId, range) => {
         seriesGroup.dates = row[0];
       }
     } else {
-      const [visitor, visitorWinStr, home, homeWinStr, record, gameCount] = row;
-      const seriesId = `${seriesGroup.dates}:${visitor}@${home}`;
+      const [
+        visitor,
+        visitorWinStr,
+        home,
+        homeWinStr,
+        record,
+        gameCount,
+        sweep,
+        split
+      ] = row;
       const visitorWin = visitorWinStr === 'TRUE';
       const homeWin = homeWinStr === 'TRUE';
-      const winner = visitorWin ? visitor : home;
       const seriesInfo = {
-        seriesId,
+        seriesId: `${seriesGroup.dates}:${visitor}@${home}`,
         seriesInfo: {
-          winner,
+          winner: (visitorWin || homeWin) ? (visitorWin ? visitor : home) : '',
           visitor,
           visitorWin,
           home,
           homeWin,
           record,
-          gameCount: gameCount || '3'
+          gameCount: gameCount || '3',
+          sweep: sweep === 'Sweep',
+          split: split === 'Split'
         }
       };
       

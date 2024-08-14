@@ -681,8 +681,8 @@ form.social-login {
   overflow: scroll;
 }
 
-table.picks th,
-table.picks td {
+.picks table th,
+.picks table td {
   white-space: nowrap;
 }
 
@@ -694,13 +694,13 @@ table {
   background-color: #eee;
 }
 
-table.picks {
+.picks table {
   border-collapse: collapse;
 }
 
-table.picks th,
-table.picks tr,
-table.picks td {
+.picks table th,
+.picks table tr,
+.picks table td {
   border: 1px solid #ccc;
 }
 
@@ -726,6 +726,7 @@ td {
 
 .picks {
   margin: 0 auto;
+  overflow: scroll;
 }
 
 .picks th {
@@ -811,6 +812,15 @@ td {
 .picks .current-oppo:empty::before,
 .picks .current-date:empty::before {
   content: '\00a0';
+}
+
+div.admin {
+  overflow: scroll;
+}
+
+.admin form {
+  width: 400px;
+  margin: 0 auto 2rem;
 }
 
 .admin button {
