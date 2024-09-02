@@ -14,7 +14,7 @@ const Home = () => {
     const fetchAllSeries = async () => {
       const response = await fetch(`${serverUrl}/all-series`);
       const json = await response.json();
-      setAllSeries(json.slice(0, 46));
+      setAllSeries(json);
     };
 
     const fetchPicks = async () => {
