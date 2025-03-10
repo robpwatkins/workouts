@@ -6,7 +6,8 @@
 
 /* layout */
 :root {
-  --primary: #002d72e3;
+  /* --primary: #002d72e3; */
+  --primary: #4f79b9;
   --tan: #e2d3c4;
   --lighttan: #f3e8de;
   /* --tan: #ece0e0; */
@@ -16,13 +17,15 @@
   /* --secondary: #CD0001; */
   /* --error: #e7195a; */
   /* --error: #cd0000cc; */
-  --error: #c33b3bed;
+  /* --error: #c33b3bed; */
+  --error: #c25f5f;
   --error-bg: #cd000014;
 }
 
 body {
   /* background-color: #e6d3c1; */
   background-color: var(--tan);
+  background-color: #4b4b4b;
   /* background-color: #d8c9bb; */
   /* background-color: #dccab8; */
   margin: 0;
@@ -35,7 +38,8 @@ header {
   justify-content: center;
   /* background-color: #f6f0f0; */
   /* background-color: #faf3f3; */
-  background-color: var(--lighttan);
+  /* background-color: var(--lighttan); */
+  background-color: #2b2b2b;
 }
 
 header .container {
@@ -78,7 +82,7 @@ header h1 {
   word-spacing: -4px;
   color: var(--primary);
   text-decoration: underline;
-  text-decoration-thickness: 4px;
+  text-decoration-thickness: 3px;
   text-decoration-color: var(--error);
   text-underline-offset: 5px;
 }
@@ -142,7 +146,8 @@ header a {
   width: 100%;
   margin: 10px 0;
   text-align: center;
-  background-color: var(--lightertan);
+  /* background-color: var(--lightertan); */
+  background-color: #ddd;
   border-right: 1px solid #ddd;
   border-left: 1px solid #ddd;
   box-shadow: 4px 2px 5px rgb(0 0 0 / 25%);
@@ -440,7 +445,7 @@ nav {
   margin-left: 12px;
   padding: 7.5px 0;
   color: #fff;
-  background-color: var(--primary);
+  /* background-color: var(--primary); */
 }
 
 .account a.signup {
